@@ -30,7 +30,30 @@
       const page = { title: 'Preview', slug: 'x', sections: [
         { type: 'text', heading: s.name, subheading: s.tagline, body: s.description, align: 'center', buttons: [{ label: 'Main button', url: '#' }, { label: 'Second button', url: '#' }] },
         { type: 'contact', heading: 'Contact details', showForm: false }] };
-      const html = SiteRender.renderPage(page, s).replace(/^[\s\S]*?<body>/, '').replace('<a href="/admin/messages.html" style="position:fixed;left:16px;bottom:16px;z-index:9999;background:#1d1d1f;color:#fff;padding:10px 16px;border-radius:999px;font:600 14px system-ui,sans-serif;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">📬 Messages</a>
+      const html = SiteRender.renderPage(page, s).replace(/^[\s\S]*?<body>/, '').replace('<a href="/admin/messages.html" id="inbox-btn" style="position:fixed;left:16px;bottom:16px;z-index:9999;display:flex;align-items:center;gap:8px;background:#16161a;color:#fff;padding:11px 18px;border-radius:999px;font:600 14px system-ui,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.28);border:2px solid transparent;transition:.2s">📬 Messages<span id="inbox-badge" style="display:none;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:#e5484d;color:#fff;font-size:12px;font-weight:800;align-items:center;justify-content:center"></span></a>
+<script>
+  // Unread badge: checks for new messages every minute (read status is remembered per device).
+  (function () {
+    const btn = document.getElementById('inbox-btn'), badge = document.getElementById('inbox-badge');
+    const accent = (window.siteSettings && siteSettings.theme && siteSettings.theme.primary) || '#d4a437';
+    async function check() {
+      try {
+        const u = window.netlifyIdentity && netlifyIdentity.currentUser();
+        if (!u) return;
+        const r = await fetch('/.netlify/functions/messages', { headers: { Authorization: 'Bearer ' + await u.jwt() } });
+        if (!r.ok) return;
+        const seen = new Set(JSON.parse(localStorage.getItem('inbox-seen') || '[]'));
+        const n = (await r.json()).filter((m) => !seen.has(m.id)).length;
+        badge.textContent = n > 99 ? '99+' : n;
+        badge.style.display = n ? 'inline-flex' : 'none';
+        btn.style.borderColor = n ? accent : 'transparent';
+        btn.title = n ? n + ' new message' + (n > 1 ? 's' : '') : 'No new messages';
+      } catch (e) {}
+    }
+    setTimeout(check, 2500); setInterval(check, 60000);
+    document.addEventListener('visibilitychange', () => document.visibilityState === 'visible' && check());
+  })();
+</script>
 </body></html>', '');
       return h('div', { dangerouslySetInnerHTML: { __html: head(s.theme) + html } });
     }
