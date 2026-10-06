@@ -106,3 +106,7 @@ video{width:100%;border-radius:14px;background:#000}.caption{color:#666;font-siz
 .btn-whatsapp:hover{filter:brightness(1.06);transform:translateY(-1px)}.wa-ico{font-size:1.05em;line-height:1}
 .prose .btn-whatsapp{margin-top:4px}
 .card-btns{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px}.card-btns .btn{margin-top:0}
+/* Image + Text: large image option */
+.block-imageText .container:has(.img-large){max-width:1400px}
+.split.img-large{grid-template-columns:1.6fr 1fr;gap:48px}
+@media(max-width:820px){.split.img-large{grid-template-columns:1fr}}
