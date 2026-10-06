@@ -1,0 +1,14 @@
+{
+  "title": "Booking Request",
+  "slug": "booking-request",
+  "sections": [
+    {
+      "type": "embed",
+      "height": 700,
+      "width": "narrow",
+      "background": "light",
+      "code": "<script type=\"text/javascript\" src=\"https://form.jotform.com/jsform/262785031627056\"></script>"
+    }
+  ],
+  "description": "Have a special event? Book Chief Apostle Prophet as a special guest."
+}
