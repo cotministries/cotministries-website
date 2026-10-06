@@ -6,16 +6,9 @@
     {
       "type": "contact",
       "heading": "Get in Touch",
-      "subheading": "We'd love to hear from you and pray with you.",
+      "subheading": "We'd love to hear from you. Please allow 24-72 hours for a response.",
       "background": "light",
       "showForm": true
-    },
-    {
-      "type": "text",
-      "align": "left",
-      "background": "light",
-      "heading": "Please reach out by email:",
-      "body": "Please allow 24-72 hours for a response."
     }
   ]
 }
