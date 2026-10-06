@@ -46,7 +46,7 @@
   "theme": {
     "primary": "#edba4d",
     "dark": "#121212",
-    "light": "#f6f6f6",
+    "light": "#ffffff",
     "text": "#1d1d1f",
     "headingFont": "Cinzel",
     "bodyFont": "Inter"
