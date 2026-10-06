@@ -1,0 +1,39 @@
+{
+  "title": "Monthly Spiritual Detox",
+  "slug": "monthly-spiritual-detox",
+  "description": "Register for the Monthly Spiritual Detox.",
+  "sections": [
+    {
+      "type": "hero",
+      "style": "image",
+      "image": "https://749ba59c77173e7ef9c9.cdn6.editmysite.com/uploads/b/749ba59c77173e7ef9c94ce8839a21e8d7074f7fbbdd5b04fb67591012bc36e5/MonthlyDetoxBannner_1791255342.png",
+      "buttons": []
+    },
+    {
+      "type": "text",
+      "heading": "Monthly Spiritual Detox",
+      "align": "center",
+      "background": "light",
+      "body": "If you would like to sign up for the Monthly Spiritual Detox, the fee is **$50**. Click below to fill out the registration form.",
+      "buttons": [
+        {
+          "label": "Register Now – $50",
+          "url": "https://form.jotform.com/262778731769173"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "heading": "An Extraordinary Moment to Be Free From",
+      "image": "https://749ba59c77173e7ef9c9.cdn6.editmysite.com/uploads/b/749ba59c77173e7ef9c94ce8839a21e8d7074f7fbbdd5b04fb67591012bc36e5/747ea25c-d7e8-42cc-a7fd-08b5bd938f51_1791257966.png",
+      "width": "narrow",
+      "background": "white",
+      "buttons": [
+        {
+          "label": "Register Now",
+          "url": "https://form.jotform.com/262778731769173"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Website Editor</title><meta name="robots" content="noindex">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script src="/admin/repo-files.js"></script>
+<script src="/admin/site-settings.js"></script>
+<script src="/admin/render.js"></script>
+</head><body>
+<script src="https://unpkg.com/decap-cms@^3.8.0/dist/decap-cms.js"></script>
+<script>
+  // The live preview uses the exact same renderer as the real site.
+  let siteSettings = window.siteSettings || {};
+  CMS.registerPreviewStyle('/styles.css');
+  function resolveAssets(v, getAsset) {
+    if (Array.isArray(v)) return v.map((x) => resolveAssets(x, getAsset));
+    if (v && typeof v === 'object') { const o = {}; for (const k in v) o[k] = resolveAssets(v[k], getAsset); return o; }
+    if (typeof v === 'string' && v.startsWith('/uploads/')) { try { const a = getAsset(v); return a ? a.toString() : v; } catch (e) { return v; } }
+    return v;
+  }
+  const head = (t) => `<link rel="stylesheet" href="${SiteRender.fontsHref(t)}"><style>${SiteRender.themeCss(t)}</style>`;
+  CMS.registerPreviewTemplate('pages', createClass({
+    render() {
+      const data = resolveAssets(this.props.entry.get('data').toJS(), this.props.getAsset);
+      return h('div', { dangerouslySetInnerHTML: { __html: head(siteSettings.theme) + SiteRender.renderSections(data.sections, siteSettings) } });
+    }
+  }));
+  CMS.registerPreviewTemplate('settings', createClass({
+    render() {
+      const s = resolveAssets(this.props.entry.get('data').toJS(), this.props.getAsset); siteSettings = s;
+      const page = { title: 'Preview', slug: 'x', sections: [
+        { type: 'text', heading: s.name, subheading: s.tagline, body: s.description, align: 'center', buttons: [{ label: 'Main button', url: '#' }, { label: 'Second button', url: '#' }] },
+        { type: 'contact', heading: 'Contact details', showForm: false }] };
+      const html = SiteRender.renderPage(page, s).replace(/^[\s\S]*?<body>/, '').replace('</body></html>', '');
+      return h('div', { dangerouslySetInnerHTML: { __html: head(s.theme) + html } });
+    }
+  }));
+</script>
+</body></html>

@@ -1,0 +1,53 @@
+{
+  "name": "City of Testimonies Ministries",
+  "tagline": "Every life has a testimony waiting to be told.",
+  "seoTitle": "City of Testimonies Ministries | Monrovia, Liberia",
+  "description": "A prophetic ministry based in Monrovia, Liberia, reaching the nations through the Word of God, deliverance, prayer and the power of the Holy Spirit.",
+  "logo": "",
+  "theme": {
+    "primary": "#d4a437",
+    "dark": "#121212",
+    "light": "#faf6ee",
+    "text": "#1d1d1f",
+    "headingFont": "Cinzel",
+    "bodyFont": "Inter"
+  },
+  "nav": [
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "Spiritual Detox",
+      "url": "/monthly-spiritual-detox/"
+    },
+    {
+      "label": "Prophetic School",
+      "url": "/school-registration/"
+    },
+    {
+      "label": "Shop",
+      "url": "/shop/"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/"
+    }
+  ],
+  "contact": {
+    "address": "[Address], Monrovia, Liberia",
+    "serviceTimes": "[Sabbath service day & time]",
+    "phone": "[Phone / WhatsApp]",
+    "email": "[email@example.com]"
+  },
+  "social": [
+    {
+      "label": "Facebook",
+      "url": "https://facebook.com/"
+    },
+    {
+      "label": "YouTube",
+      "url": "https://youtube.com/"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "title": "Home",
+  "slug": "index",
+  "sections": [
+    {
+      "type": "hero",
+      "style": "image",
+      "image": "/uploads/banner.jpg",
+      "buttons": []
+    },
+    {
+      "type": "text",
+      "heading": "Welcome to City of Testimonies Ministries",
+      "subheading": "Every life has a testimony waiting to be told.",
+      "align": "center",
+      "background": "light",
+      "body": "City of Testimonies Ministries is a prophetic ministry based in Monrovia, Liberia, with a mandate to reach the nations through the Word of God, deliverance, prayer, and the power of the Holy Spirit.\n\nWe believe that no matter where you are in your journey, God is still writing your story. What you may be facing today can become the testimony you share tomorrow.",
+      "buttons": [
+        {
+          "label": "Contact Us",
+          "url": "/contact/"
+        }
+      ]
+    },
+    {
+      "type": "cards",
+      "heading": "Ways to Connect",
+      "background": "white",
+      "items": [
+        {
+          "title": "Monthly Spiritual Detox",
+          "image": "https://749ba59c77173e7ef9c9.cdn6.editmysite.com/uploads/b/749ba59c77173e7ef9c94ce8839a21e8d7074f7fbbdd5b04fb67591012bc36e5/MonthlyDetoxBannner_1791255342.png",
+          "text": "An extraordinary moment to be free from spiritual bondage, delays and oppression.",
+          "button": {
+            "label": "Register Now",
+            "url": "/monthly-spiritual-detox/"
+          }
+        },
+        {
+          "title": "Eagle Eye's Prophetic School",
+          "image": "https://749ba59c77173e7ef9c9.cdn6.editmysite.com/uploads/b/749ba59c77173e7ef9c94ce8839a21e8d7074f7fbbdd5b04fb67591012bc36e5/c8ee922e-38f4-4ed3-93cc-e14c3a01253f_1790832979.png",
+          "text": "Train in the prophetic and grow in your gifts and calling. Classes start January 2027.",
+          "button": {
+            "label": "Enroll Today",
+            "url": "/school-registration/"
+          }
+        },
+        {
+          "title": "Ministry Store",
+          "image": "https://155390671.cdn6.editmysite.com/uploads/1/5/5/3/155390671/6JFBRARXMLFDL5ONTLN3UXI6.png",
+          "text": "Wear your faith. Shirts and more from City of Testimonies.",
+          "button": {
+            "label": "Shop Now",
+            "url": "/shop/"
+          }
+        }
+      ]
+    },
+    {
+      "type": "imageText",
+      "heading": "Chief Apostle Prophet Osman Nathaniel Weaver",
+      "subheading": "Leader & Founder",
+      "image": "/uploads/banner.jpg",
+      "imageSide": "left",
+      "background": "light",
+      "body": "Leader and Founder of Yahweh's Inhabitants Prophetic Sabbath Ministries International, also known as City of Testimonies.\n\n[Add 2–3 sentences about his calling, how the ministry began, and his vision.]",
+      "buttons": []
+    },
+    {
+      "type": "testimonials",
+      "heading": "Testimonies",
+      "subheading": "What God is doing among us",
+      "background": "white",
+      "items": [
+        {
+          "quote": "[Share a real testimony from a member here, with their permission.]",
+          "name": "[First name, City]"
+        },
+        {
+          "quote": "[Second testimony.]",
+          "name": "[First name, City]"
+        },
+        {
+          "quote": "[Third testimony.]",
+          "name": "[First name, City]"
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "quote": "And they overcame him by the blood of the Lamb, and by the word of their testimony.",
+      "source": "Revelation 12:11 (KJV)",
+      "background": "dark"
+    },
+    {
+      "type": "cta",
+      "heading": "Ready for your breakthrough?",
+      "text": "Join the next Monthly Spiritual Detox.",
+      "background": "dark",
+      "buttons": [
+        {
+          "label": "Register Now",
+          "url": "/monthly-spiritual-detox/"
+        }
+      ]
+    },
+    {
+      "type": "contact",
+      "heading": "Join Us",
+      "background": "light",
+      "showForm": true
+    }
+  ]
+}
