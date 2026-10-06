@@ -27,6 +27,14 @@
       "label": "Prayer Request"
     },
     {
+      "label": "News & updates",
+      "url": "/updates/"
+    },
+    {
+      "label": "Booking Request",
+      "url": "/Booking-request/"
+    },
+    {
       "label": "Shop",
       "url": "/shop/"
     },
@@ -36,9 +44,9 @@
     }
   ],
   "theme": {
-    "primary": "#d4a437",
+    "primary": "#edba4d",
     "dark": "#121212",
-    "light": "#faf6ee",
+    "light": "#f6f6f6",
     "text": "#1d1d1f",
     "headingFont": "Cinzel",
     "bodyFont": "Inter"
