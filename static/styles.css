@@ -94,3 +94,9 @@ video{width:100%;border-radius:14px;background:#000}.caption{color:#666;font-siz
 .product-body{padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px;flex:1}.product-body h3{font-size:1.05rem;margin:0}
 .product-body p{margin:0;color:#555;font-size:.92rem}.product .options{font-size:.85rem;color:#8a6d22;font-weight:600}
 .product .btn{margin-top:auto;align-self:flex-start;margin-top:12px}.soldout{margin-top:12px;font-weight:700;color:#999}
+/* contact: centered single column */
+.block-contact .split{grid-template-columns:1fr;max-width:640px;margin:0 auto;gap:28px}
+.block-contact .contact-list{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px}
+.block-contact .contact-list li{border:0;padding:4px 0}
+.block-contact .contact-list:empty{display:none}
+.block-contact .contact-form button{align-self:center}
