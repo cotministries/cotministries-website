@@ -148,16 +148,25 @@ function open(id) {
   const VIA_KEY = 'inbox-reply-via';
   try { $('via').value = localStorage.getItem(VIA_KEY) || 'outlook'; } catch (e) {}
   $('via').onchange = () => { try { localStorage.setItem(VIA_KEY, $('via').value); } catch (e) {} };
-  $('send').onclick = () => {
+  // The Reply button is a real link (never blocked as a pop-up); its address updates as you type.
+  const replyUrl = () => {
     const to = encodeURIComponent(m.email || ''), su = encodeURIComponent(subject), body = encodeURIComponent(($('rt').value || '') + quoted);
     const urls = {
       outlook: `https://outlook.live.com/mail/0/deeplink/compose?to=${to}&subject=${su}&body=${body}`,
       office: `https://outlook.office.com/mail/deeplink/compose?to=${to}&subject=${su}&body=${body}`,
       gmail: `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${su}&body=${body}`,
     };
-    const via = $('via').value;
-    if (urls[via]) window.open(urls[via], '_blank', 'noopener'); else location.href = `mailto:${to}?subject=${su}&body=${body}`;
+    return urls[$('via').value] || `mailto:${to}?subject=${su}&body=${body}`;
   };
+  const updateReply = () => {
+    const a = $('send'), u = replyUrl();
+    a.href = u;
+    if (u.startsWith('mailto:')) { a.removeAttribute('target'); a.removeAttribute('rel'); }
+    else { a.target = '_blank'; a.rel = 'noopener'; }
+  };
+  $('rt').addEventListener('input', updateReply);
+  $('via').addEventListener('change', updateReply);
+  updateReply();
   $('copy').onclick = async () => { try { await navigator.clipboard.writeText(m.email || ''); toast('Email copied'); } catch (e) { toast(m.email); } };
   $('unread').onclick = () => { seen.delete(m.id); saveSeen(); current = null; showEmpty(); renderList(); };
   $('del').onclick = async (e) => {
