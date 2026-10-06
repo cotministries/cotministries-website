@@ -44,9 +44,9 @@
     }
   ],
   "theme": {
-    "primary": "#edba4d",
+    "primary": "#ebc45c",
     "dark": "#121212",
-    "light": "#f6f6f6",
+    "light": "#ffffff",
     "text": "#1d1d1f",
     "headingFont": "Cinzel",
     "bodyFont": "Inter"
