@@ -27,20 +27,20 @@
       "label": "Prayer Request"
     },
     {
-      "label": "Shop",
-      "url": "/shop/"
-    },
-    {
-      "label": "Contact",
-      "url": "/contact/"
-    },
-    {
       "label": "News & updates",
       "url": "Updates"
     },
     {
       "label": "Booking Request",
       "url": "/Booking-request/"
+    },
+    {
+      "label": "Shop",
+      "url": "/shop/"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/"
     }
   ],
   "theme": {
