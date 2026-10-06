@@ -30,6 +30,8 @@ for (const f of files) {
 }
 // 404 page
 fs.writeFileSync(path.join(out, '404.html'), R.renderPage({ title: 'Page not found', slug: '404', sections: [{ type: 'text', heading: 'Page not found', body: "Sorry, that page doesn't exist.", align: 'center', buttons: [{ label: 'Go to home page', url: '/' }] }] }, site));
+// Hidden form so Netlify stores reply history (used by the inbox's Send reply)
+fs.writeFileSync(path.join(out, 'netlify-forms.html'), '<!doctype html><html><head><meta name="robots" content="noindex"></head><body><form name="reply-log" data-netlify="true" hidden><input name="message_id"><input name="to"><input name="by"><textarea name="reply"></textarea></form></body></html>');
 // SEO
 fs.writeFileSync(path.join(out, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map((u) => `<url><loc>${baseUrl}${u}</loc></url>`).join('')}</urlset>`);
 fs.writeFileSync(path.join(out, 'robots.txt'), `User-agent: *\nDisallow: /admin/\nSitemap: ${baseUrl}/sitemap.xml\n`);

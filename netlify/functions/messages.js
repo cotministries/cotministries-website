@@ -15,16 +15,24 @@ exports.handler = async (event, context) => {
     return r.status === 204 ? null : r.json();
   };
   try {
-    const list = await call(`/sites/${encodeURIComponent(site)}/submissions?per_page=100`);
+    const all = await call(`/sites/${encodeURIComponent(site)}/submissions?per_page=100`);
+    const logs = all.filter((s) => s.form_name === 'reply-log');
+    const list = all.filter((s) => s.form_name !== 'reply-log');
     if (event.httpMethod === 'DELETE') {
       const id = (event.queryStringParameters || {}).id;
       if (!id || !list.some((s) => s.id === id)) return json(404, { error: 'Message not found.' });
       await call(`/submissions/${encodeURIComponent(id)}`, 'DELETE');
+      for (const l of logs.filter((x) => x.data && x.data.message_id === id)) {
+        try { await call(`/submissions/${encodeURIComponent(l.id)}`, 'DELETE'); } catch (e) {}
+      }
       return json(200, { ok: true });
     }
     return json(200, list.map((s) => ({
       id: s.id, form: s.form_name, date: s.created_at,
       name: s.data && s.data.name, email: s.data && s.data.email, message: s.data && s.data.message,
+      replies: logs.filter((l) => l.data && l.data.message_id === s.id)
+        .map((l) => ({ date: l.created_at, by: l.data.by, text: l.data.reply }))
+        .sort((a, b) => new Date(a.date) - new Date(b.date)),
     })));
   } catch (e) {
     return json(502, { error: e.message });
