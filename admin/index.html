@@ -30,9 +30,11 @@
       const page = { title: 'Preview', slug: 'x', sections: [
         { type: 'text', heading: s.name, subheading: s.tagline, body: s.description, align: 'center', buttons: [{ label: 'Main button', url: '#' }, { label: 'Second button', url: '#' }] },
         { type: 'contact', heading: 'Contact details', showForm: false }] };
-      const html = SiteRender.renderPage(page, s).replace(/^[\s\S]*?<body>/, '').replace('</body></html>', '');
+      const html = SiteRender.renderPage(page, s).replace(/^[\s\S]*?<body>/, '').replace('<a href="/admin/messages.html" style="position:fixed;left:16px;bottom:16px;z-index:9999;background:#1d1d1f;color:#fff;padding:10px 16px;border-radius:999px;font:600 14px system-ui,sans-serif;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">📬 Messages</a>
+</body></html>', '');
       return h('div', { dangerouslySetInnerHTML: { __html: head(s.theme) + html } });
     }
   }));
 </script>
+<a href="/admin/messages.html" style="position:fixed;left:16px;bottom:16px;z-index:9999;background:#1d1d1f;color:#fff;padding:10px 16px;border-radius:999px;font:600 14px system-ui,sans-serif;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.25)">📬 Messages</a>
 </body></html>
