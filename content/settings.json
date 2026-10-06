@@ -1,16 +1,9 @@
 {
-  "name": "City of Testimonies Ministries",
-  "tagline": "Every life has a testimony waiting to be told.",
-  "seoTitle": "City of Testimonies Ministries | Monrovia, Liberia",
-  "description": "A prophetic ministry based in Monrovia, Liberia, reaching the nations through the Word of God, deliverance, prayer and the power of the Holy Spirit.",
-  "logo": "",
-  "theme": {
-    "primary": "#d4a437",
-    "dark": "#121212",
-    "light": "#faf6ee",
-    "text": "#1d1d1f",
-    "headingFont": "Cinzel",
-    "bodyFont": "Inter"
+  "contact": {
+    "address": "",
+    "serviceTimes": "",
+    "phone": "",
+    "email": "Wniki7706@gmail.com"
   },
   "nav": [
     {
@@ -34,20 +27,51 @@
       "url": "/contact/"
     }
   ],
-  "contact": {
-    "address": "[Address], Monrovia, Liberia",
-    "serviceTimes": "[Sabbath service day & time]",
-    "phone": "[Phone / WhatsApp]",
-    "email": "[email@example.com]"
+  "theme": {
+    "primary": "#d4a437",
+    "dark": "#121212",
+    "light": "#faf6ee",
+    "text": "#1d1d1f",
+    "headingFont": "Cinzel",
+    "bodyFont": "Inter"
   },
+  "logo": "",
+  "name": "City of Testimonies Ministries",
   "social": [
     {
-      "label": "Facebook",
-      "url": "https://facebook.com/"
+      "label": "City Of Testimonies Florida Branch Facebook",
+      "url": "https://www.facebook.com/profile.php?id=61582131122892"
     },
     {
-      "label": "YouTube",
-      "url": "https://youtube.com/"
+      "label": "Eagle Eye's Prophetic School Of Ministries",
+      "url": "https://www.facebook.com/profile.php?id=61573631654761"
+    },
+    {
+      "label": "Monthly Spiritual Detox Facebook Page",
+      "url": "https://www.facebook.com/profile.php?id=61594821822261"
+    },
+    {
+      "url": "https://www.facebook.com/profile.php?id=61576405697237",
+      "label": "God Of The Widws Facebook Page"
+    },
+    {
+      "label": "Chief Apostle Prophet Osman N. Weaver Main Tiktok",
+      "url": "https://www.tiktok.com/@osmannathanielwea"
+    },
+    {
+      "url": "https://www.tiktok.com/@weavernationvoice",
+      "label": "Chief Apostle Prophet Osman N. Weaver Secondary Tiktok"
+    },
+    {
+      "label": "Mother and First Lady Prophetess Merriam L Weaver Tiktok",
+      "url": "https://www.tiktok.com/@merriam.lemone"
+    },
+    {
+      "url": "https://www.facebook.com/profile.php?id=61584526839682",
+      "label": "Repent Not Repeat: Global Evangelistic Movement"
     }
-  ]
+  ],
+  "tagline": "Every life has a testimony waiting to be told.",
+  "seoTitle": "City of Testimonies Ministries | Monrovia, Liberia",
+  "description": "A prophetic ministry based in Monrovia, Liberia, reaching the nations through the Word of God, deliverance, prayer and the power of the Holy Spirit."
 }
