@@ -10,8 +10,12 @@
       "image": "https://749ba59c77173e7ef9c9.cdn6.editmysite.com/uploads/b/749ba59c77173e7ef9c94ce8839a21e8d7074f7fbbdd5b04fb67591012bc36e5/c8ee922e-38f4-4ed3-93cc-e14c3a01253f_1790832979.png",
       "imageSide": "left",
       "background": "light",
-      "body": "* Recorded Zoom classes\n* WhatsApp is needed\n* Installment payments available\n* We accept Cash App, PayPal, Zelle and Sendwave\n\n\n\nJoin our Whatsapp group for updates: https://chat.whatsapp.com/Dy9YD2Xqnj7J44jTDxCI1M",
+      "body": "* Recorded Zoom classes\n* WhatsApp is needed\n* Installment payments available\n* We accept Cash App, PayPal, Zelle and Sendwave\n\nJoin our WhatsApp group for updates:",
       "buttons": [
+        {
+          "label": "Join WhatsApp Group Now",
+          "url": "https://chat.whatsapp.com/Dy9YD2Xqnj7J44jTDxCI1M"
+        },
         {
           "label": "Register – $375",
           "url": "https://form.jotform.com/262727545991167"

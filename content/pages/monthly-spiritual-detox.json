@@ -14,8 +14,12 @@
       "heading": "Monthly Spiritual Detox",
       "align": "center",
       "background": "light",
-      "body": "If you would like to sign up for the Monthly Spiritual Detox, the fee is **$50**. Click below to fill out the registration form.\n\nJoin our WhatsApp group for updates:\n[💬 Join WhatsApp Group Now](https://chat.whatsapp.com/GjF3EURCLwo6jrBHbXMgTN)",
+      "body": "If you would like to sign up for the Monthly Spiritual Detox, the fee is **$50**. Click below to fill out the registration form.\n\nJoin our WhatsApp group for updates:",
       "buttons": [
+        {
+          "label": "Join WhatsApp Group Now",
+          "url": "https://chat.whatsapp.com/GjF3EURCLwo6jrBHbXMgTN"
+        },
         {
           "label": "Register Now – $50",
           "url": "https://form.jotform.com/262778731769173"
