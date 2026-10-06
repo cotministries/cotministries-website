@@ -101,3 +101,6 @@ video{width:100%;border-radius:14px;background:#000}.caption{color:#666;font-siz
 .block-contact .contact-list li{border:0;padding:4px 0}
 .block-contact .contact-list:empty{display:none}
 .block-contact .contact-form button{align-self:center}
+/* WhatsApp links in text become a green button */
+.prose a.wa-btn{display:inline-flex;align-items:center;gap:8px;margin-top:10px;background:#25D366;color:#fff;padding:12px 26px;border-radius:999px;font-weight:700;text-decoration:none;box-shadow:0 6px 18px rgba(37,211,102,.3);transition:.2s}
+.prose a.wa-btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
