@@ -51,6 +51,7 @@ button,input,textarea{font:inherit;color:inherit}
 .btn.danger{color:var(--danger)}.btn.danger.confirm{background:var(--danger);border-color:var(--danger);color:#fff}
 .reply{margin:0 26px 26px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--soft)}
 .reply textarea{width:100%;border:0;background:transparent;padding:14px 16px;min-height:120px;resize:vertical;outline:none;line-height:1.5}
+.via{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.via select{font:inherit;font-size:.82rem;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--text)}
 .reply .foot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border-top:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .empty{display:grid;place-items:center;text-align:center;height:100%;color:var(--muted);padding:40px}
 .empty .big{font-size:3rem;margin-bottom:10px}.err{color:var(--danger)}
@@ -135,11 +136,28 @@ function open(id) {
       <div class="chips"><span class="chip">📅 ${new Date(m.date).toLocaleString()}</span><span class="chip">📝 ${esc(m.form || 'contact')} form</span></div></div></div>
     <div class="body">${esc(m.message)}</div>
     <div class="reply"><textarea id="rt" placeholder="Write a reply to ${esc((m.name || '').split(' ')[0] || 'them')}…"></textarea>
-      <div class="foot"><span>Opens in your email app, ready to send</span><a class="btn primary" id="send">✉ Reply</a></div></div>
+      <div class="foot"><label class="via">Reply with <select id="via">
+        <option value="outlook">Outlook (outlook.com / Hotmail)</option>
+        <option value="office">Outlook (work / school / Office 365)</option>
+        <option value="gmail">Gmail</option>
+        <option value="mailto">Email app on this computer</option>
+      </select></label><a class="btn primary" id="send">✉ Reply</a></div></div>
     <div class="actions"><button class="btn" id="copy">⧉ Copy email</button><button class="btn" id="unread">● Mark as unread</button><button class="btn danger" id="del">🗑 Delete</button></div></div>`;
   $('app').classList.add('reading');
   $('back').onclick = () => $('app').classList.remove('reading');
-  $('send').onclick = () => { location.href = `mailto:${encodeURIComponent(m.email || '')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(($('rt').value || '') + quoted)}`; };
+  const VIA_KEY = 'inbox-reply-via';
+  try { $('via').value = localStorage.getItem(VIA_KEY) || 'outlook'; } catch (e) {}
+  $('via').onchange = () => { try { localStorage.setItem(VIA_KEY, $('via').value); } catch (e) {} };
+  $('send').onclick = () => {
+    const to = encodeURIComponent(m.email || ''), su = encodeURIComponent(subject), body = encodeURIComponent(($('rt').value || '') + quoted);
+    const urls = {
+      outlook: `https://outlook.live.com/mail/0/deeplink/compose?to=${to}&subject=${su}&body=${body}`,
+      office: `https://outlook.office.com/mail/deeplink/compose?to=${to}&subject=${su}&body=${body}`,
+      gmail: `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${su}&body=${body}`,
+    };
+    const via = $('via').value;
+    if (urls[via]) window.open(urls[via], '_blank', 'noopener'); else location.href = `mailto:${to}?subject=${su}&body=${body}`;
+  };
   $('copy').onclick = async () => { try { await navigator.clipboard.writeText(m.email || ''); toast('Email copied'); } catch (e) { toast(m.email); } };
   $('unread').onclick = () => { seen.delete(m.id); saveSeen(); current = null; showEmpty(); renderList(); };
   $('del').onclick = async (e) => {
