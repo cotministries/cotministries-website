@@ -11,21 +11,21 @@
       "body": "Wear your faith. Every purchase supports the ministry."
     },
     {
-      "type": "pricing",
-      "heading": "Products",
+      "type": "products",
+      "heading": "",
       "background": "white",
       "items": [
         {
+          "image": "https://155390671.cdn6.editmysite.com/uploads/1/5/5/3/155390671/6JFBRARXMLFDL5ONTLN3UXI6.png",
           "name": "Eagle Eye's Prophetic School Of Ministries T-Shirt",
-          "description": "Comfortable fit with an inspiring scriptural design.",
           "price": "$25.00",
-          "button": {
-            "label": "Buy",
-            "url": "https://cotministries.square.site/s/order"
-          }
+          "description": "Comfortable fit with an inspiring scriptural design.",
+          "options": "Sizes: S, M, L, XL, 2XL",
+          "buyUrl": "",
+          "buyLabel": "Buy now"
         }
       ],
-      "note": "Checkout is handled securely by Square."
+      "note": "Secure checkout by Square."
     }
   ]
 }
