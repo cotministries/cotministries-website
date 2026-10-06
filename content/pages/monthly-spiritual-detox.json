@@ -14,11 +14,11 @@
       "heading": "Monthly Spiritual Detox",
       "align": "center",
       "background": "light",
-      "body": "If you would like to sign up for the Monthly Spiritual Detox, the fee is **$50**. Click below to fill out the registration form.\n\n\n\nJoin our Whatsapp group for updates: https://chat.whatsapp.com/GjF3EURCLwo6jrBHbXMgTN",
+      "body": "If you would like to sign up for the Monthly Spiritual Detox, the fee is **$50**. Click below to fill out the registration form.",
       "buttons": [
         {
           "label": "Register Now – $50",
-          "url": "https://form.jotform.com/262778886452173"
+          "url": "https://form.jotform.com/262778731769173"
         }
       ]
     },
@@ -31,9 +31,16 @@
       "buttons": [
         {
           "label": "Register Now",
-          "url": "https://form.jotform.com/262778886452173"
+          "url": "https://form.jotform.com/262778731769173"
         }
       ]
+    },
+    {
+      "type": "embed",
+      "height": 700,
+      "width": "narrow",
+      "background": "light",
+      "code": "<div style=\"text-align:center;padding:30px 16px;\">\n  <p style=\"font-size:1.15rem;font-weight:600;margin:0 0 14px;\">\n    Join our WhatsApp group for updates:\n  </p>\n  <a href=\"https://chat.whatsapp.com/GjF3EURCLwo6jrBHbXMgTN\"\n     target=\"_blank\" rel=\"noopener\"\n     style=\"display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;\n            padding:14px 28px;border-radius:999px;font-weight:700;font-size:1rem;\n            text-decoration:none;box-shadow:0 6px 18px rgba(37,211,102,.35);\">\n    💬 Join WhatsApp Group Now\n  </a>\n</div>"
     }
   ]
 }
