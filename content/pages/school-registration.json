@@ -66,6 +66,30 @@
         {
           "question": "When does it start?",
           "answer": "January 2027. The exact date will be announced."
+        },
+        {
+          "question": "Do you have installment payments?",
+          "answer": "We offer one installment plan:\n\n\n\nInstallment Plan 1: $125 a month for 3 months"
+        },
+        {
+          "question": "Where do I make my payment?",
+          "answer": "Please use Cashapp: https://cash.app/$Txnow3"
+        },
+        {
+          "question": "What time is class?",
+          "answer": "Class will be 4:00 PM Eastern Standard Time"
+        },
+        {
+          "question": "Will classes be recorded?",
+          "answer": "Yes, classes will be recorded over zoom and will be provided by request."
+        },
+        {
+          "question": "Do I need anything for class?",
+          "answer": "Nope, just your pen and notebook."
+        },
+        {
+          "question": "Do you know your other future school dates?",
+          "answer": "At this time, we do not have a future class start date."
         }
       ]
     }
