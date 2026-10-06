@@ -5,7 +5,12 @@
       "imageSide": "left",
       "background": "light",
       "image": "/uploads/whatsapp-image-2026-09-24-at-6.24.41-pm.jpeg",
-      "body": "Chief Apostle is coming to America 2027!"
+      "body": "Chief Apostle is coming to America 2027! Would you like to partner with us to get Chief Apostle to America? Nothing is too small. Please click the link below.",
+      "buttons": [
+        {
+          "label": "Sponsor Now"
+        }
+      ]
     }
   ],
   "title": "News & Updates",
