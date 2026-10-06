@@ -33,6 +33,14 @@
     {
       "label": "Contact",
       "url": "/contact/"
+    },
+    {
+      "label": "News & updates",
+      "url": "Updates"
+    },
+    {
+      "label": "Booking Request",
+      "url": "/Booking-request/"
     }
   ],
   "theme": {
