@@ -11,6 +11,13 @@
           "label": "Sponsor Now"
         }
       ]
+    },
+    {
+      "type": "news",
+      "heading": "Latest news",
+      "subheading": "What God is doing at City of Testimonies",
+      "background": "white",
+      "emptyText": "No updates yet. Check back soon!"
     }
   ],
   "title": "News & Updates",

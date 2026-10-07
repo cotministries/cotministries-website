@@ -10,6 +10,7 @@
 <script>
   // The live preview uses the exact same renderer as the real site.
   let siteSettings = window.siteSettings || {};
+  siteSettings.news = window.siteNews || [];
   CMS.registerPreviewStyle('/styles.css');
   function resolveAssets(v, getAsset) {
     if (Array.isArray(v)) return v.map((x) => resolveAssets(x, getAsset));
@@ -24,9 +25,18 @@
       return h('div', { dangerouslySetInnerHTML: { __html: head(siteSettings.theme) + SiteRender.renderSections(data.sections, siteSettings) } });
     }
   }));
+  // News post preview: exactly how the post page will look
+  CMS.registerPreviewTemplate('news', createClass({
+    render() {
+      const p = resolveAssets(this.props.entry.get('data').toJS(), this.props.getAsset);
+      const extra = SiteRender.postFonts([p]);
+      const fonts = `<link rel="stylesheet" href="${SiteRender.fontsHref(siteSettings.theme, extra)}"><style>${SiteRender.themeCss(siteSettings.theme)}</style>`;
+      return h('div', { dangerouslySetInnerHTML: { __html: fonts + SiteRender.renderPost(Object.assign({ slug: 'preview' }, p)) } });
+    }
+  }));
   CMS.registerPreviewTemplate('settings', createClass({
     render() {
-      const s = resolveAssets(this.props.entry.get('data').toJS(), this.props.getAsset); siteSettings = s;
+      const s = resolveAssets(this.props.entry.get('data').toJS(), this.props.getAsset); s.news = window.siteNews || []; siteSettings = s;
       const page = { title: 'Preview', slug: 'x', sections: [
         { type: 'text', heading: s.name, subheading: s.tagline, body: s.description, align: 'center', buttons: [{ label: 'Main button', url: '#' }, { label: 'Second button', url: '#' }] },
         { type: 'contact', heading: 'Contact details', showForm: false }] };

@@ -15,6 +15,13 @@ copyDir(path.join(root, 'admin'), path.join(out, 'admin'));
 fs.copyFileSync(path.join(root, 'lib/render.js'), path.join(out, 'admin/render.js'));
 
 const site = read('content/settings.json');
+// News & updates posts (content/news/*.json): newest first, hidden ones skipped
+const newsDir = path.join(root, 'content/news');
+const news = (fs.existsSync(newsDir) ? fs.readdirSync(newsDir).filter((f) => f.endsWith('.json')) : [])
+  .map((f) => Object.assign({ slug: f.replace(/\.json$/, '') }, read('content/news/' + f)))
+  .filter((p) => !p.hidden && p.title)
+  .sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+site.news = news;
 const baseUrl = (process.env.URL || '').replace(/\/$/, '');
 const files = fs.readdirSync(path.join(root, 'content/pages')).filter((f) => f.endsWith('.json'));
 const repoPages = {}, urls = [];
@@ -28,6 +35,14 @@ for (const f of files) {
   urls.push(slug === 'index' ? '/' : `/${slug}/`);
   console.log('built page', slug);
 }
+// One page per news post: /updates/<post>/
+for (const post of news) {
+  const dir = path.join(out, 'updates', post.slug);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'index.html'), R.renderPage({ title: post.title, slug: 'updates/' + post.slug, description: post.summary || '', post }, site));
+  urls.push(`/updates/${post.slug}/`);
+  console.log('built post', post.slug);
+}
 // 404 page
 fs.writeFileSync(path.join(out, '404.html'), R.renderPage({ title: 'Page not found', slug: '404', sections: [{ type: 'text', heading: 'Page not found', body: "Sorry, that page doesn't exist.", align: 'center', buttons: [{ label: 'Go to home page', url: '/' }] }] }, site));
 // Hidden form so Netlify stores reply history (used by the inbox's Send reply)
@@ -37,7 +52,7 @@ fs.writeFileSync(path.join(out, 'sitemap.xml'), `<?xml version="1.0" encoding="U
 fs.writeFileSync(path.join(out, 'robots.txt'), `User-agent: *\nDisallow: /admin/\nSitemap: ${baseUrl}/sitemap.xml\n`);
 // Editor config + data for the live preview (YAML accepts JSON)
 fs.writeFileSync(path.join(out, 'admin/config.yml'), JSON.stringify(cmsConfig({ demo }), null, 1));
-fs.writeFileSync(path.join(out, 'admin/site-settings.js'), 'window.siteSettings=' + JSON.stringify(site) + ';');
+fs.writeFileSync(path.join(out, 'admin/site-settings.js'), 'window.siteSettings=' + JSON.stringify(Object.assign({}, site, { news: undefined })) + ';window.siteNews=' + JSON.stringify(news) + ';');
 fs.writeFileSync(path.join(out, 'admin/repo-files.js'), demo
   ? 'window.repoFiles=' + JSON.stringify({ content: { 'settings.json': { content: JSON.stringify(site, null, 2) }, pages: repoPages } }) + ';'
   : '');
