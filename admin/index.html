@@ -30,7 +30,95 @@
       const page = { title: 'Preview', slug: 'x', sections: [
         { type: 'text', heading: s.name, subheading: s.tagline, body: s.description, align: 'center', buttons: [{ label: 'Main button', url: '#' }, { label: 'Second button', url: '#' }] },
         { type: 'contact', heading: 'Contact details', showForm: false }] };
-      const html = SiteRender.renderPage(page, s).replace(/^[\s\S]*?<body>/, '').replace('</body></html>', '');
+      const html = SiteRender.renderPage(page, s).replace(/^[\s\S]*?<body>/, '').replace('<!-- Put website live: saves only store changes; this publishes everything saved in one deploy -->
+<style>
+  #live-wrap{position:fixed;left:16px;bottom:70px;z-index:9999;font:14px system-ui,sans-serif}
+  #live-btn{display:flex;align-items:center;gap:8px;background:#16161a;color:#fff;padding:11px 18px;border-radius:999px;font-weight:600;border:2px solid transparent;box-shadow:0 6px 20px rgba(0,0,0,.28);cursor:pointer;transition:.2s}
+  #live-btn .n{display:none;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:#e5a50a;color:#16161a;font-size:12px;font-weight:800;align-items:center;justify-content:center}
+  #live-pop{display:none;position:absolute;left:0;bottom:56px;width:min(340px,calc(100vw - 32px));background:#fff;color:#1c1c1f;border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.3);padding:18px}
+  #live-pop.on{display:block}
+  #live-pop h4{margin:0 0 4px;font-size:16px}
+  #live-pop .muted{color:#6b6b73;font-size:13px;margin:0 0 12px}
+  #live-pop ul{margin:0 0 14px;padding:0;list-style:none;max-height:180px;overflow:auto;border-top:1px solid #eee}
+  #live-pop li{padding:7px 0;border-bottom:1px solid #eee;font-size:13px;display:flex;justify-content:space-between;gap:10px}
+  #live-pop li span{color:#8a8a92;white-space:nowrap}
+  #live-go{width:100%;padding:12px;border:0;border-radius:10px;background:var(--live-accent,#9b1313);color:#fff;font:700 14px system-ui,sans-serif;cursor:pointer}
+  #live-go:disabled{opacity:.5;cursor:default}
+  #live-msg{margin:10px 0 0;font-size:13px}
+</style>
+<div id="live-wrap">
+  <script>try{var t=window.siteSettings&&siteSettings.theme;if(t&&t.primary)document.currentScript.parentNode.style.setProperty('--live-accent',t.primary)}catch(e){}</script>
+  <div id="live-pop" role="dialog" aria-label="Put website live">
+    <h4>🚀 Put website live</h4>
+    <p class="muted" id="live-when">Checking…</p>
+    <ul id="live-list"></ul>
+    <button id="live-go" type="button">Put website live now</button>
+    <p id="live-msg"></p>
+  </div>
+  <button id="live-btn" type="button">🚀 Put website live<span class="n" id="live-n"></span></button>
+</div>
+<script>
+  (function () {
+    var btn = document.getElementById('live-btn'), pop = document.getElementById('live-pop'), n = document.getElementById('live-n');
+    var when = document.getElementById('live-when'), list = document.getElementById('live-list'), go = document.getElementById('live-go'), msg = document.getElementById('live-msg');
+    var accent = '#e5a50a', lastLive = null, poll = null;
+    var ago = function (t) { if (!t) return 'never'; var m = Math.round((Date.now() - new Date(t)) / 60000); if (m < 1) return 'just now'; if (m < 60) return m + ' min ago'; var h = Math.round(m / 60); if (h < 24) return h + ' hr ago'; return new Date(t).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ', ' + new Date(t).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }); };
+    var esc = function (x) { return String(x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+    async function api(method) {
+      var u = window.netlifyIdentity && netlifyIdentity.currentUser();
+      if (!u) throw new Error('Please log in first.');
+      var r = await fetch('/.netlify/functions/go-live', { method: method || 'GET', headers: { Authorization: 'Bearer ' + await u.jwt() } });
+      var d = await r.json().catch(function () { return {}; });
+      if (!r.ok) throw new Error(d.error || ('Error ' + r.status));
+      return d;
+    }
+    async function refresh() {
+      try {
+        var d = await api();
+        var k = d.waiting.length;
+        n.textContent = k; n.style.display = k ? 'inline-flex' : 'none';
+        btn.style.borderColor = k ? accent : 'transparent';
+        btn.title = k ? k + ' saved change' + (k > 1 ? 's' : '') + ' not live yet' : 'Everything is live';
+        if (d.building) {
+          when.textContent = 'Going live right now… (usually 1–2 minutes)';
+        } else {
+          when.textContent = 'Last went live: ' + ago(d.liveAt) + (k ? ' · ' + k + ' saved change' + (k > 1 ? 's' : '') + ' waiting' : ' · everything is live ✓');
+        }
+        list.innerHTML = d.waiting.map(function (w) { return '<li>' + esc(w.title) + '<span>' + ago(w.at) + '</span></li>'; }).join('');
+        list.style.display = k ? '' : 'none';
+        go.disabled = !!d.building;
+        go.textContent = d.building ? 'Publishing…' : (k ? 'Put ' + k + ' change' + (k > 1 ? 's' : '') + ' live now' : 'Republish website');
+        if (d.failed) msg.innerHTML = '⚠️ The last publish failed: ' + esc(d.failed);
+        if (poll && !d.building && lastLive && d.liveAt !== lastLive) { msg.textContent = '✅ Done! Your changes are live.'; clearInterval(poll); poll = null; }
+        if (!poll) lastLive = d.liveAt;
+      } catch (e) { when.textContent = e.message; }
+    }
+    btn.addEventListener('click', function () { pop.classList.toggle('on'); if (pop.classList.contains('on')) { msg.textContent = ''; refresh(); } });
+    document.addEventListener('click', function (e) { if (!e.target.closest('#live-wrap')) pop.classList.remove('on'); });
+    go.addEventListener('click', async function () {
+      go.disabled = true; go.textContent = 'Starting…'; msg.textContent = '';
+      try {
+        await api('POST');
+        msg.textContent = 'Publishing… this takes 1–2 minutes. You can keep working.';
+        if (poll) clearInterval(poll);
+        poll = setInterval(refresh, 10000); setTimeout(refresh, 4000);
+      } catch (e) { msg.textContent = '⚠️ ' + e.message; go.disabled = false; go.textContent = 'Try again'; }
+    });
+    setTimeout(refresh, 3000); setInterval(function () { if (!poll) refresh(); }, 120000);
+  })();
+
+  // Decap's "Publish" only saves now, so call it "Save".
+  (function () {
+    var map = { 'Publish': 'Save', 'Publish now': 'Save', 'Publish and create new': 'Save and create new', 'Publish and duplicate': 'Save and duplicate', 'Publishing...': 'Saving…', 'Publishing…': 'Saving…', 'Published': 'Saved', 'Entry published': 'Saved' };
+    function swap(root) {
+      var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), t;
+      while ((t = w.nextNode())) { var v = t.nodeValue.trim(); if (map[v] && !(t.parentNode && t.parentNode.closest && t.parentNode.closest('#live-wrap,#inbox-btn'))) t.nodeValue = t.nodeValue.replace(v, map[v]); }
+    }
+    new MutationObserver(function (ms) { ms.forEach(function (m) { m.addedNodes.forEach(function (x) { if (x.nodeType === 1) swap(x); else if (x.nodeType === 3 && x.parentNode) swap(x.parentNode); }); if (m.type === 'characterData' && m.target.parentNode) swap(m.target.parentNode); }); })
+      .observe(document.body, { childList: true, subtree: true, characterData: true });
+  })();
+</script>
+</body></html>', '');
       return h('div', { dangerouslySetInnerHTML: { __html: head(s.theme) + html } });
     }
   }));
