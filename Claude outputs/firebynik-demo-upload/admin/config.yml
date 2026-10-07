@@ -1,0 +1,1578 @@
+{
+ "backend": {
+  "name": "test-repo"
+ },
+ "site_url": "/",
+ "display_url": "/",
+ "logo_url": "",
+ "media_folder": "static/uploads",
+ "public_folder": "/uploads",
+ "collections": [
+  {
+   "name": "pages",
+   "label": "Pages",
+   "label_singular": "page",
+   "folder": "content/pages",
+   "extension": "json",
+   "format": "json",
+   "create": true,
+   "delete": true,
+   "identifier_field": "title",
+   "slug": "{{fields.slug}}",
+   "summary": "{{title}}  ·  /{{slug}}",
+   "sortable_fields": [
+    "title"
+   ],
+   "fields": [
+    {
+     "label": "Page title",
+     "name": "title",
+     "widget": "string"
+    },
+    {
+     "label": "Web address",
+     "name": "slug",
+     "widget": "string",
+     "hint": "Lowercase words with dashes, e.g. about-us → yoursite.com/about-us/. The home page must be \"index\". Add new pages to the menu in Site settings.",
+     "pattern": [
+      "^[a-z0-9-]+$",
+      "Only lowercase letters, numbers and dashes"
+     ]
+    },
+    {
+     "label": "Google description",
+     "name": "description",
+     "widget": "string",
+     "required": false
+    },
+    {
+     "label": "Sections",
+     "name": "sections",
+     "widget": "list",
+     "label_singular": "section",
+     "summary": "{{fields.heading}}",
+     "types": [
+      {
+       "name": "hero",
+       "label": "Banner / Hero",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Style",
+         "name": "style",
+         "widget": "select",
+         "default": "image",
+         "options": [
+          {
+           "label": "Full image (no cropping)",
+           "value": "image"
+          },
+          {
+           "label": "Photo with text on top",
+           "value": "overlay"
+          },
+          {
+           "label": "Text left + photo right (stylish)",
+           "value": "split"
+          }
+         ]
+        },
+        {
+         "label": "Small label above heading (split style)",
+         "name": "kicker",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Second small round photo (split style)",
+         "name": "image2",
+         "widget": "image",
+         "required": false
+        },
+        {
+         "label": "Badges (split style)",
+         "name": "badges",
+         "widget": "list",
+         "required": false,
+         "field": {
+          "label": "Badge",
+          "name": "text",
+          "widget": "string"
+         }
+        },
+        {
+         "label": "Image",
+         "name": "image",
+         "widget": "image",
+         "required": true
+        },
+        {
+         "label": "Heading (text-on-photo style only)",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Text (text-on-photo style only)",
+         "name": "text",
+         "widget": "text",
+         "required": false
+        },
+        {
+         "label": "Buttons",
+         "name": "buttons",
+         "widget": "list",
+         "required": false,
+         "summary": "{{fields.label}}",
+         "fields": [
+          {
+           "label": "Button text",
+           "name": "label",
+           "widget": "string",
+           "required": false
+          },
+          {
+           "label": "Link (e.g. /contact/ or https://...)",
+           "name": "url",
+           "widget": "string",
+           "hint": "WhatsApp group links automatically show as a green WhatsApp button.",
+           "required": false
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "text",
+       "label": "Text",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Small title",
+         "name": "subheading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Text",
+         "name": "body",
+         "widget": "markdown",
+         "buttons": [
+          "bold",
+          "italic",
+          "link",
+          "bulleted-list"
+         ],
+         "editor_components": [],
+         "modes": [
+          "rich_text"
+         ],
+         "required": false
+        },
+        {
+         "label": "Alignment",
+         "name": "align",
+         "widget": "select",
+         "options": [
+          "left",
+          "center"
+         ],
+         "default": "left"
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        },
+        {
+         "label": "Buttons",
+         "name": "buttons",
+         "widget": "list",
+         "required": false,
+         "summary": "{{fields.label}}",
+         "fields": [
+          {
+           "label": "Button text",
+           "name": "label",
+           "widget": "string",
+           "required": false
+          },
+          {
+           "label": "Link (e.g. /contact/ or https://...)",
+           "name": "url",
+           "widget": "string",
+           "hint": "WhatsApp group links automatically show as a green WhatsApp button.",
+           "required": false
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "imageText",
+       "label": "Image + Text",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Image",
+         "name": "image",
+         "widget": "image",
+         "required": true
+        },
+        {
+         "label": "Image side",
+         "name": "imageSide",
+         "widget": "select",
+         "options": [
+          "left",
+          "right"
+         ],
+         "default": "left"
+        },
+        {
+         "label": "Image size",
+         "name": "imageSize",
+         "widget": "select",
+         "options": [
+          {
+           "label": "Normal (half and half)",
+           "value": "normal"
+          },
+          {
+           "label": "Large (image about 50% bigger)",
+           "value": "large"
+          }
+         ],
+         "default": "normal",
+         "required": false
+        },
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Small title",
+         "name": "subheading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Text",
+         "name": "body",
+         "widget": "markdown",
+         "buttons": [
+          "bold",
+          "italic",
+          "link",
+          "bulleted-list"
+         ],
+         "editor_components": [],
+         "modes": [
+          "rich_text"
+         ],
+         "required": false
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        },
+        {
+         "label": "Buttons",
+         "name": "buttons",
+         "widget": "list",
+         "required": false,
+         "summary": "{{fields.label}}",
+         "fields": [
+          {
+           "label": "Button text",
+           "name": "label",
+           "widget": "string",
+           "required": false
+          },
+          {
+           "label": "Link (e.g. /contact/ or https://...)",
+           "name": "url",
+           "widget": "string",
+           "hint": "WhatsApp group links automatically show as a green WhatsApp button.",
+           "required": false
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "cards",
+       "label": "Cards (2–3 columns)",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Small title",
+         "name": "subheading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        },
+        {
+         "label": "Cards",
+         "name": "items",
+         "widget": "list",
+         "summary": "{{fields.title}}",
+         "fields": [
+          {
+           "label": "Image",
+           "name": "image",
+           "widget": "image",
+           "required": false
+          },
+          {
+           "label": "Title",
+           "name": "title",
+           "widget": "string"
+          },
+          {
+           "label": "Text",
+           "name": "text",
+           "widget": "text",
+           "required": false
+          },
+          {
+           "label": "Button",
+           "name": "button",
+           "widget": "object",
+           "required": false,
+           "collapsed": true,
+           "fields": [
+            {
+             "label": "Button text",
+             "name": "label",
+             "widget": "string",
+             "required": false
+            },
+            {
+             "label": "Link (e.g. /contact/ or https://...)",
+             "name": "url",
+             "widget": "string",
+             "hint": "WhatsApp group links automatically show as a green WhatsApp button.",
+             "required": false
+            }
+           ]
+          },
+          {
+           "label": "Extra buttons (e.g. WhatsApp)",
+           "name": "buttons",
+           "widget": "list",
+           "required": false,
+           "summary": "{{fields.label}}",
+           "fields": [
+            {
+             "label": "Button text",
+             "name": "label",
+             "widget": "string",
+             "required": false
+            },
+            {
+             "label": "Link (e.g. /contact/ or https://...)",
+             "name": "url",
+             "widget": "string",
+             "hint": "WhatsApp group links automatically show as a green WhatsApp button.",
+             "required": false
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "products",
+       "label": "Shop products (with photos)",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Small title",
+         "name": "subheading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        },
+        {
+         "label": "Products",
+         "name": "items",
+         "widget": "list",
+         "summary": "{{fields.name}} — {{fields.price}}",
+         "fields": [
+          {
+           "label": "Photo",
+           "name": "image",
+           "widget": "image",
+           "required": true
+          },
+          {
+           "label": "Product name",
+           "name": "name",
+           "widget": "string"
+          },
+          {
+           "label": "Price",
+           "name": "price",
+           "widget": "string"
+          },
+          {
+           "label": "Description",
+           "name": "description",
+           "widget": "text",
+           "required": false
+          },
+          {
+           "label": "Sizes / options (e.g. S, M, L, XL)",
+           "name": "options",
+           "widget": "string",
+           "required": false
+          },
+          {
+           "label": "Checkout link (Square / Stripe / PayPal payment link)",
+           "name": "buyUrl",
+           "widget": "string",
+           "hint": "Create a payment link in Square (Payment links → Create link) and paste it here. Leave empty to show \"Coming soon\".",
+           "required": false
+          },
+          {
+           "label": "Button text",
+           "name": "buyLabel",
+           "widget": "string",
+           "default": "Buy now",
+           "required": false
+          }
+         ]
+        },
+        {
+         "label": "Note below products",
+         "name": "note",
+         "widget": "text",
+         "required": false
+        }
+       ]
+      },
+      {
+       "name": "highlights",
+       "label": "Highlights (icons row)",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Small title",
+         "name": "subheading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        },
+        {
+         "label": "Items",
+         "name": "items",
+         "widget": "list",
+         "summary": "{{fields.icon}} {{fields.title}}",
+         "fields": [
+          {
+           "label": "Icon (emoji)",
+           "name": "icon",
+           "widget": "string",
+           "required": false
+          },
+          {
+           "label": "Title",
+           "name": "title",
+           "widget": "string"
+          },
+          {
+           "label": "Text",
+           "name": "text",
+           "widget": "string",
+           "required": false
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "pricing",
+       "label": "Services & Prices",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Small title",
+         "name": "subheading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        },
+        {
+         "label": "Layout",
+         "name": "layout",
+         "widget": "select",
+         "options": [
+          {
+           "label": "One column",
+           "value": "list"
+          },
+          {
+           "label": "Two columns",
+           "value": "grid"
+          }
+         ],
+         "default": "list",
+         "required": false
+        },
+        {
+         "label": "Book link for every service (optional)",
+         "name": "bookUrl",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Book button text",
+         "name": "bookLabel",
+         "widget": "string",
+         "default": "Book",
+         "required": false
+        },
+        {
+         "label": "Services / products",
+         "name": "items",
+         "widget": "list",
+         "summary": "{{fields.name}} — {{fields.price}}",
+         "fields": [
+          {
+           "label": "Name",
+           "name": "name",
+           "widget": "string"
+          },
+          {
+           "label": "Description",
+           "name": "description",
+           "widget": "text",
+           "required": false
+          },
+          {
+           "label": "Duration (optional)",
+           "name": "duration",
+           "widget": "string",
+           "required": false
+          },
+          {
+           "label": "Price",
+           "name": "price",
+           "widget": "string"
+          },
+          {
+           "label": "Button (Book / Buy link)",
+           "name": "button",
+           "widget": "object",
+           "required": false,
+           "collapsed": true,
+           "fields": [
+            {
+             "label": "Button text",
+             "name": "label",
+             "widget": "string",
+             "required": false
+            },
+            {
+             "label": "Link (e.g. /contact/ or https://...)",
+             "name": "url",
+             "widget": "string",
+             "hint": "WhatsApp group links automatically show as a green WhatsApp button.",
+             "required": false
+            }
+           ]
+          }
+         ]
+        },
+        {
+         "label": "Note below list",
+         "name": "note",
+         "widget": "text",
+         "required": false
+        }
+       ]
+      },
+      {
+       "name": "list",
+       "label": "Checklist",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        },
+        {
+         "label": "Items",
+         "name": "items",
+         "widget": "list",
+         "summary": "{{fields.title}}",
+         "fields": [
+          {
+           "label": "Title",
+           "name": "title",
+           "widget": "string"
+          },
+          {
+           "label": "Extra text",
+           "name": "text",
+           "widget": "string",
+           "required": false
+          }
+         ]
+        },
+        {
+         "label": "Buttons",
+         "name": "buttons",
+         "widget": "list",
+         "required": false,
+         "summary": "{{fields.label}}",
+         "fields": [
+          {
+           "label": "Button text",
+           "name": "label",
+           "widget": "string",
+           "required": false
+          },
+          {
+           "label": "Link (e.g. /contact/ or https://...)",
+           "name": "url",
+           "widget": "string",
+           "hint": "WhatsApp group links automatically show as a green WhatsApp button.",
+           "required": false
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "quote",
+       "label": "Quote / Scripture",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Quote",
+         "name": "quote",
+         "widget": "text"
+        },
+        {
+         "label": "Source",
+         "name": "source",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        }
+       ]
+      },
+      {
+       "name": "testimonials",
+       "label": "Testimonials / Reviews",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Small title",
+         "name": "subheading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        },
+        {
+         "label": "Testimonials",
+         "name": "items",
+         "widget": "list",
+         "summary": "{{fields.name}}",
+         "fields": [
+          {
+           "label": "Quote",
+           "name": "quote",
+           "widget": "text"
+          },
+          {
+           "label": "Name",
+           "name": "name",
+           "widget": "string"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "faq",
+       "label": "FAQ",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        },
+        {
+         "label": "Questions",
+         "name": "items",
+         "widget": "list",
+         "summary": "{{fields.question}}",
+         "fields": [
+          {
+           "label": "Question",
+           "name": "question",
+           "widget": "string"
+          },
+          {
+           "label": "Answer",
+           "name": "answer",
+           "widget": "markdown",
+           "buttons": [
+            "bold",
+            "italic",
+            "link",
+            "bulleted-list"
+           ],
+           "editor_components": [],
+           "modes": [
+            "rich_text"
+           ],
+           "required": true
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "gallery",
+       "label": "Gallery",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Small title",
+         "name": "subheading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        },
+        {
+         "label": "Layout",
+         "name": "layout",
+         "widget": "select",
+         "options": [
+          {
+           "label": "Square tiles",
+           "value": "grid"
+          },
+          {
+           "label": "Natural shapes (masonry)",
+           "value": "masonry"
+          }
+         ],
+         "default": "grid",
+         "required": false
+        },
+        {
+         "label": "Buttons",
+         "name": "buttons",
+         "widget": "list",
+         "required": false,
+         "summary": "{{fields.label}}",
+         "fields": [
+          {
+           "label": "Button text",
+           "name": "label",
+           "widget": "string",
+           "required": false
+          },
+          {
+           "label": "Link (e.g. /contact/ or https://...)",
+           "name": "url",
+           "widget": "string",
+           "hint": "WhatsApp group links automatically show as a green WhatsApp button.",
+           "required": false
+          }
+         ]
+        },
+        {
+         "label": "Images",
+         "name": "images",
+         "widget": "list",
+         "fields": [
+          {
+           "label": "Image",
+           "name": "image",
+           "widget": "image",
+           "required": true
+          },
+          {
+           "label": "Caption",
+           "name": "caption",
+           "widget": "string",
+           "required": false
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "image",
+       "label": "Single image",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Image",
+         "name": "image",
+         "widget": "image",
+         "required": true
+        },
+        {
+         "label": "Width",
+         "name": "width",
+         "widget": "select",
+         "options": [
+          "narrow",
+          "full"
+         ],
+         "default": "narrow"
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        },
+        {
+         "label": "Buttons",
+         "name": "buttons",
+         "widget": "list",
+         "required": false,
+         "summary": "{{fields.label}}",
+         "fields": [
+          {
+           "label": "Button text",
+           "name": "label",
+           "widget": "string",
+           "required": false
+          },
+          {
+           "label": "Link (e.g. /contact/ or https://...)",
+           "name": "url",
+           "widget": "string",
+           "hint": "WhatsApp group links automatically show as a green WhatsApp button.",
+           "required": false
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "video",
+       "label": "Video",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "YouTube / Vimeo / Facebook link",
+         "name": "url",
+         "widget": "string",
+         "hint": "Paste the video link. Or leave empty and upload a video file below.",
+         "required": false
+        },
+        {
+         "label": "Or upload a video file (MP4, keep it small)",
+         "name": "file",
+         "widget": "file",
+         "required": false
+        },
+        {
+         "label": "Caption",
+         "name": "caption",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        }
+       ]
+      },
+      {
+       "name": "downloads",
+       "label": "Downloads (PDF, files)",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Text",
+         "name": "text",
+         "widget": "markdown",
+         "buttons": [
+          "bold",
+          "italic",
+          "link",
+          "bulleted-list"
+         ],
+         "editor_components": [],
+         "modes": [
+          "rich_text"
+         ],
+         "required": false
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        },
+        {
+         "label": "Files",
+         "name": "files",
+         "widget": "list",
+         "summary": "{{fields.label}}",
+         "fields": [
+          {
+           "label": "Button text",
+           "name": "label",
+           "widget": "string"
+          },
+          {
+           "label": "File",
+           "name": "file",
+           "widget": "file"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "embed",
+       "label": "Embed (form, map, widget)",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Embed link (e.g. Jotform or Google Maps embed URL)",
+         "name": "url",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Height in pixels",
+         "name": "height",
+         "widget": "number",
+         "default": 700,
+         "required": false
+        },
+        {
+         "label": "Or paste embed code (advanced)",
+         "name": "code",
+         "widget": "code",
+         "default_language": "html",
+         "output_code_only": true,
+         "required": false
+        },
+        {
+         "label": "Width",
+         "name": "width",
+         "widget": "select",
+         "options": [
+          "narrow",
+          "full"
+         ],
+         "default": "narrow"
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        }
+       ]
+      },
+      {
+       "name": "cta",
+       "label": "Call-to-action band",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Text",
+         "name": "text",
+         "widget": "text",
+         "required": false
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "dark",
+         "required": false
+        },
+        {
+         "label": "Buttons",
+         "name": "buttons",
+         "widget": "list",
+         "required": false,
+         "summary": "{{fields.label}}",
+         "fields": [
+          {
+           "label": "Button text",
+           "name": "label",
+           "widget": "string",
+           "required": false
+          },
+          {
+           "label": "Link (e.g. /contact/ or https://...)",
+           "name": "url",
+           "widget": "string",
+           "hint": "WhatsApp group links automatically show as a green WhatsApp button.",
+           "required": false
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "contact",
+       "label": "Contact info + form",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Heading",
+         "name": "heading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Small title",
+         "name": "subheading",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Intro text",
+         "name": "intro",
+         "widget": "markdown",
+         "buttons": [
+          "bold",
+          "italic",
+          "link"
+         ],
+         "editor_components": [],
+         "modes": [
+          "rich_text"
+         ],
+         "required": false
+        },
+        {
+         "label": "Show contact form",
+         "name": "showForm",
+         "widget": "boolean",
+         "default": true
+        },
+        {
+         "label": "Form name (e.g. contact, bridal)",
+         "name": "formName",
+         "widget": "string",
+         "default": "contact",
+         "hint": "Messages show this name in the inbox. Use lowercase, no spaces.",
+         "required": false
+        },
+        {
+         "label": "Extra form fields",
+         "name": "fields",
+         "widget": "list",
+         "required": false,
+         "summary": "{{fields.label}} ({{fields.type}})",
+         "fields": [
+          {
+           "label": "Label",
+           "name": "label",
+           "widget": "string"
+          },
+          {
+           "label": "Type",
+           "name": "type",
+           "widget": "select",
+           "options": [
+            "text",
+            "date",
+            "number",
+            "tel",
+            "select"
+           ],
+           "default": "text"
+          },
+          {
+           "label": "Choices for a select field (comma separated)",
+           "name": "options",
+           "widget": "string",
+           "required": false
+          },
+          {
+           "label": "Required",
+           "name": "required",
+           "widget": "boolean",
+           "default": false,
+           "required": false
+          }
+         ]
+        },
+        {
+         "label": "Message box label",
+         "name": "messageLabel",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Send button text",
+         "name": "submitLabel",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Background",
+         "name": "background",
+         "widget": "select",
+         "options": [
+          "light",
+          "white",
+          "dark"
+         ],
+         "default": "light",
+         "required": false
+        },
+        {
+         "label": "Buttons",
+         "name": "buttons",
+         "widget": "list",
+         "required": false,
+         "summary": "{{fields.label}}",
+         "fields": [
+          {
+           "label": "Button text",
+           "name": "label",
+           "widget": "string",
+           "required": false
+          },
+          {
+           "label": "Link (e.g. /contact/ or https://...)",
+           "name": "url",
+           "widget": "string",
+           "hint": "WhatsApp group links automatically show as a green WhatsApp button.",
+           "required": false
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "required": false
+    }
+   ]
+  },
+  {
+   "name": "settings",
+   "label": "Site settings",
+   "files": [
+    {
+     "name": "settings",
+     "label": "Logo, colors, contact & menu",
+     "file": "content/settings.json",
+     "fields": [
+      {
+       "label": "Site name",
+       "name": "name",
+       "widget": "string"
+      },
+      {
+       "label": "Tagline",
+       "name": "tagline",
+       "widget": "string",
+       "required": false
+      },
+      {
+       "label": "Google title (home page)",
+       "name": "seoTitle",
+       "widget": "string",
+       "required": false
+      },
+      {
+       "label": "Google description",
+       "name": "description",
+       "widget": "text",
+       "required": false
+      },
+      {
+       "label": "Logo",
+       "name": "logo",
+       "widget": "image",
+       "required": false
+      },
+      {
+       "label": "Browser tab icon",
+       "name": "favicon",
+       "widget": "image",
+       "required": false
+      },
+      {
+       "label": "Colors & fonts",
+       "name": "theme",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Accent color",
+         "name": "primary",
+         "widget": "color"
+        },
+        {
+         "label": "Dark color (header/footer)",
+         "name": "dark",
+         "widget": "color"
+        },
+        {
+         "label": "Light background",
+         "name": "light",
+         "widget": "color"
+        },
+        {
+         "label": "Text color",
+         "name": "text",
+         "widget": "color"
+        },
+        {
+         "label": "Heading font (any Google Font name)",
+         "name": "headingFont",
+         "widget": "string"
+        },
+        {
+         "label": "Body font (any Google Font name)",
+         "name": "bodyFont",
+         "widget": "string"
+        },
+        {
+         "label": "Second accent color (gradients)",
+         "name": "accent2",
+         "widget": "color",
+         "required": false
+        },
+        {
+         "label": "Logo text font (e.g. Great Vibes)",
+         "name": "brandFont",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Look",
+         "name": "look",
+         "widget": "select",
+         "options": [
+          {
+           "label": "Classic",
+           "value": "classic"
+          },
+          {
+           "label": "Glam (beauty / salon)",
+           "value": "glam"
+          }
+         ],
+         "default": "classic",
+         "required": false
+        }
+       ]
+      },
+      {
+       "label": "Menu",
+       "name": "nav",
+       "widget": "list",
+       "summary": "{{fields.label}} → {{fields.url}}",
+       "fields": [
+        {
+         "label": "Button text",
+         "name": "label",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Link (e.g. /contact/ or https://...)",
+         "name": "url",
+         "widget": "string",
+         "hint": "WhatsApp group links automatically show as a green WhatsApp button.",
+         "required": false
+        }
+       ]
+      },
+      {
+       "label": "Contact details",
+       "name": "contact",
+       "widget": "object",
+       "fields": [
+        {
+         "label": "Address",
+         "name": "address",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Service / opening times",
+         "name": "serviceTimes",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Phone",
+         "name": "phone",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Email",
+         "name": "email",
+         "widget": "string",
+         "required": false
+        }
+       ]
+      },
+      {
+       "label": "Social links",
+       "name": "social",
+       "widget": "list",
+       "summary": "{{fields.label}}",
+       "fields": [
+        {
+         "label": "Button text",
+         "name": "label",
+         "widget": "string",
+         "required": false
+        },
+        {
+         "label": "Link (e.g. /contact/ or https://...)",
+         "name": "url",
+         "widget": "string",
+         "hint": "WhatsApp group links automatically show as a green WhatsApp button.",
+         "required": false
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

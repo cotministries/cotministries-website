@@ -1,0 +1,62 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Website Editor</title><meta name="robots" content="noindex">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script src="/admin/repo-files.js"></script>
+<script src="/admin/site-settings.js"></script>
+<script src="/admin/render.js"></script>
+</head><body>
+<script src="https://unpkg.com/decap-cms@^3.8.0/dist/decap-cms.js"></script>
+<script>
+  // The live preview uses the exact same renderer as the real site.
+  let siteSettings = window.siteSettings || {};
+  CMS.registerPreviewStyle('/styles.css');
+  function resolveAssets(v, getAsset) {
+    if (Array.isArray(v)) return v.map((x) => resolveAssets(x, getAsset));
+    if (v && typeof v === 'object') { const o = {}; for (const k in v) o[k] = resolveAssets(v[k], getAsset); return o; }
+    if (typeof v === 'string' && v.startsWith('/uploads/')) { try { const a = getAsset(v); return a ? a.toString() : v; } catch (e) { return v; } }
+    return v;
+  }
+  const head = (t) => `<link rel="stylesheet" href="${SiteRender.fontsHref(t)}"><style>${SiteRender.themeCss(t)}</style>`;
+  CMS.registerPreviewTemplate('pages', createClass({
+    render() {
+      const data = resolveAssets(this.props.entry.get('data').toJS(), this.props.getAsset);
+      return h('div', { dangerouslySetInnerHTML: { __html: head(siteSettings.theme) + SiteRender.renderSections(data.sections, siteSettings) } });
+    }
+  }));
+  CMS.registerPreviewTemplate('settings', createClass({
+    render() {
+      const s = resolveAssets(this.props.entry.get('data').toJS(), this.props.getAsset); siteSettings = s;
+      const page = { title: 'Preview', slug: 'x', sections: [
+        { type: 'text', heading: s.name, subheading: s.tagline, body: s.description, align: 'center', buttons: [{ label: 'Main button', url: '#' }, { label: 'Second button', url: '#' }] },
+        { type: 'contact', heading: 'Contact details', showForm: false }] };
+      const html = SiteRender.renderPage(page, s).replace(/^[\s\S]*?<body>/, '').replace('</body></html>', '');
+      return h('div', { dangerouslySetInnerHTML: { __html: head(s.theme) + html } });
+    }
+  }));
+</script>
+<a href="/admin/messages.html" id="inbox-btn" style="position:fixed;left:16px;bottom:16px;z-index:9999;display:flex;align-items:center;gap:8px;background:#16161a;color:#fff;padding:11px 18px;border-radius:999px;font:600 14px system-ui,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.28);border:2px solid transparent;transition:.2s">📬 Messages<span id="inbox-badge" style="display:none;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:#e5484d;color:#fff;font-size:12px;font-weight:800;align-items:center;justify-content:center"></span></a>
+<script>
+  // Unread badge: checks for new messages every minute (read status is remembered per device).
+  (function () {
+    var btn = document.getElementById('inbox-btn'), badge = document.getElementById('inbox-badge');
+    var accent = (window.siteSettings && siteSettings.theme && siteSettings.theme.primary) || '#d4a437';
+    async function check() {
+      try {
+        var u = window.netlifyIdentity && netlifyIdentity.currentUser();
+        if (!u) return;
+        var r = await fetch('/.netlify/functions/messages', { headers: { Authorization: 'Bearer ' + await u.jwt() } });
+        if (!r.ok) return;
+        var seen = new Set(JSON.parse(localStorage.getItem('inbox-seen') || '[]'));
+        var n = (await r.json()).filter(function (m) { return !seen.has(m.id); }).length;
+        badge.textContent = n > 99 ? '99+' : n;
+        badge.style.display = n ? 'inline-flex' : 'none';
+        btn.style.borderColor = n ? accent : 'transparent';
+        btn.title = n ? n + ' new message' + (n > 1 ? 's' : '') : 'No new messages';
+      } catch (e) {}
+    }
+    setTimeout(check, 2500); setInterval(check, 60000);
+    document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') check(); });
+  })();
+</script>
+</body></html>
