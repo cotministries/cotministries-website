@@ -1,0 +1,15 @@
+{
+  "categories": [
+    "Sessions"
+  ],
+  "items": [
+    {
+      "category": "Sessions",
+      "name": "1:1 Session with Chief Apostle",
+      "price": "75",
+      "minutes": 60,
+      "description": "A 60 minute personal session with Chief Apostle Prophet Osman Nathaniel Weaver.",
+      "show": true
+    }
+  ]
+}

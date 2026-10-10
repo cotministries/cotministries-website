@@ -1,126 +1,138 @@
 {
   "title": "Home",
   "slug": "index",
+  "description": "",
   "sections": [
     {
-      "type": "hero",
-      "style": "image",
-      "image": "/uploads/banner.jpg",
-      "buttons": []
-    },
-    {
-      "type": "text",
-      "heading": "Welcome to City of Testimonies Ministries",
-      "subheading": "Every life has a testimony waiting to be told.",
-      "align": "center",
-      "background": "light",
-      "body": "City of Testimonies Ministries is a prophetic ministry based in Monrovia, Liberia, with a mandate to reach the nations through the Word of God, deliverance, prayer, and the power of the Holy Spirit.\n\nWe believe that no matter where you are in your journey, God is still writing your story. What you may be facing today can become the testimony you share tomorrow.",
+      "type": "cotHero",
+      "image": "/uploads/hero-banner.jpg",
+      "alt": "Worshippers with raised hands before Jerusalem at sunrise, and Chief Apostle Prophet Osman Nathaniel Weaver in a white suit",
+      "script": "Welcome to",
+      "title": "City Of Testimonies",
+      "text": "A prophetic global community raising witnesses, releasing destinies, and establishing Kingdom realities.",
       "buttons": [
         {
-          "label": "Contact Us",
-          "url": "/contact/"
+          "label": "Join Us",
+          "url": "/about/"
+        },
+        {
+          "label": "Submit a Prayer Request",
+          "url": "/ministry/#prayer"
         }
       ]
     },
     {
-      "type": "cards",
-      "heading": "Ways to Connect",
-      "background": "white",
+      "type": "features",
       "items": [
         {
-          "title": "Monthly Spiritual Detox",
-          "image": "https://749ba59c77173e7ef9c9.cdn6.editmysite.com/uploads/b/749ba59c77173e7ef9c94ce8839a21e8d7074f7fbbdd5b04fb67591012bc36e5/MonthlyDetoxBannner_1791255342.png",
-          "text": "An extraordinary moment to be free from spiritual bondage, delays and oppression.",
-          "button": {
-            "label": "Register Now",
-            "url": "/monthly-spiritual-detox/"
-          },
-          "buttons": [
-            {
-              "label": "Join WhatsApp Group",
-              "url": "https://chat.whatsapp.com/GjF3EURCLwo6jrBHbXMgTN"
-            }
-          ]
+          "icon": "users",
+          "title": "Sabbath Gatherings",
+          "text": "A place to encounter God, belong, and be strengthened.",
+          "url": "/events/"
         },
         {
-          "title": "Eagle Eye's Prophetic School",
-          "image": "https://749ba59c77173e7ef9c9.cdn6.editmysite.com/uploads/b/749ba59c77173e7ef9c94ce8839a21e8d7074f7fbbdd5b04fb67591012bc36e5/c8ee922e-38f4-4ed3-93cc-e14c3a01253f_1790832979.png",
-          "text": "Train in the prophetic and grow in your gifts and calling. Classes start January 2027.",
-          "button": {
-            "label": "Enroll Today",
-            "url": "/school-registration/"
-          },
-          "buttons": [
-            {
-              "label": "Join WhatsApp Group",
-              "url": "https://chat.whatsapp.com/Dy9YD2Xqnj7J44jTDxCI1M"
-            }
-          ]
+          "icon": "bible",
+          "title": "Prophetic Training",
+          "text": "Equip to hear, receive, and walk confidently in your calling.",
+          "url": "/prophetic-school/"
         },
         {
-          "title": "Ministry Store",
-          "image": "https://155390671.cdn6.editmysite.com/uploads/1/5/5/3/155390671/6JFBRARXMLFDL5ONTLN3UXI6.png",
-          "text": "Wear your faith. Shirts and more from City of Testimonies.",
-          "button": {
-            "label": "Shop Now",
-            "url": "/shop/"
-          }
+          "icon": "globe",
+          "title": "Global Witnesses",
+          "text": "Reaching every nation to impact cultures with the Kingdom.",
+          "url": "/ministry/"
         }
       ]
     },
     {
-      "type": "imageText",
-      "heading": "Chief Apostle Prophet Osman Nathaniel Weaver",
-      "subheading": "Leader & Founder",
-      "image": "/uploads/banner.jpg",
-      "imageSide": "left",
-      "background": "light",
-      "body": "Leader and Founder of Yahweh's Inhabitants Prophetic Sabbath Ministries International, also known as City of Testimonies.\n\n[Add 2–3 sentences about his calling, how the ministry began, and his vision.]",
-      "buttons": []
+      "type": "mandate",
+      "eyebrow": "Our Mandate",
+      "heading": "Raising a People Who Carry His Presence",
+      "text": "City Of Testimonies exists to raise a people who know God intimately, walk in their prophetic identity, and carry His presence into every sphere of life. We are a global community committed to impact nations, equip disciples, and demonstrate Kingdom realities on the earth as in heaven.",
+      "link": {
+        "label": "Discover our story",
+        "url": "/about/"
+      },
+      "image": "/uploads/mandate.jpg",
+      "alt": "Jerusalem at sunrise"
     },
     {
-      "type": "testimonials",
+      "type": "carry",
+      "heading": "What We Carry",
+      "bg": "cream",
+      "items": [
+        {
+          "image": "/uploads/carry1.jpg",
+          "alt": "Worshippers with raised hands",
+          "title": "Ministry",
+          "text": "Encounters that carry people into a transformative life.",
+          "url": "/ministry/"
+        },
+        {
+          "image": "/uploads/carry2.jpg",
+          "alt": "An open Bible in sunlight",
+          "title": "Prophetic School",
+          "text": "Equipping saints to hear God and walk in purpose.",
+          "url": "/prophetic-school/"
+        },
+        {
+          "image": "/uploads/carry3.jpg",
+          "alt": "A man with arms raised at sunrise",
+          "title": "Testimonies",
+          "text": "Real people. Real stories. Real Kingdom change.",
+          "url": "/testimonies/"
+        },
+        {
+          "image": "/uploads/carry4.jpg",
+          "alt": "A full hall with stage lights",
+          "title": "Events",
+          "text": "Gather, be strengthened, and go equipped.",
+          "url": "/events/"
+        }
+      ]
+    },
+    {
+      "type": "verse",
+      "quote": "Arise, shine, for your light has come",
+      "ref": "Isaiah 60:1",
+      "image": "/uploads/verse.jpg"
+    },
+    {
+      "type": "testiSlider",
       "heading": "Testimonies",
-      "subheading": "What God is doing among us",
-      "background": "white",
-      "items": [
-        {
-          "quote": "Daddy, I just want to take a moment to appreciate and honor you. You have been a father, a mentor and a source of encouragement.\nYour prayers, guidance and sacrifices, and the way you pour into people's lives mean more than words can express.\n\nI thank God for your life and for the wisdom and love you continue to share with us.\n\nMay God continue to strengthen you, increase you and everything you put your hands to. We're truly grateful to have you as our Pastor, Prophet and Father.",
-          "name": "Kebs, Kebs"
-        },
-        {
-          "quote": "Chief is such an amazing Man of God! He has helped guide me through the toughest times. I thank you Chief and I don't take it lightly. May God continue to increase you.",
-          "name": "Niki, FL"
-        },
-        {
-          "quote": "[Third testimony.]",
-          "name": "[First name, City]"
-        }
-      ]
+      "bg": "cream"
     },
     {
-      "type": "quote",
-      "quote": "And they overcame him by the blood of the Lamb, and by the word of their testimony.",
-      "source": "Revelation 12:11 (KJV)",
-      "background": "dark"
-    },
-    {
-      "type": "cta",
-      "heading": "Ready for your breakthrough?",
-      "text": "Join the next Monthly Spiritual Detox.",
-      "background": "dark",
+      "type": "promo",
+      "image": "/uploads/school.jpg",
+      "alt": "A golden city at sunrise",
+      "eyebrow": "Now Enrolling",
+      "heading": "Prophetic School",
+      "text": "Be equipped. Be activated. Be sent.",
       "buttons": [
         {
           "label": "Register Now",
-          "url": "/monthly-spiritual-detox/"
+          "url": "/prophetic-school/"
         }
       ]
     },
     {
-      "type": "contact",
-      "heading": "Join Us",
-      "background": "light",
-      "showForm": true
+      "type": "gatherings",
+      "heading": "Upcoming Gatherings",
+      "limit": 3,
+      "emptyText": "New gatherings are announced soon."
+    },
+    {
+      "type": "sow",
+      "heading": "Sow Into the Vision",
+      "text": "Partner with us to advance the revelation globally and help raise a generation of witnesses in every nation.",
+      "image": "/uploads/give.jpg",
+      "buttons": [
+        {
+          "label": "Give Today",
+          "url": "/give/"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,104 @@
+{
+  "title": "Ministry",
+  "slug": "ministry",
+  "description": "Monthly Spiritual Detox, 1:1 sessions with Chief Apostle, prayer requests and invitations.",
+  "sections": [
+    {
+      "type": "pageHead",
+      "eyebrow": "Ministry",
+      "title": "Encounters that carry people into a transformative life",
+      "text": "Deliverance, prayer and the power of the Holy Spirit, for you and for the nations.",
+      "image": "/uploads/verse.jpg"
+    },
+    {
+      "type": "carry",
+      "heading": "Ways to Connect",
+      "bg": "white",
+      "items": [
+        {
+          "image": "https://749ba59c77173e7ef9c9.cdn6.editmysite.com/uploads/b/749ba59c77173e7ef9c94ce8839a21e8d7074f7fbbdd5b04fb67591012bc36e5/MonthlyDetoxBannner_1791255342.png",
+          "alt": "Monthly Spiritual Detox",
+          "title": "Monthly Spiritual Detox",
+          "text": "An extraordinary moment to be free from spiritual bondage, delays and oppression.",
+          "url": "/monthly-spiritual-detox/"
+        },
+        {
+          "image": "/uploads/banner.jpg",
+          "alt": "Chief Apostle Prophet Osman Nathaniel Weaver",
+          "title": "1:1 with Chief Apostle",
+          "text": "A 60 minute personal session with Chief Apostle.",
+          "url": "/one-on-one/"
+        },
+        {
+          "image": "https://749ba59c77173e7ef9c9.cdn6.editmysite.com/uploads/b/749ba59c77173e7ef9c94ce8839a21e8d7074f7fbbdd5b04fb67591012bc36e5/c8ee922e-38f4-4ed3-93cc-e14c3a01253f_1790832979.png",
+          "alt": "Eagle Eye's Prophetic School",
+          "title": "Prophetic School",
+          "text": "Train in the prophetic and grow in your gifts and calling.",
+          "url": "/prophetic-school/"
+        },
+        {
+          "image": "https://155390671.cdn6.editmysite.com/uploads/1/5/5/3/155390671/6JFBRARXMLFDL5ONTLN3UXI6.png",
+          "alt": "Ministry T-shirt",
+          "title": "Ministry Store",
+          "text": "Wear your faith. Every purchase supports the ministry.",
+          "url": "/shop/"
+        }
+      ]
+    },
+    {
+      "type": "ministryForms",
+      "prayerTitle": "Prayer Request",
+      "prayerText": "Share your request and any details you'd like us to pray for.",
+      "prayerCategories": [
+        "Healing",
+        "Deliverance",
+        "Family",
+        "Finances",
+        "Breakthrough",
+        "Salvation",
+        "Other"
+      ],
+      "speakTitle": "Invite Chief Apostle",
+      "speakText": "Have a special event? Book Chief Apostle Prophet as a special guest.",
+      "eventTypes": [
+        "Church service",
+        "Conference",
+        "Revival",
+        "Crusade",
+        "Prayer gathering",
+        "Online event",
+        "Other"
+      ],
+      "audienceSizes": [
+        "Under 50",
+        "50–150",
+        "150–500",
+        "500+"
+      ]
+    },
+    {
+      "type": "verse",
+      "quote": "Arise, shine, for your light has come",
+      "ref": "Isaiah 60:1",
+      "image": "/uploads/verse.jpg"
+    },
+    {
+      "type": "give",
+      "heading": "Partner & Give",
+      "text": "Partner with us to advance the revelation globally and help raise a generation of witnesses in every nation.",
+      "amounts": [
+        25,
+        50,
+        100,
+        250
+      ],
+      "designations": [
+        "Where it is needed most",
+        "Chief Apostle's America 2027 tour",
+        "Prophetic School",
+        "Outreach & missions"
+      ],
+      "monthly": true
+    }
+  ]
+}

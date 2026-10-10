@@ -1,0 +1,27 @@
+{
+  "title": "Events",
+  "slug": "events",
+  "description": "Upcoming gatherings at City Of Testimonies.",
+  "sections": [
+    {
+      "type": "pageHead",
+      "eyebrow": "Events",
+      "title": "Upcoming Gatherings",
+      "text": "Gather, be strengthened, and go equipped.",
+      "image": "/uploads/verse.jpg"
+    },
+    {
+      "type": "gatherings",
+      "heading": "",
+      "emptyText": "New gatherings are announced soon."
+    },
+    {
+      "type": "events",
+      "heading": "RSVP",
+      "sub": "Let us know you're coming",
+      "style": "red",
+      "filters": false,
+      "emptyText": ""
+    }
+  ]
+}

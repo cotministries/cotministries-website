@@ -1,0 +1,204 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Booking schedule</title><meta name="robots" content="noindex">
+<style>
+:root{--accent:#d4a437;--ink:#16161a;--bg:#f4f2ee;--panel:#fff;--soft:#faf8f4;--line:#e7e2d8;--text:#1d1d1f;--muted:#76767e;--danger:#c8372d;--ok:#25a35a}
+@media (prefers-color-scheme:dark){:root{--bg:#121214;--panel:#1b1b1f;--soft:#202025;--line:#2e2e35;--text:#f1f1f3;--muted:#9a9aa3;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select{font:inherit;color:inherit}
+.bar{display:flex;align-items:center;gap:12px;padding:12px 20px;background:var(--ink);color:#fff;border-bottom:3px solid var(--accent);position:sticky;top:0;z-index:5;flex-wrap:wrap}
+.bar b{font-size:1.05rem}.bar small{display:block;color:#bdb6a6;font-size:.78rem}
+.spacer{flex:1}
+.bar a{color:#fff;text-decoration:none;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:8px 14px;border-radius:9px;font-size:.88rem;white-space:nowrap}
+.save{border:0;background:var(--accent);color:#16161a;font-weight:800;padding:9px 18px;border-radius:9px;cursor:pointer}
+.save:disabled{opacity:.55;cursor:default}
+main{max-width:860px;margin:0 auto;padding:24px 16px 80px;display:grid;gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+h2{margin:0 0 4px;font-size:1.1rem}
+.sub{margin:0 0 14px;color:var(--muted);font-size:.88rem}
+.day{display:grid;grid-template-columns:120px auto 1fr;gap:12px;align-items:center;padding:9px 0;border-top:1px solid var(--line)}
+.day:first-of-type{border-top:0}
+.times{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.times[hidden]{display:none}
+.closed{color:var(--muted);font-size:.88rem}
+input[type=time],input[type=date],input[type=number],input[type=text],select{border:1px solid var(--line);background:var(--soft);border-radius:8px;padding:8px 10px;min-width:0}
+input[type=number]{width:90px}
+.sw{position:relative;width:46px;height:26px;flex:none}
+.sw input{opacity:0;position:absolute;inset:0;margin:0;cursor:pointer;z-index:1}
+.sw span{position:absolute;inset:0;border-radius:999px;background:var(--line);transition:.2s}
+.sw span::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.sw input:checked+span{background:var(--ok)}.sw input:checked+span::after{left:23px}
+.sw input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.add{display:flex;gap:8px;flex-wrap:wrap;align-items:end;background:var(--soft);border:1px dashed var(--line);border-radius:10px;padding:12px}
+.add label{display:grid;gap:4px;font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.btn{border:1px solid var(--line);background:var(--panel);padding:8px 14px;border-radius:9px;cursor:pointer;font-weight:600}
+.btn:hover{background:var(--soft)}
+.items{display:grid;gap:6px;margin-top:12px}
+.it{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 12px;border:1px solid var(--line);border-radius:9px;font-size:.92rem}
+.it small{color:var(--muted)}
+.x{border:0;background:none;color:var(--danger);font-size:1.2rem;cursor:pointer;line-height:1;padding:2px 6px}
+.none{color:var(--muted);font-size:.88rem;margin:10px 0 0}
+.rules{display:grid;gap:12px}
+.rule{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding-top:12px;border-top:1px solid var(--line)}
+.rule:first-child{border:0;padding:0}
+.rule div{flex:1;min-width:220px}.rule b{display:block;font-size:.95rem}.rule small{color:var(--muted)}
+.rule input[type=text]{width:100%}
+.ap{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:.92rem}
+.ap:first-child{border:0}
+.ap .d{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+.ap .w small{display:block;color:var(--muted)}
+.st{font-size:.7rem;font-weight:800;padding:3px 9px;border-radius:999px;text-transform:uppercase;white-space:nowrap}
+.st-requested{background:#f6e7c1;color:#7a5a00}.st-confirmed{background:#d5f2df;color:#156b36}.st-blocked{background:var(--line);color:var(--text)}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;padding:11px 18px;border-radius:10px;transition:.25s;z-index:9}
+.toast.show{transform:translateX(-50%)}
+.err{color:var(--danger)}
+@media (max-width:560px){.day{grid-template-columns:1fr auto}.day .times,.day .closed{grid-column:1/-1}.ap{grid-template-columns:1fr auto}.ap .d{grid-column:1/-1}}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Mulish:wght@300;400;500;600&display=swap"><link rel="stylesheet" href="/admin/brand.css">
+</head><body>
+<div class="bar">
+  <div><b>🗓 Booking schedule</b><small>Changes are live on the booking page as soon as you save</small></div>
+  <div class="spacer"></div>
+  <a href="/book/" target="_blank" rel="noopener">Booking page ↗</a>
+  <a href="/admin/blog.html">✍️ Blog</a>
+  <a href="/admin/newsletter.html">💌 Newsletter</a>
+  <a href="/admin/walkin.html">💇 Walk-in</a>
+  <a href="/admin/messages.html">📬 Messages</a>
+  <a href="/admin/">🏠 Studio</a>
+  <button class="save" id="save" disabled>Saved</button>
+</div>
+<main id="app"><div class="card">Loading…</div></main>
+<div class="toast" id="toast"></div>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const pad = (n) => String(n).padStart(2, '0');
+const fmtT = (x) => { const h = Math.floor(x / 60); return ((h + 11) % 12 + 1) + ':' + pad(x % 60) + (h < 12 ? ' AM' : ' PM'); };
+const fmtHM = (t) => { const [h, m] = t.split(':').map(Number); return fmtT(h * 60 + m); };
+const fmtD = (d) => new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', { timeZone: 'UTC', weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 2600); }
+function token() { try { const u = JSON.parse(localStorage.getItem('decap-cms-user') || 'null'); return u && u.token; } catch (e) { return null; } }
+const H = () => ({ 'Content-Type': 'application/json', Authorization: 'Bearer ' + (token() || '') });
+
+let S = null, appts = [], today = '', dirty = false;
+function setDirty(v) { dirty = v; $('save').disabled = !v; $('save').textContent = v ? 'Save changes' : 'Saved'; }
+window.addEventListener('beforeunload', (e) => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+function render() {
+  const w = S.week;
+  const upcoming = appts.map((a) => ({ date: a.date, s: a.start, e: a.end, kind: a.status, who: a.name || 'No name', what: [a.services, a.location].filter(Boolean).join(' · '), id: a.messageId }))
+    .concat(S.blocks.filter((b) => b.date >= today).map((b) => ({ date: b.date, s: toM(b.from), e: toM(b.to), kind: 'blocked', who: b.note || 'Blocked time', what: '' })))
+    .sort((a, b) => (a.date + pad(a.s)).localeCompare(b.date + pad(b.s))).slice(0, 40);
+  $('app').innerHTML = `
+<section class="card"><h2>Coming up</h2><p class="sub">Booking requests hold their time${S.holdRequests ? '' : ' only after you confirm them'}. Confirm or decline them in 📬 Messages.</p>
+${upcoming.length ? upcoming.map((a) => `<div class="ap"><span class="d">${esc(fmtD(a.date))}</span><span class="w">${fmtT(a.s)} – ${fmtT(a.e)} · <b>${esc(a.who)}</b>${a.what ? `<small>${esc(a.what)}</small>` : ''}</span>${a.id ? `<a class="st st-${a.kind}" href="/admin/messages.html#${encodeURIComponent(a.id)}" style="text-decoration:none">${a.kind === 'confirmed' ? 'Confirmed' : 'Waiting for you'}</a>` : `<span class="st st-blocked">Blocked</span>`}</div>`).join('') : '<p class="none">No upcoming appointments yet.</p>'}</section>
+
+<section class="card"><h2>Weekly opening hours</h2><p class="sub">The days and hours people can book.</p>
+${DAYS.map((n, i) => `<div class="day"><b>${n}</b><label class="sw" title="Open on ${n}"><input type="checkbox" data-open="${i}" ${w[i] ? 'checked' : ''} aria-label="Open on ${n}"><span></span></label>
+${w[i] ? `<div class="times"><input type="time" step="900" data-wk="${i}" data-k="from" value="${w[i].from}" aria-label="${n} opens"> to <input type="time" step="900" data-wk="${i}" data-k="to" value="${w[i].to}" aria-label="${n} closes"></div>` : '<span class="closed">Closed</span>'}</div>`).join('')}</section>
+
+<section class="card"><h2>Days off</h2><p class="sub">Vacation, holidays, sick days. Nobody can book these days.</p>
+<div class="add"><label>From<input type="date" id="offFrom" min="${today}"></label><label>To (optional)<input type="date" id="offTo" min="${today}"></label><button class="btn" id="addOff">+ Add days off</button></div>
+${list(offRanges(S.daysOff.filter((d) => d >= today)), (r) => `<span>${esc(fmtRange(r))}${r.n > 1 ? ` <small>· ${r.n} days</small>` : ''}</span>`, 'offr')}</section>
+
+<section class="card"><h2>Extra open days</h2><p class="sub">Open on a day you are normally closed, or different hours on one day.</p>
+<div class="add"><label>Date<input type="date" id="exDate" min="${today}"></label><label>From<input type="time" id="exFrom" value="10:00" step="900"></label><label>To<input type="time" id="exTo" value="16:00" step="900"></label><button class="btn" id="addEx">+ Add open day</button></div>
+${list(S.extraDays.filter((x) => x.date >= today), (x) => `<span><b>${esc(fmtD(x.date))}</b> · ${fmtHM(x.from)} – ${fmtHM(x.to)}</span>`, 'ex')}</section>
+
+<section class="card"><h2>Block a time</h2><p class="sub">Booked somewhere else, an appointment, a break. Only that time is blocked.</p>
+<div class="add"><label>Date<input type="date" id="blDate" min="${today}"></label><label>From<input type="time" id="blFrom" value="12:00" step="900"></label><label>To<input type="time" id="blTo" value="13:00" step="900"></label><label>Note (only you see it)<input type="text" id="blNote" placeholder="e.g. Wedding in Tampa"></label><button class="btn" id="addBl">+ Block time</button></div>
+${list(S.blocks.filter((x) => x.date >= today), (x) => `<span><b>${esc(fmtD(x.date))}</b> · ${fmtHM(x.from)} – ${fmtHM(x.to)}${x.note ? ` <small>· ${esc(x.note)}</small>` : ''}</span>`, 'bl')}</section>
+
+<section class="card"><h2>Booking rules</h2><div class="rules">
+<div class="rule"><div><b>Start times every</b><small>How often a new start time is offered (e.g. 9:00, 9:30, 10:00).</small></div><select data-n="step">${[15, 30, 45, 60, 90, 120].map((v) => `<option value="${v}" ${S.step === v ? 'selected' : ''}>${v < 60 ? v + ' minutes' : v / 60 + ' hour' + (v > 60 ? 's' : '')}</option>`).join('')}</select></div>
+<div class="rule"><div><b>Break between clients</b><small>Minutes kept free before and after each appointment (clean-up, travel).</small></div><span><input type="number" min="0" max="240" step="5" data-n="buffer" value="${S.buffer}"> min</span></div>
+<div class="rule"><div><b>Minimum notice</b><small>How soon someone can book. 24 = not before tomorrow at the same time.</small></div><span><input type="number" min="0" max="1440" data-n="minNotice" value="${S.minNotice}"> hours</span></div>
+<div class="rule"><div><b>Book up to</b><small>How far ahead the calendar goes.</small></div><span><input type="number" min="1" max="730" data-n="maxDays" value="${S.maxDays}"> days ahead</span></div>
+<div class="rule"><div><b>Length for services without a time</b><small>Used when a service has no minutes set (e.g. "Quote").</small></div><span><input type="number" min="15" max="720" step="15" data-n="defaultMinutes" value="${S.defaultMinutes}"> min</span></div>
+<div class="rule"><div><b>Hold requested times</b><small>On: a new request blocks its time right away until you decline it. Off: only confirmed times are blocked.</small></div><label class="sw"><input type="checkbox" id="hold" ${S.holdRequests ? 'checked' : ''} aria-label="Hold requested times"><span></span></label></div>
+<div class="rule"><div><b>Message above the calendar</b><small>Optional, e.g. "Booking for December opens Nov 1".</small><input type="text" data-t="note" maxlength="300" value="${esc(S.note)}" style="margin-top:8px"></div></div>
+</div></section>`;
+}
+const toM = (t) => { const [h, m] = String(t).split(':').map(Number); return h * 60 + m; };
+function list(arr, fmt, kind) {
+  return arr.length ? `<div class="items">${arr.map((x) => `<div class="it">${fmt(x)}<button class="x" title="Remove" data-rm="${kind}" data-v="${esc(kind === 'offr' ? x.a + '|' + x.b : typeof x === 'string' ? x : JSON.stringify(x))}">×</button></div>`).join('')}</div>` : '<p class="none">None.</p>';
+}
+// Days off are stored as single dates; a vacation shows as one line ("Sep 14 – Oct 4, 2027 · 21 days")
+function offRanges(dates) {
+  const out = [];
+  dates.slice().sort().forEach((d) => { const last = out[out.length - 1]; const next = last && new Date(new Date(last.b + 'T12:00:00Z').getTime() + 864e5).toISOString().slice(0, 10); if (last && next === d) { last.b = d; last.n++; } else out.push({ a: d, b: d, n: 1 }); });
+  return out;
+}
+function fmtRange(r) {
+  if (r.a === r.b) return fmtD(r.a);
+  const A = new Date(r.a + 'T12:00:00Z'), B = new Date(r.b + 'T12:00:00Z'), o = { timeZone: 'UTC', weekday: 'short', month: 'short', day: 'numeric' };
+  const sameYear = A.getUTCFullYear() === B.getUTCFullYear();
+  return A.toLocaleDateString('en-US', sameYear ? o : Object.assign({ year: 'numeric' }, o)) + ' – ' + B.toLocaleDateString('en-US', Object.assign({ year: 'numeric' }, o));
+}
+const days = (a, b) => { const out = []; let d = new Date(a + 'T12:00:00Z'); const end = new Date((b || a) + 'T12:00:00Z'); while (d <= end && out.length < 400) { out.push(d.toISOString().slice(0, 10)); d = new Date(d.getTime() + 864e5); } return out; };
+
+document.addEventListener('change', (e) => {
+  const t = e.target;
+  if (t.dataset.open != null) { const i = t.dataset.open; S.week[i] = t.checked ? (S.week[i] || { from: '09:00', to: '18:00' }) : null; render(); setDirty(true); return; }
+  if (t.dataset.wk != null) { if (t.value) S.week[t.dataset.wk][t.dataset.k] = t.value; setDirty(true); return; }
+  if (t.dataset.n) { S[t.dataset.n] = Number(t.value); setDirty(true); return; }
+  if (t.id === 'hold') { S.holdRequests = t.checked; setDirty(true); }
+});
+document.addEventListener('change', (e) => {
+  if (e.target.id !== 'offFrom') return;
+  const a = e.target.value, to = $('offTo'); if (!a || !to) return;
+  to.min = a;
+  if (!to.value || to.value < a) to.value = a; // the calendar for "To" now opens at the From date
+});
+document.addEventListener('input', (e) => { if (e.target.dataset.t) { S[e.target.dataset.t] = e.target.value; setDirty(true); } });
+document.addEventListener('click', (e) => {
+  const t = e.target.closest('button'); if (!t) return;
+  if (t.id === 'save') return save();
+  if (t.dataset.rm) {
+    const v = t.dataset.v, k = t.dataset.rm;
+    if (k === 'off') S.daysOff = S.daysOff.filter((d) => d !== v);
+    if (k === 'offr') { const [a, b] = v.split('|'); S.daysOff = S.daysOff.filter((d) => d < a || d > b); }
+    if (k === 'ex') S.extraDays = S.extraDays.filter((x) => JSON.stringify(x) !== v);
+    if (k === 'bl') S.blocks = S.blocks.filter((x) => JSON.stringify(x) !== v);
+    render(); setDirty(true); return;
+  }
+  if (t.id === 'addOff') {
+    const a = $('offFrom').value, b = $('offTo').value;
+    if (!a) return toast('Choose a date first');
+    if (b && b < a) return toast('"To" must be after "From"');
+    S.daysOff = [...new Set(S.daysOff.concat(days(a, b)))].sort(); render(); setDirty(true); return;
+  }
+  if (t.id === 'addEx') {
+    const d = $('exDate').value, f = $('exFrom').value, to = $('exTo').value;
+    if (!d || !f || !to) return toast('Fill in date and hours'); if (to <= f) return toast('Closing time must be after opening time');
+    S.extraDays = S.extraDays.filter((x) => x.date !== d).concat([{ date: d, from: f, to }]).sort((a, b) => a.date.localeCompare(b.date));
+    S.daysOff = S.daysOff.filter((x) => x !== d); render(); setDirty(true); return;
+  }
+  if (t.id === 'addBl') {
+    const d = $('blDate').value, f = $('blFrom').value, to = $('blTo').value;
+    if (!d || !f || !to) return toast('Fill in date and times'); if (to <= f) return toast('End time must be after start time');
+    S.blocks = S.blocks.concat([{ date: d, from: f, to, note: $('blNote').value.trim() }]).sort((a, b) => (a.date + a.from).localeCompare(b.date + b.from)); render(); setDirty(true);
+  }
+});
+async function save() {
+  for (let i = 0; i < 7; i++) if (S.week[i] && S.week[i].to <= S.week[i].from) return toast(DAYS[i] + ': closing time must be after opening time');
+  $('save').disabled = true; $('save').textContent = 'Saving…';
+  try {
+    const body = Object.assign({}, S, { daysOff: S.daysOff.filter((d) => d >= today), extraDays: S.extraDays.filter((x) => x.date >= today), blocks: S.blocks.filter((x) => x.date >= today) });
+    const r = await fetch('/api/schedule', { method: 'PUT', headers: H(), body: JSON.stringify(body) });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(d.error || 'Error ' + r.status);
+    S = d.settings; render(); setDirty(false); toast('Saved – the booking page uses it now');
+  } catch (e) { setDirty(true); toast(e.message); }
+}
+(async function load() {
+  try {
+    const r = await fetch('/api/schedule', { headers: H() });
+    if (r.status === 401) { location.href = '/admin/'; return; }
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'Error ' + r.status);
+    S = d.settings; appts = d.appointments || []; today = d.now.date; render();
+  } catch (e) { $('app').innerHTML = `<div class="card err">Could not load the schedule: ${esc(e.message)}</div>`; }
+})();
+</script></body></html>

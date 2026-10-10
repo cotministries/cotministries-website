@@ -1,9 +1,29 @@
 {
-  "contact": {
-    "address": "",
-    "serviceTimes": "",
-    "phone": "",
-    "email": ""
+  "name": "City Of Testimonies",
+  "logo": "/uploads/logo.webp",
+  "signature": "/uploads/logo-email.png",
+  "favicon": "/uploads/favicon.png",
+  "shareImage": "/uploads/share.jpg",
+  "tagline": "Every life has a testimony waiting to be told.",
+  "seoTitle": "City Of Testimonies Ministries | Monrovia, Liberia",
+  "seoName": "City Of Testimonies",
+  "description": "City Of Testimonies (Yahweh's Inhabitants Prophetic Sabbath Ministries International) is a prophetic ministry based in Monrovia, Liberia, reaching the nations through the Word of God, deliverance, prayer and the power of the Holy Spirit.",
+  "copyright": "City Of Testimonies",
+  "topButton": {
+    "label": "Give",
+    "url": "/give/"
+  },
+  "theme": {
+    "dark": "#0F2A5E",
+    "primary": "#0F2A5E",
+    "light": "#FBF8F1",
+    "blush": "#F3ECDC",
+    "accent": "#F4E3B0",
+    "text": "#1E2A47",
+    "displayFont": "Libre Caslon Text",
+    "bodyFont": "Mulish",
+    "scriptFont": "Libre Baskerville",
+    "customFonts": []
   },
   "nav": [
     {
@@ -11,79 +31,243 @@
       "url": "/"
     },
     {
-      "label": "Spiritual Detox",
-      "url": "/monthly-spiritual-detox/"
+      "label": "About",
+      "url": "/about/"
+    },
+    {
+      "label": "Ministry",
+      "url": "/ministry/",
+      "children": [
+        {
+          "label": "Monthly Spiritual Detox",
+          "url": "/monthly-spiritual-detox/"
+        },
+        {
+          "label": "1:1 Session with Chief Apostle",
+          "url": "/one-on-one/"
+        },
+        {
+          "label": "Prayer Requests",
+          "url": "/ministry/#prayer"
+        },
+        {
+          "label": "Invite Chief Apostle",
+          "url": "/ministry/#speak"
+        },
+        {
+          "label": "Ministry Store",
+          "url": "/shop/"
+        },
+        {
+          "label": "Partner & Give",
+          "url": "/give/"
+        }
+      ]
     },
     {
       "label": "Prophetic School",
-      "url": "/school-registration/"
+      "url": "/prophetic-school/"
     },
     {
-      "url": "/one-on-one",
-      "label": "Schedule 1:1"
+      "label": "Our Impact",
+      "url": "/testimonies/",
+      "children": [
+        {
+          "label": "Testimonies",
+          "url": "/testimonies/"
+        },
+        {
+          "label": "News & Updates",
+          "url": "/news/"
+        },
+        {
+          "label": "Blog",
+          "url": "/blog/"
+        }
+      ]
     },
     {
-      "url": "/prayer-request/",
-      "label": "Prayer Request"
+      "label": "Events",
+      "url": "/events/"
     },
     {
-      "label": "News & updates",
-      "url": "/updates/"
-    },
-    {
-      "label": "Booking Request",
-      "url": "/Booking-request/"
-    },
-    {
-      "label": "Shop",
-      "url": "/shop/"
+      "label": "Give",
+      "url": "/give/"
     },
     {
       "label": "Contact",
       "url": "/contact/"
     }
   ],
-  "theme": {
-    "primary": "#ebc45c",
-    "dark": "#121212",
-    "light": "#ffffff",
-    "text": "#1d1d1f",
-    "headingFont": "Cinzel",
-    "bodyFont": "Inter"
+  "footerLinks": [
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "About",
+      "url": "/about/"
+    },
+    {
+      "label": "Ministry",
+      "url": "/ministry/"
+    },
+    {
+      "label": "Prophetic School",
+      "url": "/prophetic-school/"
+    },
+    {
+      "label": "Our Impact",
+      "url": "/testimonies/"
+    },
+    {
+      "label": "Events",
+      "url": "/events/"
+    },
+    {
+      "label": "Ministry Store",
+      "url": "/shop/"
+    },
+    {
+      "label": "Give",
+      "url": "/give/"
+    },
+    {
+      "label": "Contact",
+      "url": "/contact/"
+    }
+  ],
+  "footer": {
+    "text": "Raising a people who know God, carry His presence, and impact nations with the Kingdom.",
+    "verses": "ACTS 1:8  |  ISAIAH 60:1"
   },
-  "logo": "",
-  "name": "City of Testimonies Ministries",
+  "contact": {
+    "location": "Monrovia, Liberia\nFlorida Branch, USA",
+    "phone": "",
+    "email": "",
+    "website": "https://cotministries.com"
+  },
   "social": [
     {
-      "label": "City Of Testimonies Florida Branch Facebook",
+      "network": "Facebook",
+      "label": "City Of Testimonies Florida Branch on Facebook",
       "url": "https://www.facebook.com/profile.php?id=61582131122892"
     },
     {
-      "label": "Eagle Eye's Prophetic School Of Ministries",
+      "network": "Facebook",
+      "label": "Eagle Eye's Prophetic School Of Ministries on Facebook",
       "url": "https://www.facebook.com/profile.php?id=61573631654761"
     },
     {
-      "label": "Monthly Spiritual Detox Facebook Page",
+      "network": "Facebook",
+      "label": "Monthly Spiritual Detox on Facebook",
       "url": "https://www.facebook.com/profile.php?id=61594821822261"
     },
     {
-      "label": "Chief Apostle Prophet Osman N. Weaver Main Facebook Page",
+      "network": "Facebook",
+      "label": "Chief Apostle Prophet Osman N. Weaver on Facebook",
       "url": "https://www.facebook.com/osmannathaniel.weaver"
     },
     {
-      "label": "Chief Apostle Prophet Osman N. Weaver Main Tiktok",
+      "network": "TikTok",
+      "label": "Chief Apostle Prophet Osman N. Weaver on TikTok",
       "url": "https://www.tiktok.com/@osmannathanielwea"
     },
     {
-      "url": "https://www.tiktok.com/@weavernationvoice",
-      "label": "Chief Apostle Prophet Osman N. Weaver Secondary Tiktok"
+      "network": "TikTok",
+      "label": "Weaver Nation Voice on TikTok",
+      "url": "https://www.tiktok.com/@weavernationvoice"
     },
     {
-      "label": "Mother and First Lady Prophetess Merriam L Weaver Tiktok",
+      "network": "TikTok",
+      "label": "Mother and First Lady Prophetess Merriam L. Weaver on TikTok",
       "url": "https://www.tiktok.com/@merriam.lemone"
     }
   ],
-  "tagline": "Every life has a testimony waiting to be told.",
-  "seoTitle": "City of Testimonies Ministries | Monrovia, Liberia",
-  "description": "A prophetic ministry based in Monrovia, Liberia, reaching the nations through the Word of God, deliverance, prayer and the power of the Holy Spirit."
+  "chat": {
+    "label": "Message us",
+    "photo": "/uploads/favicon.png",
+    "title": "City Of Testimonies",
+    "status": "We usually reply within 24–72 hours",
+    "text": "Peace be with you! Send us a message here and we'll answer you by email.",
+    "doneTitle": "Message sent!",
+    "doneText": "Thank you. We'll answer you by email soon. God bless you."
+  },
+  "brands": {
+    "main": {
+      "name": "City Of Testimonies",
+      "email": ""
+    },
+    "ministry": {
+      "name": "City Of Testimonies",
+      "email": "",
+      "bookingEmail": ""
+    },
+    "beauty": {
+      "name": "City Of Testimonies",
+      "email": ""
+    }
+  },
+  "heardOptions": [
+    "Facebook",
+    "TikTok",
+    "WhatsApp",
+    "YouTube",
+    "Friend or family",
+    "Church service",
+    "Google search",
+    "Other"
+  ],
+  "ticker": {
+    "show": false,
+    "text": "And they overcame him by the blood of the Lamb, and by the word of their testimony.",
+    "ref": "Revelation 12:11"
+  },
+  "blog": {
+    "script": "News & teachings",
+    "title": "Words from the City",
+    "categories": [
+      "Teaching",
+      "Prophetic Word",
+      "Prayer",
+      "Testimonies",
+      "Events",
+      "News"
+    ],
+    "authorName": "Chief Apostle Prophet Osman N. Weaver",
+    "showSubscribe": true,
+    "subscribeScript": "Letters from City Of Testimonies"
+  },
+  "payment": {
+    "card": true,
+    "detoxPrice": 50,
+    "detoxName": "Monthly Spiritual Detox registration",
+    "others": [
+      {
+        "name": "Cash App",
+        "how": "Send to **$Txnow3** on Cash App: [cash.app/$Txnow3](https://cash.app/$Txnow3)"
+      },
+      {
+        "name": "Zelle",
+        "how": "Ask us for the Zelle details by email or in the chat bubble."
+      },
+      {
+        "name": "PayPal",
+        "how": "Ask us for the PayPal details by email or in the chat bubble."
+      },
+      {
+        "name": "Sendwave",
+        "how": "Ask us for the Sendwave details by email or in the chat bubble."
+      }
+    ]
+  },
+  "shippingFee": 5.99,
+  "pickupLabel": "Pick up at a service (free)",
+  "checkoutNote": "",
+  "thanksHeading": "Thank you!",
+  "thanksMessage": "Your message was sent. Please allow 24–72 hours for a response. God bless you.",
+  "giveThanksHeading": "Thank you for sowing into the vision!",
+  "giveThanksMessage": "Your gift helps raise a generation of witnesses in every nation. A receipt is on its way to your email. May God bless you abundantly.",
+  "orderThanksHeading": "Thank you for your order!",
+  "orderThanksMessage": "Your payment went through. A receipt is on its way to your email."
 }

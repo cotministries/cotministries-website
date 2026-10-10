@@ -1,180 +1,28 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Website Editor</title><meta name="robots" content="noindex">
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script src="/admin/repo-files.js"></script>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Studio</title><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Mulish:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="/admin/studio.css">
+<script>
+  // Logged in with the email code (Cloudflare Access): the site's own key is used, no extra login needed.
+  // This device belongs to an editor: don't count its visits on the website (Studio → Visitors).
+  try { localStorage.setItem('nocount', '1'); } catch (e) {}
+  try { if (!localStorage.getItem('decap-cms-user')) localStorage.setItem('decap-cms-user', JSON.stringify({ backendName: 'github', token: 'cf-access' })); } catch (e) {}
+</script>
 <script src="/admin/site-settings.js"></script>
 <script src="/admin/render.js"></script>
 </head><body>
-<script src="https://unpkg.com/decap-cms@^3.8.0/dist/decap-cms.js"></script>
-<script>
-  // The live preview uses the exact same renderer as the real site.
-  let siteSettings = window.siteSettings || {};
-  siteSettings.news = window.siteNews || [];
-  CMS.registerPreviewStyle('/styles.css');
-  function resolveAssets(v, getAsset) {
-    if (Array.isArray(v)) return v.map((x) => resolveAssets(x, getAsset));
-    if (v && typeof v === 'object') { const o = {}; for (const k in v) o[k] = resolveAssets(v[k], getAsset); return o; }
-    if (typeof v === 'string' && v.startsWith('/uploads/')) { try { const a = getAsset(v); return a ? a.toString() : v; } catch (e) { return v; } }
-    return v;
-  }
-  const head = (t) => `<link rel="stylesheet" href="${SiteRender.fontsHref(t)}"><style>${SiteRender.themeCss(t)}</style>`;
-  CMS.registerPreviewTemplate('pages', createClass({
-    render() {
-      const data = resolveAssets(this.props.entry.get('data').toJS(), this.props.getAsset);
-      return h('div', { dangerouslySetInnerHTML: { __html: head(siteSettings.theme) + SiteRender.renderSections(data.sections, siteSettings) } });
-    }
-  }));
-  // News post preview: exactly how the post page will look
-  CMS.registerPreviewTemplate('news', createClass({
-    render() {
-      const p = resolveAssets(this.props.entry.get('data').toJS(), this.props.getAsset);
-      const extra = SiteRender.postFonts([p]);
-      const fonts = `<link rel="stylesheet" href="${SiteRender.fontsHref(siteSettings.theme, extra)}"><style>${SiteRender.themeCss(siteSettings.theme)}</style>`;
-      return h('div', { dangerouslySetInnerHTML: { __html: fonts + SiteRender.renderPost(Object.assign({ slug: 'preview' }, p)) } });
-    }
-  }));
-  CMS.registerPreviewTemplate('settings', createClass({
-    render() {
-      const s = resolveAssets(this.props.entry.get('data').toJS(), this.props.getAsset); s.news = window.siteNews || []; siteSettings = s;
-      const page = { title: 'Preview', slug: 'x', sections: [
-        { type: 'text', heading: s.name, subheading: s.tagline, body: s.description, align: 'center', buttons: [{ label: 'Main button', url: '#' }, { label: 'Second button', url: '#' }] },
-        { type: 'contact', heading: 'Contact details', showForm: false }] };
-      let html = SiteRender.renderPage(page, s).replace(/^[\s\S]*?<body>/, '').replace('</body></html>', '');
-      // Colors & fonts card right under the header, so every setting change is visible immediately
-      const t = s.theme || {}, e = (x) => String(x == null ? '' : x).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-      const sw = (label, c) => `<div class="ps-sw"><span style="background:${e(c || '#ccc')}"></span><b>${label}</b><small>${e(c || 'not set')}</small></div>`;
-      const card = `<section class="ps-card"><div class="container"><p class="ps-kicker">Colors &amp; fonts</p>
-<div class="ps-sws">${sw('Main color', t.primary)}${sw('Dark (header/footer)', t.dark)}${sw('Light background', t.light)}${sw('Text color', t.text)}</div>
-<div class="ps-fonts"><div><small>Heading font · ${e(t.headingFont || 'default')}</small><h2 style="margin:4px 0 0">The quick brown fox</h2></div><div><small>Body font · ${e(t.bodyFont || 'default')}</small><p style="margin:6px 0 0">Every life has a testimony waiting to be told. 0123456789</p></div></div></div></section>`;
-      html = html.replace('</header>', '</header>' + card);
-      const css = `<style>
-.ps .nav-burger{display:none!important}
-.ps .nav-bar{flex-wrap:wrap;padding-block:12px}
-.ps .nav{display:flex!important;position:static!important;flex-direction:row!important;flex-wrap:wrap;background:none!important;padding:0!important;border:0!important;gap:10px 18px}
-.ps-card{padding:26px 0;border-bottom:1px solid rgba(0,0,0,.08)}
-.ps-kicker{font:700 11px system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;opacity:.6;margin:0 0 12px}
-.ps-sws{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
-.ps-sw{display:grid;grid-template-columns:38px 1fr;column-gap:10px;align-items:center;font-size:13px}
-.ps-sw span{grid-row:span 2;width:38px;height:38px;border-radius:10px;border:1px solid rgba(0,0,0,.15)}
-.ps-sw small{opacity:.65}
-.ps-fonts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-.ps-fonts small{font:12px system-ui,sans-serif;opacity:.6}
-</style>`;
-      return h('div', { className: 'ps', dangerouslySetInnerHTML: { __html: head(s.theme) + css + html } });
-    }
-  }));
-</script>
-<a href="/admin/messages.html" id="inbox-btn" style="position:fixed;left:16px;bottom:16px;z-index:9999;display:flex;align-items:center;gap:8px;background:#16161a;color:#fff;padding:11px 18px;border-radius:999px;font:600 14px system-ui,sans-serif;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.28);border:2px solid transparent;transition:.2s">📬 Messages<span id="inbox-badge" style="display:none;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:#e5484d;color:#fff;font-size:12px;font-weight:800;align-items:center;justify-content:center"></span></a>
-<script>
-  // Unread badge: checks for new messages every minute (read status is remembered per device).
-  (function () {
-    var btn = document.getElementById('inbox-btn'), badge = document.getElementById('inbox-badge');
-    var accent = (window.siteSettings && siteSettings.theme && siteSettings.theme.primary) || '#d4a437';
-    async function check() {
-      try {
-        var u = window.netlifyIdentity && netlifyIdentity.currentUser();
-        if (!u) return;
-        var r = await fetch('/.netlify/functions/messages', { headers: { Authorization: 'Bearer ' + await u.jwt() } });
-        if (!r.ok) return;
-        var seen = new Set(JSON.parse(localStorage.getItem('inbox-seen') || '[]'));
-        var n = (await r.json()).filter(function (m) { return !seen.has(m.id); }).length;
-        badge.textContent = n > 99 ? '99+' : n;
-        badge.style.display = n ? 'inline-flex' : 'none';
-        btn.style.borderColor = n ? accent : 'transparent';
-        btn.title = n ? n + ' new message' + (n > 1 ? 's' : '') : 'No new messages';
-      } catch (e) {}
-    }
-    setTimeout(check, 2500); setInterval(check, 60000);
-    document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') check(); });
-  })();
-</script>
-<!-- Put website live: saves only store changes; this publishes everything saved in one deploy -->
-<style>
-  #live-wrap{position:fixed;left:16px;bottom:70px;z-index:9999;font:14px system-ui,sans-serif}
-  #live-btn{display:flex;align-items:center;gap:8px;background:#16161a;color:#fff;padding:11px 18px;border-radius:999px;font-weight:600;border:2px solid transparent;box-shadow:0 6px 20px rgba(0,0,0,.28);cursor:pointer;transition:.2s}
-  #live-btn .n{display:none;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:#e5a50a;color:#16161a;font-size:12px;font-weight:800;align-items:center;justify-content:center}
-  #live-pop{display:none;position:absolute;left:0;bottom:56px;width:min(340px,calc(100vw - 32px));background:#fff;color:#1c1c1f;border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.3);padding:18px}
-  #live-pop.on{display:block}
-  #live-pop h4{margin:0 0 4px;font-size:16px}
-  #live-pop .muted{color:#6b6b73;font-size:13px;margin:0 0 12px}
-  #live-pop ul{margin:0 0 14px;padding:0;list-style:none;max-height:180px;overflow:auto;border-top:1px solid #eee}
-  #live-pop li{padding:7px 0;border-bottom:1px solid #eee;font-size:13px;display:flex;justify-content:space-between;gap:10px}
-  #live-pop li span{color:#8a8a92;white-space:nowrap}
-  #live-go{width:100%;padding:12px;border:0;border-radius:10px;background:var(--live-accent,#9b1313);color:#fff;font:700 14px system-ui,sans-serif;cursor:pointer}
-  #live-go:disabled{opacity:.5;cursor:default}
-  #live-msg{margin:10px 0 0;font-size:13px}
-</style>
-<div id="live-wrap">
-  <script>try{var t=window.siteSettings&&siteSettings.theme;if(t&&t.primary)document.currentScript.parentNode.style.setProperty('--live-accent',t.primary)}catch(e){}</script>
-  <div id="live-pop" role="dialog" aria-label="Put website live">
-    <h4>🚀 Put website live</h4>
-    <p class="muted" id="live-when">Checking…</p>
-    <ul id="live-list"></ul>
-    <button id="live-go" type="button">Put website live now</button>
-    <p id="live-msg"></p>
-  </div>
-  <button id="live-btn" type="button">🚀 Put website live<span class="n" id="live-n"></span></button>
+<div class="app">
+  <aside class="side" id="side">
+    <a class="brand" href="#home"><small id="b-top">City Of</small><b id="b-name">Testimonies</b><span>Your website studio</span></a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav class="nav" id="nav" aria-label="Studio menu"></nav>
+    <div class="live" id="live"><p>Checking what is live…</p></div>
+  </aside>
+  <main class="main" id="main"><div class="loading">Loading your studio…</div></main>
 </div>
-<script>
-  (function () {
-    var btn = document.getElementById('live-btn'), pop = document.getElementById('live-pop'), n = document.getElementById('live-n');
-    var when = document.getElementById('live-when'), list = document.getElementById('live-list'), go = document.getElementById('live-go'), msg = document.getElementById('live-msg');
-    var accent = '#e5a50a', lastLive = null, poll = null;
-    var ago = function (t) { if (!t) return 'never'; var m = Math.round((Date.now() - new Date(t)) / 60000); if (m < 1) return 'just now'; if (m < 60) return m + ' min ago'; var h = Math.round(m / 60); if (h < 24) return h + ' hr ago'; return new Date(t).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ', ' + new Date(t).toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' }); };
-    var esc = function (x) { return String(x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
-    async function api(method) {
-      var u = window.netlifyIdentity && netlifyIdentity.currentUser();
-      if (!u) throw new Error('Please log in first.');
-      var r = await fetch('/.netlify/functions/go-live', { method: method || 'GET', headers: { Authorization: 'Bearer ' + await u.jwt() } });
-      var d = await r.json().catch(function () { return {}; });
-      if (!r.ok) throw new Error(d.error || ('Error ' + r.status));
-      return d;
-    }
-    async function refresh() {
-      try {
-        var d = await api();
-        var k = d.waiting.length;
-        n.textContent = k; n.style.display = k ? 'inline-flex' : 'none';
-        btn.style.borderColor = k ? accent : 'transparent';
-        btn.title = k ? k + ' saved change' + (k > 1 ? 's' : '') + ' not live yet' : 'Everything is live';
-        if (d.building) {
-          when.textContent = 'Going live right now… (usually 1–2 minutes)';
-        } else {
-          when.textContent = 'Last went live: ' + ago(d.liveAt) + (k ? ' · ' + k + ' saved change' + (k > 1 ? 's' : '') + ' waiting' : ' · everything is live ✓');
-        }
-        list.innerHTML = d.waiting.map(function (w) { return '<li>' + esc(w.title) + '<span>' + ago(w.at) + '</span></li>'; }).join('');
-        list.style.display = k ? '' : 'none';
-        go.disabled = !!d.building;
-        go.textContent = d.building ? 'Publishing…' : (k ? 'Put ' + k + ' change' + (k > 1 ? 's' : '') + ' live now' : 'Republish website');
-        if (d.failed) msg.innerHTML = '⚠️ The last publish failed: ' + esc(d.failed);
-        if (poll && !d.building && lastLive && d.liveAt !== lastLive) { msg.textContent = '✅ Done! Your changes are live.'; clearInterval(poll); poll = null; }
-        if (!poll) lastLive = d.liveAt;
-      } catch (e) { when.textContent = e.message; }
-    }
-    btn.addEventListener('click', function () { pop.classList.toggle('on'); if (pop.classList.contains('on')) { msg.textContent = ''; refresh(); } });
-    document.addEventListener('click', function (e) { if (!e.target.closest('#live-wrap')) pop.classList.remove('on'); });
-    go.addEventListener('click', async function () {
-      go.disabled = true; go.textContent = 'Starting…'; msg.textContent = '';
-      try {
-        await api('POST');
-        msg.textContent = 'Publishing… this takes 1–2 minutes. You can keep working.';
-        if (poll) clearInterval(poll);
-        poll = setInterval(refresh, 10000); setTimeout(refresh, 4000);
-      } catch (e) { msg.textContent = '⚠️ ' + e.message; go.disabled = false; go.textContent = 'Try again'; }
-    });
-    setTimeout(refresh, 3000); setInterval(function () { if (!poll) refresh(); }, 120000);
-  })();
-
-  // Decap's "Publish" only saves now, so call it "Save".
-  (function () {
-    var map = { 'Publish': 'Save', 'Publish now': 'Save', 'Publish and create new': 'Save and create new', 'Publish and duplicate': 'Save and duplicate', 'Publishing...': 'Saving…', 'Publishing…': 'Saving…', 'Published': 'Saved', 'Entry published': 'Saved' };
-    function swap(root) {
-      var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null), t;
-      while ((t = w.nextNode())) { var v = t.nodeValue.trim(); if (map[v] && !(t.parentNode && t.parentNode.closest && t.parentNode.closest('#live-wrap,#inbox-btn'))) t.nodeValue = t.nodeValue.replace(v, map[v]); }
-    }
-    new MutationObserver(function (ms) { ms.forEach(function (m) { m.addedNodes.forEach(function (x) { if (x.nodeType === 1) swap(x); else if (x.nodeType === 3 && x.parentNode) swap(x.parentNode); }); if (m.type === 'characterData' && m.target.parentNode) swap(m.target.parentNode); }); })
-      .observe(document.body, { childList: true, subtree: true, characterData: true });
-  })();
-</script>
+<div class="toast" id="toast" role="status" hidden></div>
+<script src="/admin/emoji.js"></script>
+<script src="/admin/blocks.js"></script>
+<script src="/admin/studio.js"></script>
 </body></html>

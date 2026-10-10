@@ -1,0 +1,106 @@
+{
+  "title": "Prophetic School",
+  "slug": "prophetic-school",
+  "description": "Join Eagle Eye's Prophetic School of Ministries. Classes start January 2027.",
+  "sections": [
+    {
+      "type": "pageHead",
+      "eyebrow": "Now Enrolling",
+      "title": "Eagle Eye's Prophetic School of Ministries",
+      "text": "Be equipped. Be activated. Be sent. Classes start January 2027.",
+      "image": "/uploads/school.jpg"
+    },
+    {
+      "type": "mandate",
+      "eyebrow": "Class starts January 2027",
+      "heading": "Train in the prophetic",
+      "side": "left",
+      "text": "- Recorded Zoom classes\n- WhatsApp is needed\n- Installment payments available\n- We accept Cash App, PayPal, Zelle and Sendwave\n\nJoin our WhatsApp group for updates.",
+      "image": "https://749ba59c77173e7ef9c9.cdn6.editmysite.com/uploads/b/749ba59c77173e7ef9c94ce8839a21e8d7074f7fbbdd5b04fb67591012bc36e5/c8ee922e-38f4-4ed3-93cc-e14c3a01253f_1790832979.png",
+      "alt": "Eagle Eye's Prophetic School of Ministries",
+      "buttons": [
+        {
+          "label": "Register – $375",
+          "url": "https://form.jotform.com/262727545991167"
+        },
+        {
+          "label": "Join WhatsApp Group",
+          "url": "https://chat.whatsapp.com/Dy9YD2Xqnj7J44jTDxCI1M"
+        }
+      ]
+    },
+    {
+      "type": "checklist",
+      "heading": "Class Topics",
+      "bg": "cream",
+      "items": [
+        "Dreams & Visions",
+        "Character & Integrity",
+        "The Holy Spirit & Spiritual Gifts",
+        "Discerning the Voice of God",
+        "Avoiding Prophetic Pitfalls & Deception",
+        "How to carry your mantle, and much more!"
+      ],
+      "buttons": [
+        {
+          "label": "Sign Up Now",
+          "url": "https://form.jotform.com/262727545991167"
+        }
+      ]
+    },
+    {
+      "type": "faq",
+      "heading": "Questions",
+      "items": [
+        {
+          "question": "How much does it cost?",
+          "answer": "The full program is **$375**. Installment payments are available."
+        },
+        {
+          "question": "Do you have installment payments?",
+          "answer": "Yes: $125 a month for 3 months."
+        },
+        {
+          "question": "Where do I make my payment?",
+          "answer": "Please use Cash App: [cash.app/$Txnow3](https://cash.app/$Txnow3)"
+        },
+        {
+          "question": "How are classes held?",
+          "answer": "Classes are on Zoom, and you'll need WhatsApp for updates."
+        },
+        {
+          "question": "When does it start?",
+          "answer": "January 2027. The exact date will be announced."
+        },
+        {
+          "question": "What time is class?",
+          "answer": "Class will be 4:00 PM Eastern Standard Time."
+        },
+        {
+          "question": "Will classes be recorded?",
+          "answer": "Yes, classes will be recorded over Zoom and will be provided by request."
+        },
+        {
+          "question": "Do I need anything for class?",
+          "answer": "Nope, just your pen and notebook."
+        },
+        {
+          "question": "Do you know your other future school dates?",
+          "answer": "At this time, we do not have a future class start date."
+        }
+      ]
+    },
+    {
+      "type": "sow",
+      "heading": "Ready to be equipped?",
+      "text": "Save your place in the January 2027 class.",
+      "image": "/uploads/give.jpg",
+      "buttons": [
+        {
+          "label": "Register – $375",
+          "url": "https://form.jotform.com/262727545991167"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Newsletter</title><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Mulish:wght@400;500;600&display=swap">
+<style>
+/* Niki's brand look (same as the website): cream, espresso, ruby, gold. One light look on purpose. */
+:root{--espresso:#0f2a5e;--ruby:#0f2a5e;--ruby-dk:#0a1f47;--cream:#fbf8f1;--blush:#f3ecdc;--peach:#f4e3b0;--gold:#c9a23a;
+  --bg:var(--cream);--panel:#fff;--soft:#fdfbf6;--line:#e6dcc4;--text:#0f2a5e;--muted:#5a6680;--danger:#b3261e;--ok:#2f8a5b;--ink:var(--espresso);
+  --display:"Libre Caslon Text",Didot,Georgia,serif;--body:"Mulish","Avenir Next","Segoe UI",system-ui,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+.toast:empty{display:none}
+body{margin:0;font-family:var(--body);background:var(--bg);color:var(--text);font-size:15px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ruby);outline-offset:2px}
+.caps{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--muted)}
+.bar{display:flex;align-items:center;gap:12px;padding:12px 20px;background:var(--espresso);color:var(--cream);border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:5;flex-wrap:wrap}
+.bar b{font-size:1.05rem;font-weight:600}.bar small{display:block;color:var(--peach);opacity:.8;font-size:.78rem}
+.spacer{flex:1}
+.bar a,.bar button{color:var(--cream);text-decoration:none;background:transparent;border:1px solid rgba(248,223,194,.35);padding:7px 15px;border-radius:999px;font-size:.88rem;white-space:nowrap;cursor:pointer}
+.bar a:hover{background:rgba(248,223,194,.12)}
+main{max-width:1240px;margin:0 auto;padding:26px 16px 80px;display:grid;gap:22px}
+.head h1{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3vw,2.2rem);margin:4px 0 6px;line-height:1.15}
+.head p{margin:0;color:var(--muted);max-width:62ch;line-height:1.6}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+.panel{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:16px;display:grid;gap:14px;min-width:0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fld{display:grid;gap:6px;min-width:0}
+.fld>span{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.inp{width:100%;border:1px solid var(--line);background:#fff;border-radius:4px;padding:10px 12px;font-size:.95rem;min-width:0}
+.inp:focus{outline:none;border-color:var(--ruby);box-shadow:0 0 0 3px rgba(155,19,19,.1)}
+.hint{font-size:.8rem;color:var(--muted);line-height:1.5}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;color:var(--text);border-radius:3px;padding:10px 18px;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--blush)}.btn:disabled{opacity:.55;cursor:default}
+.btn.go{background:var(--ruby);border-color:var(--ruby);color:#fff}.btn.go:hover{background:var(--ruby-dk)}
+.btn.sm{padding:6px 11px;font-size:.66rem}
+.confirm{border:1px solid var(--ruby);background:#fff;border-radius:8px;padding:12px;display:grid;gap:10px;font-size:.92rem}
+.warn{background:#fbf1dc;color:#5c4400;border:1px solid #ecd9a8;border-radius:8px;padding:10px 12px;font-size:.88rem}
+.sticky{position:sticky;top:76px;display:grid;gap:10px;min-width:0}
+.prevhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+.seg button{border:0;background:#fff;padding:6px 12px;font-size:.82rem;cursor:pointer;color:var(--muted)}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--espresso);color:var(--cream)}
+.device{border:1px solid var(--line);border-radius:12px;background:var(--blush);padding:14px;max-height:calc(100vh - 140px);overflow-y:auto}
+.device iframe{display:block;width:100%;margin:0 auto;border:0;background:transparent;min-height:420px;transition:max-width .2s}
+.device.phone iframe{max-width:390px}
+/* block editor in the brand look */
+.be-blk{border-radius:8px!important}
+.be-t{letter-spacing:.14em!important;font-weight:600!important}
+.be-up{border-radius:3px!important;text-transform:uppercase;letter-spacing:.14em;font-size:.7rem!important;padding:8px 14px!important;font-weight:500!important}
+.be input:not([type]),.be textarea{background:#fff!important;border-radius:4px!important}
+.be-seg button[aria-pressed=true]{background:var(--espresso)!important;color:var(--cream)!important}
+.be-drop{border-color:var(--gold)!important}
+.be-add button{font-size:.82rem}
+.be-add button:hover{border-color:var(--gold)!important;background:#fffaf0}
+/* subscribers + history */
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 16px;min-width:130px}
+.stat span{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.stat b{font-size:1.4rem;font-variant-numeric:tabular-nums;font-weight:500}.stat b.up{color:var(--ok)}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;min-width:0}
+.ch{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line)}
+.ch h2{margin:0;font-family:var(--display);font-weight:400;font-size:1.3rem}
+.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line)}
+.search{flex:1 1 200px;border:1px solid var(--line);background:var(--soft);border-radius:4px;padding:9px 11px;min-width:0}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--espresso);color:var(--cream);border-color:var(--espresso)}
+.tw{overflow-x:auto;max-height:560px;overflow-y:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:560px}
+th{position:sticky;top:0;background:#fff;text-align:left;font-weight:500;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:10px 18px;border-bottom:1px solid var(--line)}
+td{padding:10px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+td small{display:block;color:var(--muted);font-size:.82rem;word-break:break-all}
+td.d{white-space:nowrap;color:var(--muted);font-variant-numeric:tabular-nums}
+tr.off td{opacity:.55}
+.pill{display:inline-block;font-size:.72rem;border-radius:999px;padding:2px 9px;margin:2px 4px 2px 0;background:var(--blush);white-space:nowrap}
+.pill.no{background:#fbf1dc;color:#7a5a00}
+.x{border:0;background:none;color:var(--muted);cursor:pointer;font-size:1.1rem;padding:2px 6px;border-radius:6px}.x:hover{color:var(--danger);background:var(--blush)}
+.sure{display:flex;gap:6px;align-items:center;font-size:.8rem;white-space:nowrap}
+.cf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;padding:12px 18px;font-size:.85rem;color:var(--muted)}
+.empty{padding:28px 18px;color:var(--muted);text-align:center}
+.hist{padding:4px 18px 14px}
+.h{display:grid;grid-template-columns:auto 1fr auto;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:.92rem;align-items:baseline}
+.h:first-child{border:0}.h .dt{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}.h small{display:block;color:var(--muted)}
+.h .n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.lower{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px;align-items:start}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(140px);background:var(--espresso);color:var(--cream);padding:11px 20px;border-radius:999px;transition:.25s;z-index:9;max-width:90vw}
+.toast.show{transform:translateX(-50%)}
+.err{color:var(--danger)}
+@media (max-width:980px){.cols,.lower{grid-template-columns:minmax(0,1fr)}.sticky{position:static}.device{max-height:none}}
+@media (max-width:560px){.bar .lbl{display:none}.row2{grid-template-columns:1fr}}
+</style></head><body>
+<div class="bar">
+  <div><b>💌 Newsletter</b><small>People who signed up on the website, and letters to them</small></div>
+  <div class="spacer"></div>
+  <a href="/admin/blog.html">✍️ <span class="lbl">Blog</span></a>
+  <a href="/admin/messages.html">📬 <span class="lbl">Messages</span></a>
+  <a href="/admin/schedule.html">🗓 <span class="lbl">Schedule</span></a>
+  <a href="/admin/">🏠 <span class="lbl">Studio</span></a>
+</div>
+<main id="app"><div class="card empty">Loading…</div></main>
+<div class="toast" id="toast" role="status"></div>
+<script src="/admin/emoji.js"></script>
+<script src="/admin/blocks.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 3500); }
+function token() { try { const u = JSON.parse(localStorage.getItem('decap-cms-user') || 'null'); return u && u.token; } catch (e) { return null; } }
+async function api(method, q, body) {
+  const r = await fetch('/api/newsletter' + (q || ''), { method, headers: Object.assign({ Authorization: 'Bearer ' + (token() || '') }, body ? { 'Content-Type': 'application/json' } : {}), body: body ? JSON.stringify(body) : undefined });
+  if (r.status === 401) { location.href = '/admin/'; throw new Error('Please log in.'); }
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(d.error || 'Error ' + r.status);
+  return d;
+}
+const fmtD = (d) => d ? new Date(d).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+const DRAFT = 'nl-draft';
+let D = null, filter = 'All', q = '', askDel = null, confirming = false, sending = false;
+const active = () => D.subscribers.filter((s) => s.status === 'active');
+const countFor = (aud) => active().filter((s) => aud === 'All' || s.interests.includes(aud)).length;
+const name = (s) => [s.first, s.last].filter(Boolean).join(' ');
+
+function draft() { try { return JSON.parse(localStorage.getItem(DRAFT) || 'null') || {}; } catch (e) { return {}; } }
+function saveDraft() { try { localStorage.setItem(DRAFT, JSON.stringify({ subject: $('subj').value, blocks: LETTER.blocks, aud: $('aud').value, brand: $('brand').value })); } catch (e) {} }
+// the letter being written (blocks: text, pictures, scripture, buttons…); an older text-only draft becomes one text block
+let LETTER = null;
+function letterState() { if (LETTER) return LETTER; const d = draft(); LETTER = { blocks: Array.isArray(d.blocks) && d.blocks.length ? d.blocks : [Object.assign(window.BlockEditor.newBlock('text'), { text: d.body || 'Hi {first name},\n\n' })] }; return LETTER; }
+const hasContent = () => LETTER.blocks.some((b) => (b.text && b.text.trim() && b.text.trim() !== 'Hi {first name},') || b.src || b.a || b.b || b.url);
+
+function render() {
+  const all = D.subscribers, act = active();
+  const month = new Date(); month.setDate(1); month.setHours(0, 0, 0, 0);
+  const newM = act.filter((s) => new Date(s.date) >= month).length;
+  const dr = draft();
+  $('app').innerHTML = `
+<div class="head"><p class="caps">/admin → 💌 Newsletter → Write a letter</p><h1>Write a letter, with pictures</h1><p>Build the email from blocks. Pictures can be uploaded from the computer or phone, dragged in, sized, placed next to text, and given a caption.</p></div>
+<div class="cols">
+  <section class="panel" aria-label="Letter editor">
+    ${D.senders.some((s) => s.ready) ? '' : '<div class="warn">Email sending is not set up yet: the Resend key is missing in Cloudflare. You can still write and preview.</div>'}
+    <div class="row2">
+      <label class="fld"><span>Send to</span><select class="inp" id="aud">${['All'].concat(D.interests).map((i) => `<option value="${esc(i)}">${i === 'All' ? 'Everyone' : esc(i)} (${countFor(i)})</option>`).join('')}</select></label>
+      <label class="fld"><span>From</span><select class="inp" id="brand">${D.senders.map((s) => `<option value="${esc(s.id)}" title="Replies go to ${esc(s.replyTo || '')}">${esc(s.from)}</option>`).join('')}</select></label>
+    </div>
+    <label class="fld"><span>Subject</span><input class="inp" id="subj" maxlength="200" placeholder="e.g. October: a word for this season" value="${esc(dr.subject || '')}"></label>
+    <div id="blocks"></div>
+    <span class="hint">{first name} in a text block becomes each person's first name. **word** makes it bold. Pictures are stored on your website so they show in every inbox. An unsubscribe link is added at the bottom automatically.</span>
+    <div class="row"><input id="testTo" class="inp" style="flex:1 1 200px;width:auto" type="email" placeholder="Your email for the test" value="${esc(D.me || '')}"><button class="btn" type="button" id="test">Send test to me</button></div>
+    <div class="row"><button class="btn go" type="button" id="send">Send to <span id="n">0</span> people</button><span class="hint">Your draft is kept on this computer until you send it.</span></div>
+    <div class="confirm" id="confirm" hidden><span id="ctext"></span><div class="row"><button class="btn go" type="button" id="yes">Yes, send it now</button><button class="btn" type="button" id="no">Cancel</button></div></div>
+  </section>
+  <section class="sticky" aria-label="Email preview">
+    <div class="prevhead"><span class="caps">What people receive</span><span class="seg"><button type="button" data-dev="desk" aria-pressed="true">Computer</button><button type="button" data-dev="phone" aria-pressed="false">Phone</button></span></div>
+    <div class="device" id="dev"><iframe id="pv" title="Email preview" scrolling="no"></iframe></div>
+    <span class="hint">Shown with the first name “Tasha”.</span>
+  </section>
+</div>
+<div class="stats"><div class="stat"><span>On the list</span><b>${act.length}</b></div><div class="stat"><span>New this month</span><b class="up">+${newM}</b></div><div class="stat"><span>Unsubscribed</span><b>${all.length - act.length}</b></div></div>
+<div class="lower">
+  <section class="card">
+    <div class="ch"><h2>Subscribers</h2><button class="btn sm" id="copy" type="button">Copy list for Excel</button></div>
+    <div class="tools"><input class="search" id="q" placeholder="Search name or email" value="${esc(q)}"><div class="chips" id="chips">${['All'].concat(D.interests, ['Unsubscribed']).map((i) => `<button type="button" data-f="${esc(i)}" aria-pressed="${i === filter}">${esc(i)}</button>`).join('')}</div></div>
+    <div class="tw"><table><thead><tr><th>Name</th><th>Interests</th><th>Joined</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+    <div class="cf"><span id="showing"></span><span>Sign-ups come from the Newsletter page, the gold sign-up box and the Home page email box.</span></div>
+  </section>
+  <section class="card"><div class="ch"><h2>Letters sent</h2></div><div class="hist">${D.history.length ? D.history.map((h) => `<div class="h"><span class="dt">${esc(fmtD(h.created_at))}</span><span><b>${esc(h.subject)}</b><small>To ${h.audience === 'All' ? 'everyone' : esc(h.audience)} · from ${esc(h.sender || '')} · by ${esc(h.by_user || '')}${h.error ? ' · <span class="err">' + esc(h.error) + '</span>' : ''}</small></span><span class="n">${h.sent} sent${h.failed ? ', <span class="err">' + h.failed + ' failed</span>' : ''}</span></div>`).join('') : '<p class="empty">No letters sent yet.</p>'}</div></section>
+</div>`;
+  document.querySelectorAll('[data-dev]').forEach((b) => b.onclick = () => { document.querySelectorAll('[data-dev]').forEach((x) => x.setAttribute('aria-pressed', x === b)); $('dev').classList.toggle('phone', b.dataset.dev === 'phone'); setTimeout(fit, 250); });
+  $('pv').onload = fit;
+  if (dr.aud && [...$('aud').options].some((o) => o.value === dr.aud)) $('aud').value = dr.aud;
+  if (dr.brand && [...$('brand').options].some((o) => o.value === dr.brand)) $('brand').value = dr.brand;
+  rows(); preview(); count();
+  $('q').oninput = (e) => { q = e.target.value; rows(); };
+  $('chips').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; filter = b.dataset.f; [...$('chips').children].forEach((x) => x.setAttribute('aria-pressed', x === b)); rows(); };
+  $('copy').onclick = copyList;
+  if (window.StudioEmoji) StudioEmoji.attach($('subj'));
+  $('subj').addEventListener('input', () => { preview(); saveDraft(); hideConfirm(); });
+  window.BlockEditor($('blocks'), letterState(), () => { preview(); saveDraft(); hideConfirm(); }, toast);
+  ['aud', 'brand'].forEach((id) => $(id).addEventListener('change', () => { count(); preview(); saveDraft(); hideConfirm(); }));
+  $('test').onclick = () => send(true);
+  $('send').onclick = () => { if (!check()) return; confirming = true; $('ctext').textContent = `Send “${$('subj').value.trim()}” to ${countFor($('aud').value)} people now? This can't be undone.`; $('confirm').hidden = false; };
+  $('no').onclick = hideConfirm;
+  $('yes').onclick = () => send(false);
+}
+function hideConfirm() { confirming = false; if ($('confirm')) $('confirm').hidden = true; }
+function count() { $('n').textContent = countFor($('aud').value); }
+function visible() {
+  const t = q.trim().toLowerCase();
+  return D.subscribers.filter((s) => (filter === 'All' ? true : filter === 'Unsubscribed' ? s.status !== 'active' : s.status === 'active' && s.interests.includes(filter)))
+    .filter((s) => !t || (name(s) + ' ' + s.email).toLowerCase().includes(t));
+}
+function rows() {
+  const list = visible();
+  $('rows').innerHTML = list.length ? list.slice(0, 500).map((s) => `<tr class="${s.status === 'active' ? '' : 'off'}"><td><b>${esc(name(s) || '—')}</b><small>${esc(s.email)}</small></td>
+<td>${s.status === 'active' ? '' : `<span class="pill no">Unsubscribed ${esc(fmtD(s.unsubDate))}</span>`}${s.interests.map((i) => `<span class="pill">${esc(i)}</span>`).join('') || (s.status === 'active' ? '<span class="hint">Everything</span>' : '')}</td>
+<td class="d">${esc(fmtD(s.date))}</td><td>${askDel === s.id ? `<span class="sure">Remove? <button class="btn sm go" data-del="${s.id}">Yes</button><button class="btn sm" data-keep="1">No</button></span>` : `<button class="x" title="Remove from the list" data-ask="${s.id}">×</button>`}</td></tr>`).join('')
+    : `<tr><td colspan="4" class="empty">${D.subscribers.length ? 'Nobody matches this filter.' : 'No sign-ups yet. Add the “Newsletter sign-up” section to a page in the editor.'}</td></tr>`;
+  $('showing').textContent = list.length > 500 ? `Showing 500 of ${list.length}` : `${list.length} ${list.length === 1 ? 'person' : 'people'}`;
+  $('rows').onclick = async (e) => {
+    const a = e.target.closest('[data-ask]'), y = e.target.closest('[data-del]'), n = e.target.closest('[data-keep]');
+    if (a) { askDel = a.dataset.ask; rows(); }
+    if (n) { askDel = null; rows(); }
+    if (y) {
+      try { await api('DELETE', '?id=' + encodeURIComponent(y.dataset.del)); D.subscribers = D.subscribers.filter((s) => s.id !== y.dataset.del); askDel = null; render(); toast('Removed from the list'); }
+      catch (x) { toast(x.message); }
+    }
+  };
+}
+// grow the preview frame to the letter's height (the grey box scrolls instead)
+function fit() { try { const d = $('pv').contentDocument; if (d && d.body) $('pv').style.height = Math.max(420, d.documentElement.scrollHeight) + 'px'; } catch (e) {} }
+function preview() {
+  clearTimeout(preview.t);
+  preview.t = setTimeout(() => { $('pv').srcdoc = window.BlockEditor.letterFrame($('subj').value.trim(), letterState().blocks, location.hostname); }, 120);
+}
+function check() {
+  if (!$('subj').value.trim()) { toast('Write a subject first.'); $('subj').focus(); return false; }
+  if (!hasContent()) { toast('Write the letter first.'); return false; }
+  return true;
+}
+async function send(test) {
+  if (sending || !check()) return;
+  sending = true;
+  const btn = test ? $('test') : $('yes'), old = btn.textContent; btn.disabled = true; btn.textContent = test ? 'Sending test…' : 'Sending…';
+  try {
+    const d = await api('POST', '', { subject: $('subj').value.trim(), blocks: letterState().blocks, audience: $('aud').value, brand: $('brand').value, test, testTo: $('testTo').value.trim() });
+    if (test) toast('Test sent to ' + d.to + '. Check your inbox (and spam).');
+    else {
+      toast(`Sent to ${d.sent} ${d.sent === 1 ? 'person' : 'people'}` + (d.failed ? `, ${d.failed} failed: ${d.error}` : '.'));
+      try { localStorage.removeItem(DRAFT); } catch (e) {}
+      LETTER = null;
+      D = await api('GET'); render();
+    }
+  } catch (x) { toast(x.message); }
+  finally { sending = false; if (document.body.contains(btn)) { btn.disabled = false; btn.textContent = old; } if (!test) hideConfirm(); }
+}
+function copyList() {
+  const list = visible();
+  const cell = (v) => /[\t\n"]/.test(v) ? '"' + String(v).replace(/"/g, '""') + '"' : v;
+  const txt = ['First name\tLast name\tEmail\tInterests\tJoined\tStatus'].concat(list.map((s) => [s.first, s.last, s.email, s.interests.join(', '), fmtD(s.date), s.status].map(cell).join('\t'))).join('\n');
+  navigator.clipboard.writeText(txt).then(() => toast(`Copied ${list.length} ${list.length === 1 ? 'person' : 'people'}. Paste into Excel or Google Sheets.`), () => toast('Copy did not work in this browser.'));
+}
+(async function load() {
+  try { D = await api('GET'); render(); }
+  catch (e) { $('app').innerHTML = `<div class="card empty err">Could not load the newsletter: ${esc(e.message)}</div>`; }
+})();
+</script></body></html>

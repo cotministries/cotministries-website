@@ -1,11 +1,10 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Inbox</title><meta name="robots" content="noindex">
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script src="/admin/site-settings.js"></script>
+<script src="/admin/site-settings.js"></script><script src="/admin/emoji.js"></script>
 <style>
 :root{--accent:#d4a437;--ink:#16161a;--bg:#f4f2ee;--panel:#fff;--soft:#faf8f4;--line:#e7e2d8;--text:#1d1d1f;--muted:#76767e;--danger:#c8372d;--sel:#fbf3df}
-@media (prefers-color-scheme:dark){:root{--bg:#121214;--panel:#1b1b1f;--soft:#202025;--line:#2e2e35;--text:#f1f1f3;--muted:#9a9aa3;--sel:#2a2519}}
+@media (prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#121214;--panel:#1b1b1f;--soft:#202025;--line:#2e2e35;--text:#f1f1f3;--muted:#9a9aa3;--sel:#2a2519}}
 *{box-sizing:border-box}html,body{height:100%}
 body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column}
 button,input,textarea{font:inherit;color:inherit}
@@ -52,6 +51,10 @@ button,input,textarea{font:inherit;color:inherit}
 .reply{margin:0 26px 26px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--soft)}
 .reply textarea{width:100%;border:0;background:transparent;padding:14px 16px;min-height:120px;resize:vertical;outline:none;line-height:1.5}
 .via{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.via select{font:inherit;font-size:.82rem;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--text)}
+.fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;padding:20px 26px 0}
+.fld{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.fld span{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}.fld strong{font-size:.95rem;overflow-wrap:anywhere}.fld .sid{font-family:ui-monospace,Consolas,monospace;font-size:.85rem;cursor:pointer;white-space:nowrap}
+.tag{background:var(--accent);color:#fff;font-size:.7rem;font-weight:800;padding:2px 7px;border-radius:999px}
 .history{padding:0 26px}.sent{border-left:3px solid #25a35a;background:var(--soft);border-radius:10px;padding:12px 14px;margin-bottom:12px}
 .sent-head{font-size:.8rem;font-weight:700;color:#25a35a;margin-bottom:6px}.sent-body{white-space:pre-wrap;line-height:1.55;font-size:.95rem}
 .done{color:#25a35a;font-weight:700}.hint{font-size:.78rem;color:var(--muted)}
@@ -67,19 +70,42 @@ button,input,textarea{font:inherit;color:inherit}
   .app{grid-template-columns:minmax(0,1fr)}.bar{padding:10px 14px;gap:10px}.bar .brand{font-size:.9rem}.bar .brand span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.main{display:none;padding:14px}.app.reading .side{display:none}.app.reading .main{display:block}
   .back{display:inline-flex;margin:0 0 12px}.bar .brand small,.bar .lbl{display:none}.head{padding:18px}.body{padding:18px}.actions{padding:0 18px 18px}.reply{margin:0 18px 18px}
 }
-</style></head><body>
+.tag.brand-beauty{background:#b5487a}.tag.brand-ministry{background:#5b3a8a}.tag.brand-main{background:#8a5a2b}
+.appt{margin:20px 26px 0;border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--soft)}
+.appt .when{flex:1;min-width:200px}.appt .when b{display:block;font-size:1.02rem}.appt .when span{font-size:.82rem;color:var(--muted)}
+.st{font-size:.72rem;font-weight:800;padding:3px 9px;border-radius:999px;text-transform:uppercase;letter-spacing:.04em}
+.st-requested{background:#f6e7c1;color:#7a5a00}.st-confirmed{background:#d5f2df;color:#156b36}.st-declined{background:#f6d6d3;color:#8e231b}
+.btn.ok{background:#25a35a;border-color:#25a35a;color:#fff}
+.pics{margin:20px 26px 0}.pics>span{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px}
+.pics-row{display:flex;flex-wrap:wrap;gap:10px}.pic{width:120px;height:120px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--soft);display:grid;place-items:center;font-size:.75rem;color:var(--muted)}
+.pic img{width:100%;height:100%;object-fit:cover;transition:transform .2s}.pic:hover img{transform:scale(1.05)}
+select.search{color:var(--text);cursor:pointer}
+select option{background:var(--panel);color:var(--text)}
+/* Spam folder */
+.tabs button[data-f="spam"]{margin-left:auto}
+.tabs button b{font-weight:700;margin-left:3px}
+.spambar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;justify-content:space-between;background:#fbeaea;border:1px solid #e9b9b9;color:#7d1414;border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:.9rem}
+.spambar small{display:block;color:#9a4a4a;margin-top:2px}
+.item.spam .nm{opacity:.75}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Mulish:wght@300;400;500;600&display=swap"><link rel="stylesheet" href="/admin/brand.css">
+</head><body>
 <div class="bar">
   <div class="brand"><div class="logo">✉</div><div><span id="site">Inbox</span><small>Messages from your website</small></div></div>
   <span class="pill" id="count" hidden></span>
   <div class="spacer"></div>
+  <a href="/admin/blog.html" title="Blog posts">✍️ <span class="lbl">Blog</span></a>
+  <a href="/admin/newsletter.html" title="Newsletter sign-ups and letters">💌 <span class="lbl">Newsletter</span></a>
+  <a href="/admin/schedule.html" title="Opening hours and booked times">🗓 <span class="lbl">Schedule</span></a>
   <button id="refresh" title="Refresh">↻ <span class="lbl">Refresh</span></button>
-  <a href="/admin/">← <span class="lbl">Editor</span></a>
+  <a href="/admin/">🏠 <span class="lbl">Studio</span></a>
 </div>
 <div class="app" id="app">
   <aside class="side">
     <div class="tools">
       <input class="search" id="q" placeholder="Search name, email or message">
-      <div class="tabs"><button class="on" data-f="all">All</button><button data-f="unread">Unread</button></div>
+      <div class="tabs"><button class="on" data-f="all">All</button><button data-f="unread">Unread</button><button data-f="spam" title="Messages that look like sales or spam. nobody is emailed about these. Deleted after 30 days.">🚫 Spam<b id="spamN"></b></button></div>
+      <select id="brandFilter" class="search" style="margin-top:8px" aria-label="Show brand"><option value="">All brands</option></select>
     </div>
     <div class="list" id="list"><div class="empty">Loading…</div></div>
   </aside>
@@ -106,54 +132,92 @@ function ago(d) {
   return new Date(d).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
 }
 function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 2200); }
+// GitHub login token saved by the editor (/admin) after logging in
+function token() { try { const u = JSON.parse(localStorage.getItem('decap-cms-user') || 'null'); return u && u.token; } catch (e) { return null; } }
 async function api(method, q) {
-  const user = netlifyIdentity.currentUser();
-  if (!user) { netlifyIdentity.open('login'); throw new Error('Please log in.'); }
-  const r = await fetch('/.netlify/functions/messages' + (q || ''), { method, headers: { Authorization: 'Bearer ' + await user.jwt() } });
+  const t = token();
+  if (!t) { location.href = '/admin/'; throw new Error('Please log in.'); }
+  const r = await fetch('/api/messages' + (q || ''), { method, headers: { Authorization: 'Bearer ' + t } });
+  if (r.status === 401) { location.href = '/admin/'; throw new Error('Please log in.'); }
   const data = await r.json().catch(() => ({}));
   if (!r.ok) throw new Error(data.error || 'Error ' + r.status);
   return data;
+}
+const ST = { requested: 'Waiting for you', confirmed: 'Confirmed', declined: 'Declined' };
+const fmtT = (x) => { const h = Math.floor(x / 60); return ((h + 11) % 12 + 1) + ':' + String(x % 60).padStart(2, '0') + (h < 12 ? ' AM' : ' PM'); };
+function apptHtml(m) {
+  const a = m.appointment; if (!a) return '';
+  const day = new Date(a.date + 'T12:00:00Z').toLocaleDateString('en-US', { timeZone: 'UTC', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  const help = { requested: 'This time is held until you confirm or decline.', confirmed: 'This time is blocked on the website calendar.', declined: 'This time is free again for others.' }[a.status] || '';
+  return `<div class="appt" id="appt"><div class="when"><b>📅 ${esc(day)}, ${fmtT(a.start)} – ${fmtT(a.end)}</b><span><span class="st st-${esc(a.status)}">${esc(ST[a.status] || a.status)}</span> ${esc(help)}</span></div>
+  ${a.status !== 'confirmed' ? '<button class="btn ok" data-appt="confirmed">✓ Confirm time</button>' : ''}${a.status !== 'declined' ? '<button class="btn danger" data-appt="declined">✕ ' + (a.status === 'confirmed' ? 'Cancel' : 'Decline') + '</button>' : ''}</div>`;
+}
+async function setAppt(m, status, force) {
+  const r = await fetch('/api/appointments', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token() }, body: JSON.stringify({ id: m.id, status, force: !!force }) });
+  const d = await r.json().catch(() => ({}));
+  if (r.status === 409 && d.conflict) { if (confirm(d.error + '\n\nConfirm anyway?')) return setAppt(m, status, true); return; }
+  if (!r.ok) { toast(d.error || 'Error ' + r.status); return; }
+  m.appointment.status = d.status;
+  $('appt').outerHTML = apptHtml(m); renderList();
+  toast(d.status === 'confirmed' ? 'Confirmed – now write her a reply' : d.status === 'declined' ? 'Time is free again' : 'Saved');
+  if (d.status === 'confirmed' && $('rt')) $('rt').focus();
 }
 function historyHtml(m) {
   return (m.replies || []).map((r) => `<div class="sent"><div class="sent-head">✓ Replied${r.by ? ' by ' + esc(r.by) : ''} · ${new Date(r.date).toLocaleString()}</div><div class="sent-body">${esc(r.text)}</div></div>`).join('');
 }
 function updateCount() {
-  const n = msgs.filter((m) => !seen.has(m.id)).length;
+  const n = msgs.filter((m) => !m.spam && !seen.has(m.id)).length;
+  const sp = msgs.filter((m) => m.spam).length; if ($('spamN')) $('spamN').textContent = sp ? ' ' + sp : '';
   $('count').hidden = !n; $('count').textContent = n + ' new';
   document.title = (n ? `(${n}) ` : '') + 'Inbox' + (S.name ? ' · ' + S.name : '');
 }
+const FORM_TAGS = { booking: '📅 Booking', wedding: '💍 Wedding inquiry', prayer: '🙏 Prayer', speaking: '🎤 Speaking', contact: '✉️ Contact', newsletter: '📧 Sign-up', rsvp: '🎟 RSVP', orders: '🛍 Order', walkin: '💇 Walk-in' };
 function renderList() {
   const q = $('q').value.trim().toLowerCase();
-  const shown = msgs.filter((m) => (filter === 'all' || !seen.has(m.id)) && (!q || [m.name, m.email, m.message].join(' ').toLowerCase().includes(q)));
+  const bf = ($('brandFilter') || {}).value || '';
+  const shown = msgs.filter((m) => (!bf || (m.brand && m.brand.id === bf)) && (filter === 'spam' ? !!m.spam : !m.spam && (filter === 'all' || !seen.has(m.id))) && (!q || [m.name, m.email, m.message].join(' ').toLowerCase().includes(q)));
   updateCount();
   if (!msgs.length) { $('list').innerHTML = '<div class="empty"><div><div class="big">🕊️</div>No messages yet.<br>New messages from your contact form appear here.</div></div>'; return; }
-  if (!shown.length) { $('list').innerHTML = '<div class="empty">Nothing matches.</div>'; return; }
-  $('list').innerHTML = shown.map((m) => `<div class="item ${seen.has(m.id) ? '' : 'unread'} ${current && current.id === m.id ? 'sel' : ''}" data-id="${esc(m.id)}">
+  if (!shown.length) { $('list').innerHTML = '<div class="empty">' + (filter === 'spam' && !q ? '<div><div class="big">🧹</div>No spam right now.<br>Sales messages land here quietly – nobody is emailed about them.</div>' : 'Nothing matches.') + '</div>'; return; }
+  $('list').innerHTML = shown.map((m) => `<div class="item ${m.spam ? 'spam' : seen.has(m.id) ? '' : 'unread'} ${current && current.id === m.id ? 'sel' : ''}" data-id="${esc(m.id)}">
     <div class="av" style="background:${color(m.email || m.name)}">${esc(initials(m.name))}</div>
     <div class="it"><div class="row"><span class="nm">${esc(m.name || 'No name')}</span><span class="tm">${ago(m.date)}</span></div>
-    <div class="sn">${(m.replies && m.replies.length) ? '<span class="done">✓ Answered</span> ' : ''}${esc((m.message || '').replace(/\s+/g, ' ').slice(0, 90))}</div></div>${seen.has(m.id) ? '' : '<span class="dot"></span>'}</div>`).join('');
+    <div class="sn">${(m.replies && m.replies.length) ? '<span class="done">✓ Answered</span> ' : ''}${m.brand ? '<span class="tag brand-' + esc(m.brand.id) + '">' + esc(m.brand.name) + '</span> ' : ''}${FORM_TAGS[m.form] ? '<span class="tag">' + FORM_TAGS[m.form] + '</span> ' : ''}${m.appointment ? '<span class="st st-' + esc(m.appointment.status) + '">' + esc(ST[m.appointment.status] || m.appointment.status) + '</span> ' : ''}${esc(((m.fields || []).filter((f) => /service/i.test(f.label)).map((f) => f.value)[0] || m.message || '').replace(/\s+/g, ' ').slice(0, 90))}</div></div>${seen.has(m.id) ? '' : '<span class="dot"></span>'}</div>`).join('');
 }
 function open(id) {
   current = msgs.find((m) => m.id === id); if (!current) return;
   seen.add(id); saveSeen(); renderList();
-  const m = current, subject = 'Re: your message to ' + (S.name || 'us');
+  const m = current, subject = S.replySubject || ('Re: your message to ' + (S.name || 'us'));
   const quoted = `\n\n---\nOn ${new Date(m.date).toLocaleString()}, ${m.name || m.email} wrote:\n> ` + String(m.message || '').replace(/\n/g, '\n> ');
   $('main').innerHTML = `<button class="btn back" id="back">← All messages</button><div class="card">
+    ${m.spam ? `<div class="spambar"><div><b>🚫 This message is in Spam</b> – nobody was emailed about it.<small>Why: ${esc(m.spam)}</small></div><button class="btn ok" id="notSpam">✓ Not spam</button></div>` : ''}
     <div class="head"><div class="av big" style="background:${color(m.email || m.name)}">${esc(initials(m.name))}</div>
       <div style="min-width:0"><h2>${esc(m.name || 'No name')}</h2><div class="em">${esc(m.email)}</div>
-      <div class="chips"><span class="chip">📅 ${new Date(m.date).toLocaleString()}</span><span class="chip">📝 ${esc(m.form || 'contact')} form</span></div></div></div>
-    <div class="body">${esc(m.message)}</div>
+      <div class="chips"><span class="chip">📅 ${new Date(m.date).toLocaleString()}</span><span class="chip">📝 ${esc(m.form || 'contact')} form</span>${m.brand ? `<span class="chip">🏷 ${esc(m.brand.name)}</span>` : ''}</div></div></div>
+    ${(m.fields && m.fields.length) ? `<div class="fields">${m.fields.map((f) => `<div class="fld"><span>${esc(f.label)}</span>${/^(cs|pi|sub|in|ch)_(live|test)?_?\w{12,}$/.test(String(f.value)) ? `<strong class="sid" title="${esc(f.value)} – click to copy" onclick="navigator.clipboard&&navigator.clipboard.writeText(this.title.split(' ')[0]);this.textContent='Copied ✓';setTimeout(()=>this.textContent=${esc(JSON.stringify('…' + String(f.value).slice(-10)))},1200)">…${esc(String(f.value).slice(-10))}</strong>` : `<strong>${esc(f.value)}</strong>`}</div>`).join('')}</div>` : ''}
+    ${apptHtml(m)}
+    ${(m.photos && m.photos.length) ? `<div class="pics"><span>📷 Inspiration photos</span><div class="pics-row">${m.photos.map((p) => `<a class="pic" data-photo="${esc(p.id)}" title="${esc(p.name)}" target="_blank" rel="noopener"><i>Loading…</i></a>`).join('')}</div></div>` : ''}
+    <div class="body">${esc(m.message || '')}</div>
     <div class="history" id="hist">${historyHtml(m)}</div>
     <div class="reply"><textarea id="rt" placeholder="Write a reply to ${esc((m.name || '').split(' ')[0] || 'them')}…"></textarea>
-      <div class="foot"><span class="hint">Sent by email from your website address · their answer goes to your inbox</span><button class="btn primary" id="sendNow">➤ Send reply</button></div>
+      <div class="foot"><span class="hint">Sent by email from your website address · their answer goes to your inbox</span>${m.form === 'booking' || m.form === 'wedding' ? '<button class="btn" id="depLink" title="Creates a Square payment link and adds it to your reply">💳 Add deposit link</button>' : ''}<button class="btn primary" id="sendNow">➤ Send reply</button></div>
       <div class="alt"><label class="via">Or write it in <select id="via">
         <option value="outlook">Outlook (outlook.com / Hotmail)</option>
         <option value="office">Outlook (work / school / Office 365)</option>
         <option value="gmail">Gmail</option>
         <option value="mailto">Email app on this computer</option>
       </select></label><a class="altlink" id="send">Open ↗</a></div></div>
-    <div class="actions"><button class="btn" id="copy">⧉ Copy email</button><button class="btn" id="unread">● Mark as unread</button><button class="btn danger" id="del">🗑 Delete</button></div></div>`;
+    <div class="actions"><button class="btn" id="copy">⧉ Copy email</button><button class="btn" id="unread">● Mark as unread</button>${m.spam ? '' : '<button class="btn" id="isSpam" title="Moves this to Spam. Future messages from this sender go to Spam too.">🚫 Spam</button>'}<button class="btn danger" id="del">🗑 Delete</button></div></div>`;
   $('app').classList.add('reading');
+  document.querySelectorAll('[data-photo]').forEach(async (a) => {
+    try {
+      const r = await fetch('/api/photo?id=' + encodeURIComponent(a.dataset.photo), { headers: { Authorization: 'Bearer ' + token() } });
+      if (!r.ok) throw 0;
+      const u = URL.createObjectURL(await r.blob());
+      a.href = u; a.innerHTML = `<img src="${u}" alt="">`;
+    } catch (e) { a.innerHTML = '<i>Not found</i>'; }
+  });
+  $('main').onclick = (e) => { const b = e.target.closest('[data-appt]'); if (b && m.appointment) { b.disabled = true; setAppt(m, b.dataset.appt).finally(() => { b.disabled = false; }); } };
   $('back').onclick = () => $('app').classList.remove('reading');
   const VIA_KEY = 'inbox-reply-via';
   try { $('via').value = localStorage.getItem(VIA_KEY) || 'outlook'; } catch (e) {}
@@ -174,6 +238,18 @@ function open(id) {
     if (u.startsWith('mailto:')) { a.removeAttribute('target'); a.removeAttribute('rel'); }
     else { a.target = '_blank'; a.rel = 'noopener'; }
   };
+  if ($('depLink')) $('depLink').onclick = async () => {
+    const b = $('depLink'); b.disabled = true; b.textContent = 'Creating link…';
+    try {
+      const r = await fetch('/api/deposit-link', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token() }, body: JSON.stringify({ id: m.id }) });
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(d.error || 'Error ' + r.status);
+      const t = $('rt'); t.value = (t.value ? t.value.replace(/\s*$/, '') + '\n\n' : '') + d.text; updateReply(); t.focus();
+      toast('Deposit link added to your reply');
+    } catch (e) { toast(e.message); }
+    b.disabled = false; b.textContent = '💳 Add deposit link';
+  };
+  if (window.StudioEmoji) { const eb = StudioEmoji.attach($('rt'), document.createDocumentFragment()); const hint = document.querySelector('.reply .foot .hint'); if (eb && hint) hint.after(eb); }
   $('rt').addEventListener('input', updateReply);
   $('via').addEventListener('change', updateReply);
   updateReply();
@@ -182,8 +258,7 @@ function open(id) {
     if (!text) { $('rt').focus(); toast('Write your reply first'); return; }
     b.disabled = true; b.textContent = 'Sending…';
     try {
-      const user = netlifyIdentity.currentUser();
-      const r = await fetch('/.netlify/functions/reply', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + await user.jwt() }, body: JSON.stringify({ id: m.id, message: text, subject }) });
+      const r = await fetch('/api/reply', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token() }, body: JSON.stringify({ id: m.id, message: text, subject }) });
       const d = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error(d.error || 'Error ' + r.status);
       m.replies = (m.replies || []).concat([{ date: d.date, by: d.by, text }]);
@@ -193,6 +268,16 @@ function open(id) {
     b.disabled = false; b.textContent = '➤ Send reply';
   };
   $('copy').onclick = async () => { try { await navigator.clipboard.writeText(m.email || ''); toast('Email copied'); } catch (e) { toast(m.email); } };
+  const setSpam = async (on) => {
+    try {
+      const t = token(); const r = await fetch('/api/messages?id=' + encodeURIComponent(m.id) + '&spam=' + (on ? 1 : 0), { method: 'POST', headers: { Authorization: 'Bearer ' + t } });
+      const d = await r.json().catch(() => ({})); if (!r.ok) throw new Error(d.error || 'Error ' + r.status);
+      m.spam = d.spam || ''; current = null; showEmpty(); renderList();
+      toast(on ? 'Moved to Spam – future messages from ' + (m.email || 'this sender') + ' go there too' : 'Moved back to your inbox');
+    } catch (err) { toast(err.message); }
+  };
+  if ($('isSpam')) $('isSpam').onclick = () => setSpam(true);
+  if ($('notSpam')) $('notSpam').onclick = () => setSpam(false);
   $('unread').onclick = () => { seen.delete(m.id); saveSeen(); current = null; showEmpty(); renderList(); };
   $('del').onclick = async (e) => {
     const b = e.currentTarget;
@@ -210,10 +295,10 @@ async function load(quiet) {
 }
 $('list').addEventListener('click', (e) => { const it = e.target.closest('.item'); if (it) open(it.dataset.id); });
 $('q').addEventListener('input', renderList);
+$('brandFilter').addEventListener('change', renderList);
+(function () { const b = S.brands || {}; [['beauty', 'Bookings'], ['ministry', 'Ministry'], ['main', 'General']].forEach(([id, def]) => { const o = document.createElement('option'); o.value = id; o.textContent = (b[id] && b[id].name) || def; $('brandFilter').appendChild(o); }); })();
 document.querySelectorAll('.tabs button').forEach((b) => b.onclick = () => { document.querySelectorAll('.tabs button').forEach((x) => x.classList.remove('on')); b.classList.add('on'); filter = b.dataset.f; renderList(); });
 $('refresh').onclick = () => load();
-setInterval(() => netlifyIdentity.currentUser() && load(true), 60000);
-netlifyIdentity.on('init', (u) => u ? load() : netlifyIdentity.open('login'));
-netlifyIdentity.on('login', () => { netlifyIdentity.close(); load(); });
-netlifyIdentity.init();
+setInterval(() => token() && load(true), 60000);
+load().then(() => { const h = decodeURIComponent(location.hash.slice(1)); if (h && msgs.some((m) => m.id === h)) open(h); });
 </script></body></html>

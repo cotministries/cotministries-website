@@ -1,0 +1,88 @@
+{
+  "title": "About",
+  "slug": "about",
+  "description": "About City Of Testimonies Ministries and Chief Apostle Prophet Osman Nathaniel Weaver.",
+  "sections": [
+    {
+      "type": "pageHead",
+      "eyebrow": "About Us",
+      "title": "Every life has a testimony waiting to be told",
+      "image": "/uploads/verse.jpg"
+    },
+    {
+      "type": "mandate",
+      "eyebrow": "Who We Are",
+      "heading": "City Of Testimonies Ministries",
+      "text": "City Of Testimonies, also known as **Yahweh's Inhabitants Prophetic Sabbath Ministries International**, is a prophetic ministry based in Monrovia, Liberia, with a mandate to reach the nations through the Word of God, deliverance, prayer, and the power of the Holy Spirit.\n\nWe believe that no matter where you are in your journey, God is still writing your story. What you may be facing today can become the testimony you share tomorrow.",
+      "image": "/uploads/mandate.jpg",
+      "alt": "Jerusalem at sunrise",
+      "buttons": [
+        {
+          "label": "Contact us",
+          "url": "/contact/"
+        }
+      ]
+    },
+    {
+      "type": "mandate",
+      "eyebrow": "Leader & Founder",
+      "heading": "Chief Apostle Prophet Osman Nathaniel Weaver",
+      "side": "left",
+      "bg": "cream",
+      "text": "Chief Apostle Prophet Osman Nathaniel Weaver is the Leader and Founder of Yahweh's Inhabitants Prophetic Sabbath Ministries International, also known as City Of Testimonies. He serves alongside Mother and First Lady Prophetess Merriam L. Weaver.",
+      "image": "/uploads/banner.jpg",
+      "alt": "Chief Apostle Prophet Osman Nathaniel Weaver",
+      "buttons": [
+        {
+          "label": "Invite Chief Apostle",
+          "url": "/ministry/#speak"
+        },
+        {
+          "label": "Book a 1:1 session",
+          "url": "/one-on-one/"
+        }
+      ]
+    },
+    {
+      "type": "features",
+      "items": [
+        {
+          "icon": "users",
+          "title": "Sabbath Gatherings",
+          "text": "A place to encounter God, belong, and be strengthened.",
+          "url": "/events/"
+        },
+        {
+          "icon": "bible",
+          "title": "Prophetic Training",
+          "text": "Equip to hear, receive, and walk confidently in your calling.",
+          "url": "/prophetic-school/"
+        },
+        {
+          "icon": "globe",
+          "title": "Global Witnesses",
+          "text": "Reaching every nation to impact cultures with the Kingdom.",
+          "url": "/ministry/"
+        }
+      ]
+    },
+    {
+      "type": "verse",
+      "quote": "And they overcame him by the blood of the Lamb, and by the word of their testimony",
+      "ref": "Revelation 12:11",
+      "image": "/uploads/verse.jpg"
+    },
+    {
+      "type": "sow",
+      "heading": "Sow Into the Vision",
+      "text": "Partner with us to advance the revelation globally and help raise a generation of witnesses in every nation.",
+      "image": "/uploads/give.jpg",
+      "buttons": [
+        {
+          "label": "Give Today",
+          "url": "/give/"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "items": [
+    {
+      "title": "Eagle Eye's Prophetic School Of Ministries T-Shirt",
+      "subtitle": "",
+      "author": "City Of Testimonies",
+      "category": "Shirt",
+      "cover": "https://155390671.cdn6.editmysite.com/uploads/1/5/5/3/155390671/6JFBRARXMLFDL5ONTLN3UXI6.png",
+      "realCover": "https://155390671.cdn6.editmysite.com/uploads/1/5/5/3/155390671/6JFBRARXMLFDL5ONTLN3UXI6.png",
+      "featured": false,
+      "show": true,
+      "description": "Comfortable fit with an inspiring scriptural design.",
+      "formats": [
+        {
+          "name": "S",
+          "price": 25,
+          "digital": false
+        },
+        {
+          "name": "M",
+          "price": 25,
+          "digital": false
+        },
+        {
+          "name": "L",
+          "price": 25,
+          "digital": false
+        },
+        {
+          "name": "XL",
+          "price": 25,
+          "digital": false
+        },
+        {
+          "name": "2XL",
+          "price": 25,
+          "digital": false
+        }
+      ]
+    }
+  ]
+}

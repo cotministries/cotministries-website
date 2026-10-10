@@ -1,31 +1,18 @@
 {
-  "title": "Shop",
+  "title": "Ministry Store",
   "slug": "shop",
-  "description": "Ministry merchandise.",
+  "description": "Ministry merchandise. Every purchase supports the ministry.",
   "sections": [
     {
-      "type": "text",
-      "heading": "Ministry Store",
-      "align": "center",
-      "background": "light",
-      "body": "Wear your faith. Every purchase supports the ministry."
+      "type": "pageHead",
+      "eyebrow": "Ministry Store",
+      "title": "Wear your faith",
+      "text": "Every purchase supports the ministry.",
+      "image": "/uploads/verse.jpg"
     },
     {
-      "type": "products",
-      "heading": "",
-      "background": "white",
-      "items": [
-        {
-          "image": "https://155390671.cdn6.editmysite.com/uploads/1/5/5/3/155390671/6JFBRARXMLFDL5ONTLN3UXI6.png",
-          "name": "Eagle Eye's Prophetic School Of Ministries T-Shirt",
-          "price": "$25.00",
-          "description": "Comfortable fit with an inspiring scriptural design.",
-          "options": "Sizes: S, M, L, XL, 2XL",
-          "buyUrl": "",
-          "buyLabel": "Buy now"
-        }
-      ],
-      "note": "Secure checkout by Square."
+      "type": "bookShop",
+      "emptyText": "New items coming soon."
     }
   ]
 }

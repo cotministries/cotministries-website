@@ -1,0 +1,34 @@
+{
+  "title": "News & Updates",
+  "slug": "news",
+  "description": "What God is doing at City Of Testimonies.",
+  "sections": [
+    {
+      "type": "pageHead",
+      "eyebrow": "News & Updates",
+      "title": "What God is doing at City Of Testimonies",
+      "image": "/uploads/verse.jpg"
+    },
+    {
+      "type": "mandate",
+      "eyebrow": "America 2027",
+      "heading": "Chief Apostle is coming to America 2027!",
+      "side": "left",
+      "text": "Chief Apostle is coming to America in 2027. Would you like to partner with us? Nothing is too small.",
+      "image": "/uploads/whatsapp-image-2026-09-24-at-6.24.41-pm.jpeg",
+      "alt": "Flyer: Chief Apostle Osman N. Weaver is coming to America",
+      "buttons": [
+        {
+          "label": "Sponsor now",
+          "url": "/give/"
+        }
+      ]
+    },
+    {
+      "type": "blogLatest",
+      "heading": "Latest posts",
+      "count": 3,
+      "bg": "cream"
+    }
+  ]
+}

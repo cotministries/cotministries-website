@@ -1,0 +1,318 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blog</title><meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Mulish:wght@300;400;500;600&display=swap">
+<style>
+/* Niki's brand look (same as the website and the newsletter page): cream, espresso, ruby, gold. One light look on purpose. */
+:root{--espresso:#0f2a5e;--ruby:#0f2a5e;--ruby-dk:#0a1f47;--cream:#fbf8f1;--blush:#f3ecdc;--peach:#f4e3b0;--gold:#c9a23a;
+  --bg:var(--cream);--panel:#fff;--soft:#fdfbf6;--line:#e6dcc4;--text:#0f2a5e;--muted:#5a6680;--danger:#b3261e;--ok:#2f8a5b;--ink:var(--espresso);--accent:var(--gold);
+  --display:"Libre Caslon Text",Didot,Georgia,serif;--body:"Mulish","Avenir Next","Segoe UI",system-ui,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;font-family:var(--body);background:var(--bg);color:var(--text);font-size:15px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ruby);outline-offset:2px}
+a{color:var(--ruby)}
+.caps{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--muted);margin:0}
+.bar{display:flex;align-items:center;gap:12px;padding:12px 20px;background:var(--espresso);color:var(--cream);border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:10;flex-wrap:wrap}
+.bar b{font-size:1.05rem;font-weight:600}.bar small{display:block;color:var(--peach);opacity:.8;font-size:.78rem}
+.spacer{flex:1}
+.bar a{color:var(--cream);text-decoration:none;background:transparent;border:1px solid rgba(248,223,194,.35);padding:7px 15px;border-radius:999px;font-size:.88rem;white-space:nowrap}
+.bar a:hover{background:rgba(248,223,194,.12)}
+main{max-width:1240px;margin:0 auto;padding:26px 16px 90px}
+.head{display:flex;flex-wrap:wrap;gap:12px;align-items:end;justify-content:space-between;margin-bottom:16px}
+.head h1{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3vw,2.2rem);margin:4px 0 6px;line-height:1.15}
+.head p{margin:0;color:var(--muted);line-height:1.6}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 16px;min-width:120px}
+.stat span{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.stat b{font-size:1.4rem;font-variant-numeric:tabular-nums;font-weight:500}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.search{flex:1 1 220px;max-width:360px;border:1px solid var(--line);background:#fff;border-radius:4px;padding:9px 11px;min-width:0}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 13px;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.chips button[aria-pressed="true"]{background:var(--espresso);color:var(--cream);border-color:var(--espresso)}
+.tw{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:720px}
+th{text-align:left;font-weight:500;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:11px 14px;border-bottom:1px solid var(--line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:last-child td{border-bottom:0}
+tr.row{cursor:pointer}tr.row:hover td{background:var(--soft)}
+td b{font-weight:600}
+.mini{width:64px;aspect-ratio:4/3;border-radius:4px;background:var(--blush) center/cover no-repeat}
+td small{display:block;color:var(--muted);font-size:.8rem}
+td.n{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.pill{display:inline-block;font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:3px 9px;white-space:nowrap}
+.p-pub{background:#dcefe4;color:#1f6a43}.p-draft{background:#efe6dd;color:#6e5243}.p-sched{background:#e1e7f5;color:#2d4479}.p-feat{background:#fbf1dc;color:#7a5a00}.p-wait{background:#fbe1dc;color:#9a2b1c}
+.empty{padding:36px 18px;color:var(--muted);text-align:center}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;color:var(--text);border-radius:3px;padding:10px 18px;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{background:var(--blush)}.btn:disabled{opacity:.55;cursor:default}
+.btn.go{background:var(--ruby);border-color:var(--ruby);color:#fff}.btn.go:hover{background:var(--ruby-dk)}
+.btn.sm{padding:7px 12px;font-size:.66rem}
+.btn.danger{color:var(--ruby)}
+/* editor */
+.edbar{position:sticky;top:60px;z-index:8;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:16px}
+.edbar .st{font-size:.82rem;color:var(--muted)}
+.edbar .btn.sm{padding:8px 14px}
+.ed{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:20px;align-items:start}
+.edmain{display:grid;gap:14px;min-width:0}
+.emj-title{margin-top:8px}
+.title{font-family:var(--display);font-weight:400;font-size:1.9rem;border:0;border-bottom:1px solid var(--line);background:transparent;padding:6px 0;width:100%;color:var(--text)}
+.title:focus{outline:none;border-color:var(--ruby)}
+.slug{font-size:.84rem;color:var(--muted);display:flex;flex-wrap:wrap;align-items:center;gap:2px}
+.slug input{border:0;border-bottom:1px dashed var(--line);background:transparent;padding:2px;font-size:.84rem;min-width:140px;flex:1;max-width:420px;color:var(--text)}
+.fld{display:grid;gap:6px;min-width:0}
+.fld>span{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.inp{width:100%;border:1px solid var(--line);background:#fff;border-radius:4px;padding:10px 12px;font-size:.95rem;min-width:0}
+.inp:focus{outline:none;border-color:var(--ruby);box-shadow:0 0 0 3px rgba(155,19,19,.1)}
+textarea.inp{resize:vertical;line-height:1.55}
+.count{font-size:.74rem;color:var(--muted);text-align:right;margin-top:-8px}.count.over{color:var(--ruby)}
+.rail{display:grid;gap:12px;min-width:0}
+.box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;display:grid;gap:10px}
+.box h3{margin:0;font-family:var(--body);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;cursor:pointer}
+.chk input{margin-top:4px;accent-color:var(--ruby)}
+.chk small{display:block;color:var(--muted);font-size:.8rem;line-height:1.45}
+.note{font-size:.8rem;color:var(--muted);line-height:1.5}
+.ok{color:var(--ok)}
+.cover{aspect-ratio:16/9;border-radius:6px;background:var(--blush) center/cover no-repeat;border:1px dashed var(--line);display:grid;place-items:center;color:var(--muted);font-size:.82rem;text-align:center}
+.cover.has{border-style:solid;color:transparent}
+.cover.over{border-color:var(--gold);background-color:#fbf1dc}
+.upl{position:relative;overflow:hidden}.upl input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tags span{background:var(--blush);border-radius:999px;padding:3px 4px 3px 11px;font-size:.82rem;display:inline-flex;gap:2px;align-items:center}
+.tags button{border:0;background:none;cursor:pointer;color:var(--muted);padding:0 6px;font-size:1rem}
+.serp{border:1px solid var(--line);border-radius:6px;padding:10px;background:var(--soft);font-family:Arial,sans-serif;color:#202124}
+.serp .u{color:#1a6b2f;font-size:.78rem}.serp .t{color:#1a0dab;font-size:1.02rem;margin:2px 0;line-height:1.3}.serp .d{color:#4d5156;font-size:.83rem;line-height:1.45}
+.cm{border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:.88rem;display:grid;gap:4px;background:#fff}
+.cm.wait{border-style:dashed;border-color:var(--gold);background:var(--soft)}
+.cm small{color:var(--muted)}
+.cm .row{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.modal{position:fixed;inset:0;background:rgba(43,14,4,.55);z-index:30;display:grid;grid-template-rows:auto 1fr;padding:18px}
+.modal .mh{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border-radius:12px 12px 0 0;padding:10px 14px}
+.modal .mh b{font-family:var(--display);font-weight:400;font-size:1.15rem}
+.modal iframe{width:100%;height:100%;border:0;background:var(--cream);border-radius:0 0 12px 12px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(140px);background:var(--espresso);color:var(--cream);padding:10px 18px;border-radius:999px;transition:.25s;z-index:40;max-width:90vw;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.toast.show{transform:translateX(-50%)}
+.toast:empty{display:none}
+.err{color:var(--danger)}
+/* block editor in the brand look */
+.be-blk{border-radius:8px!important}
+.be-t{letter-spacing:.14em!important;font-weight:600!important}
+.be-up{border-radius:3px!important;text-transform:uppercase;letter-spacing:.14em;font-size:.7rem!important;padding:8px 14px!important;font-weight:500!important}
+.be input:not([type]),.be textarea{background:#fff!important;border-radius:4px!important}
+.be-seg button[aria-pressed=true]{background:var(--espresso)!important;color:var(--cream)!important}
+.be-drop{border-color:var(--gold)!important}
+.be-add{background:var(--soft)}
+.be-add button{font-size:.82rem}
+.be-add button:hover{border-color:var(--gold)!important;background:#fffaf0}
+@media (max-width:980px){.ed{grid-template-columns:minmax(0,1fr)}.edbar{position:relative;top:0}}
+@media (max-width:560px){.bar .lbl{display:none}main{padding-inline:12px}}
+</style></head><body>
+<div class="bar">
+  <div><b>✍️ Blog</b><small>Write, schedule and manage posts</small></div>
+  <div class="spacer"></div>
+  <a href="/blog/" target="_blank" rel="noopener">View blog ↗</a>
+  <a href="/admin/newsletter.html">💌 <span class="lbl">Newsletter</span></a>
+  <a href="/admin/messages.html">📬 <span class="lbl">Messages</span></a>
+  <a href="/admin/">🏠 <span class="lbl">Studio</span></a>
+</div>
+<main id="app"><div class="empty">Loading…</div></main>
+<div class="modal" id="modal" hidden><div class="mh"><b>Preview – what visitors will see</b><span><span class="note" id="pvnote"></span> <button class="btn sm" type="button" id="pvx">Close preview</button></span></div><iframe id="pv" title="Preview of the post"></iframe></div>
+<div class="toast" id="toast" role="status"></div>
+<script src="/admin/emoji.js"></script>
+<script src="/admin/blocks.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 3800); }
+function token() { try { const u = JSON.parse(localStorage.getItem('decap-cms-user') || 'null'); return u && u.token; } catch (e) { return null; } }
+async function api(method, q, body, raw) {
+  const r = await fetch('/api/blog' + (q || ''), { method, headers: Object.assign({ Authorization: 'Bearer ' + (token() || '') }, body ? { 'Content-Type': 'application/json' } : {}), body: body ? JSON.stringify(body) : undefined });
+  if (r.status === 401) { location.href = '/admin/'; throw new Error('Please log in.'); }
+  if (raw) return r.text();
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(d.error || 'Error ' + r.status);
+  return d;
+}
+const slugify = (s) => String(s || '').toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80);
+const fmt = (iso) => iso ? new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+const fmtT = (iso) => iso ? new Date(iso).toLocaleString(undefined, { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+const pad = (n) => String(n).padStart(2, '0');
+const toLocal = (iso) => { const d = iso ? new Date(iso) : new Date(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes()); };
+const state = (p) => p.status !== 'pub' ? 'draft' : (p.publishAt && new Date(p.publishAt) > new Date() ? 'sched' : 'pub');
+const ST = { pub: ['Published', 'p-pub'], sched: ['Scheduled', 'p-sched'], draft: ['Draft', 'p-draft'] };
+
+let L = null, filter = 'all', q = '', P = null, C = [], dirty = false, autoSlug = false, saving = false;
+window.addEventListener('beforeunload', (e) => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+/* ---------------- list ---------------- */
+async function loadList() { L = await api('GET'); }
+function list() {
+  dirty = false; P = null;
+  history.replaceState(null, '', location.pathname);
+  const c = { all: L.posts.length, pub: 0, sched: 0, draft: 0 };
+  L.posts.forEach((p) => c[state(p)]++);
+  const waiting = L.posts.reduce((n, p) => n + (p.pending || 0), 0);
+  const t = q.trim().toLowerCase();
+  const rows = L.posts.filter((p) => (filter === 'all' || (filter === 'wait' ? p.pending : state(p) === filter)) && (!t || (p.title + ' ' + p.cat + ' ' + p.tags.join(' ')).toLowerCase().includes(t)));
+  $('app').innerHTML = `<div class="head"><div><p class="caps">/admin → ✍️ Blog</p><h1>Blog posts</h1><p>Click a post to edit it. Posts appear on <a href="/blog/" target="_blank" rel="noopener">${esc(location.host)}/blog/</a>.</p></div><button class="btn go" type="button" id="new">+ New post</button></div>
+<div class="stats"><div class="stat"><span>Published</span><b>${c.pub}</b></div><div class="stat"><span>Scheduled</span><b>${c.sched}</b></div><div class="stat"><span>Drafts</span><b>${c.draft}</b></div><div class="stat"><span>Comments waiting</span><b>${waiting}</b></div></div>
+<div class="tools"><div class="chips" id="chips">${[['all', 'All', c.all], ['pub', 'Published', c.pub], ['sched', 'Scheduled', c.sched], ['draft', 'Drafts', c.draft], ['wait', 'Comments waiting', waiting]].map((x) => `<button type="button" data-f="${x[0]}" aria-pressed="${filter === x[0]}">${x[1]} (${x[2]})</button>`).join('')}</div><input class="search" id="q" placeholder="Search posts" value="${esc(q)}"></div>
+<div class="tw"><table><thead><tr><th></th><th>Title</th><th>Status</th><th>Topic</th><th>Date</th><th>Views</th><th>🙏</th><th></th></tr></thead><tbody>${rows.length ? rows.map((p) => { const s = state(p); return `<tr class="row" data-id="${p.id}"><td><div class="mini" style="${p.cover ? `background-image:url('${esc(p.cover)}')` : ''}"></div></td>
+<td><b>${esc(p.title)}</b>${p.featured ? ' <span class="pill p-feat">Featured</span>' : ''}${p.pending ? ` <span class="pill p-wait">${p.pending} comment${p.pending > 1 ? 's' : ''} waiting</span>` : ''}<small>/blog/${esc(p.slug)}/</small></td>
+<td><span class="pill ${ST[s][1]}">${ST[s][0]}</span>${s === 'sched' ? `<small>${esc(fmtT(p.publishAt))}</small>` : ''}</td><td>${esc(p.cat)}</td><td class="n">${esc(fmt(p.publishAt || p.updated))}</td><td class="n">${p.views}</td><td class="n">${p.amens}</td><td><button class="btn sm" type="button">Edit</button></td></tr>`; }).join('')
+    : `<tr><td colspan="8" class="empty">${L.posts.length ? 'No posts match.' : 'No posts yet. Click “+ New post” to write the first one.'}</td></tr>`}</tbody></table></div>`;
+  $('new').onclick = () => open(null);
+  $('chips').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; filter = b.dataset.f; list(); };
+  $('q').oninput = (e) => { q = e.target.value; const pos = e.target.selectionStart; list(); $('q').focus(); $('q').setSelectionRange(pos, pos); };
+  document.querySelectorAll('tr.row').forEach((tr) => tr.onclick = () => open(tr.dataset.id));
+}
+
+/* ---------------- editor ---------------- */
+async function open(id) {
+  if (id) {
+    $('app').innerHTML = '<div class="empty">Loading the post…</div>';
+    try { const d = await api('GET', '?id=' + encodeURIComponent(id)); P = d.post; C = d.comments || []; }
+    catch (e) { toast(e.message); return list(); }
+    history.replaceState(null, '', '#' + id);
+  } else {
+    P = { id: '', title: '', slug: '', excerpt: '', cat: L.categories[0] || '', tags: [], cover: '', coverAlt: '', blocks: [window.BlockEditor.newBlock('text')], status: 'draft', publishAt: '', featured: false, comments: true, home: false, nlSend: false, nlAudience: 'All', nlBrand: (L.senders[0] || {}).id || 'ministry', nlSentAt: '', seoTitle: '', seoDesc: '', views: 0, amens: 0, author: '' };
+    C = [];
+  }
+  autoSlug = !P.slug;
+  dirty = false;
+  editor();
+  window.scrollTo(0, 0);
+}
+function setDirty() { dirty = true; $('st').textContent = 'Unsaved changes'; }
+function mainLabel() {
+  const pub = $('status').value === 'pub', when = new Date($('when').value || Date.now());
+  if (!pub) return 'Save draft';
+  if (when > new Date(Date.now() + 60000)) return P.id && state(P) === 'sched' ? 'Update schedule' : 'Schedule';
+  return P.id && state(P) === 'pub' ? 'Update' : 'Publish now';
+}
+function stText() {
+  if (!P.id) return 'New post, not saved yet';
+  const s = state(P);
+  return s === 'pub' ? 'Published ' + fmtT(P.publishAt) : s === 'sched' ? 'Scheduled for ' + fmtT(P.publishAt) : 'Draft · saved';
+}
+function editor() {
+  const cats = L.categories.slice(); if (P.cat && !cats.includes(P.cat)) cats.push(P.cat);
+  const sent = P.nlSentAt;
+  $('app').innerHTML = `<div class="edbar"><button class="btn sm" type="button" id="back">&larr; All posts</button><span class="st" id="st">${esc(stText())}</span>
+<span style="display:flex;gap:8px;flex-wrap:wrap">${P.id && state(P) === 'pub' ? `<a class="btn sm" href="/blog/${esc(P.slug)}/" target="_blank" rel="noopener">View ↗</a>` : ''}<button class="btn sm" type="button" id="prev">Preview</button><button class="btn go sm" type="button" id="save">Save</button></span></div>
+<div class="ed"><div class="edmain">
+<input class="title" id="title" placeholder="Post title" value="${esc(P.title)}" aria-label="Post title">
+<div class="slug">${esc(location.host)}/blog/<input id="slug" value="${esc(P.slug)}" aria-label="Web address of the post" placeholder="post-address">/</div>
+<label class="fld"><span>Short summary (on the blog page, in Google and in the newsletter)</span><textarea class="inp" id="excerpt" rows="2" maxlength="400">${esc(P.excerpt)}</textarea></label><div class="count" id="exc"></div>
+<div id="blocks"></div></div>
+<aside class="rail">
+<div class="box"><h3>Publish</h3>
+<label class="fld"><span>Status</span><select class="inp" id="status"><option value="draft">Draft – only you can see it</option><option value="pub">Publish</option></select></label>
+<label class="fld"><span>Date &amp; time</span><input class="inp" type="datetime-local" id="when" value="${esc(toLocal(P.publishAt))}"></label>
+<span class="note">A future date and time schedules the post. It goes live by itself then.</span>
+<label class="chk"><input type="checkbox" id="featured"${P.featured ? ' checked' : ''}><span>Feature at the top of the blog<small>Only one post is featured. Without one, the newest post is shown big.</small></span></label>
+<label class="chk"><input type="checkbox" id="home"${P.home ? ' checked' : ''}><span>Prefer on the Home page<small>In the “Latest from the blog” section, if it is on a page.</small></span></label></div>
+<div class="box"><h3>Send as a letter</h3>
+${sent ? `<p class="note ok">✓ Sent to newsletter subscribers on ${esc(fmtT(sent))}.</p>` : `<label class="chk"><input type="checkbox" id="nl"${P.nlSend ? ' checked' : ''}><span>Also send this post to newsletter subscribers<small>Goes out when the post goes live (right away, or at the scheduled time).</small></span></label>
+<div id="nlopts"${P.nlSend ? '' : ' hidden'} style="display:grid;gap:8px"><label class="fld"><span>Send to</span><select class="inp" id="nlaud">${['All'].concat(L.interests).map((i) => `<option value="${esc(i)}"${P.nlAudience === i ? ' selected' : ''}>${i === 'All' ? 'Everyone' : esc(i)}</option>`).join('')}</select></label>
+<label class="fld"><span>From</span><select class="inp" id="nlfrom">${L.senders.map((s) => `<option value="${esc(s.id)}"${P.nlBrand === s.id ? ' selected' : ''}>${esc(s.from)}</option>`).join('')}</select></label></div>`}</div>
+<div class="box"><h3>Cover picture</h3><div class="cover${P.cover ? ' has' : ''}" id="cover" style="${P.cover ? `background-image:url('${esc(P.cover)}')` : ''}">${P.cover ? '' : 'Drag a photo here'}</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap"><label class="btn sm upl">${P.cover ? 'Change' : 'Upload cover'}<input type="file" accept="image/*" id="coverf"></label>${P.cover ? '<button class="btn sm" type="button" id="coverx">Remove</button>' : ''}</div>
+<input class="inp" id="coveralt" placeholder="Describe the cover (for screen readers & Google)" value="${esc(P.coverAlt)}"></div>
+<div class="box"><h3>Topic &amp; tags</h3><select class="inp" id="cat">${cats.map((c) => `<option${c === P.cat ? ' selected' : ''}>${esc(c)}</option>`).join('')}</select>
+<div class="tags" id="tags"></div><input class="inp" id="tag" placeholder="Add a tag and press Enter" aria-label="Add a tag"><span class="note">Topics are set in the editor under Settings → Blog.</span></div>
+<div class="box"><h3>Comments</h3><label class="chk"><input type="checkbox" id="comments"${P.comments ? ' checked' : ''}><span>Allow comments<small>New comments wait here for your approval. You get an email for each one.</small></span></label><div id="cms" style="display:grid;gap:8px"></div></div>
+<div class="box"><h3>Google &amp; sharing</h3><input class="inp" id="seot" placeholder="Title in Google (optional)" value="${esc(P.seoTitle)}" maxlength="120"><textarea class="inp" id="seod" rows="2" placeholder="Description in Google (optional, else the summary)" maxlength="300">${esc(P.seoDesc)}</textarea><div class="serp" id="serp"></div></div>
+<div class="box"><h3>More</h3><input class="inp" id="author" placeholder="Author name (optional, else ${esc(L.author)})" value="${esc(P.author)}">
+${P.id ? `<p class="note">${P.views} views · 🙏 ${P.amens} amens</p><button class="btn sm danger" type="button" id="del" style="justify-self:start">Delete post</button><div id="delc" hidden style="display:grid;gap:6px"><span class="note">Delete “${esc(P.title)}” and its comments for good?</span><div style="display:flex;gap:6px"><button class="btn go sm" type="button" id="dely">Yes, delete</button><button class="btn sm" type="button" id="deln">Cancel</button></div></div>` : ''}</div>
+</aside></div>`;
+  $('status').value = P.status === 'pub' ? 'pub' : 'draft';
+  const label = () => { $('save').textContent = mainLabel(); };
+  const serp = () => {
+    const t = P.seoTitle || P.title || 'Post title', d = P.seoDesc || P.excerpt || 'Your summary appears here.';
+    $('serp').innerHTML = `<div class="u">${esc(location.host)} › blog › ${esc(P.slug || slugify(P.title) || '…')}</div><div class="t">${esc(t)}</div><div class="d">${esc(d.slice(0, 158))}${d.length > 158 ? '…' : ''}</div>`;
+    const n = P.excerpt.length, c = $('exc'); c.textContent = n + ' characters' + (n > 160 ? ' · Google shows about 160' : ''); c.classList.toggle('over', n > 160);
+  };
+  const tags = () => { $('tags').innerHTML = P.tags.map((t, k) => `<span>#${esc(t)}<button type="button" aria-label="Remove tag ${esc(t)}" data-k="${k}">×</button></span>`).join(''); };
+  const cms = () => {
+    $('cms').innerHTML = C.length ? C.map((c) => `<div class="cm${c.approved ? '' : ' wait'}"><span><b>${esc(c.name)}</b> <small>${esc(fmt(c.created_at))} · ${esc(c.email)}</small></span><span>${esc(c.text)}</span><span class="row">${c.approved ? '<small>Visible on the post</small>' : `<button class="btn go sm" type="button" data-ok="${c.id}">Approve</button>`}<button class="btn sm" type="button" data-no="${c.id}">Delete</button></span></div>`).join('') : '<span class="note">No comments yet.</span>';
+  };
+  label(); serp(); tags(); cms();
+  window.BlockEditor($('blocks'), P, setDirty, toast);
+  if (window.StudioEmoji) { const tb = StudioEmoji.attach($('title')); if (tb) tb.classList.add('emj-title'); StudioEmoji.attach($('excerpt')); }
+  $('title').oninput = (e) => { P.title = e.target.value; if (autoSlug) { P.slug = slugify(P.title); $('slug').value = P.slug; } serp(); setDirty(); };
+  $('slug').oninput = (e) => { autoSlug = false; P.slug = e.target.value; serp(); setDirty(); };
+  $('slug').onblur = (e) => { P.slug = slugify(e.target.value); e.target.value = P.slug; serp(); };
+  $('excerpt').oninput = (e) => { P.excerpt = e.target.value; serp(); setDirty(); };
+  $('status').onchange = () => { label(); setDirty(); };
+  $('when').onchange = () => { label(); setDirty(); };
+  $('featured').onchange = (e) => { P.featured = e.target.checked; setDirty(); };
+  $('home').onchange = (e) => { P.home = e.target.checked; setDirty(); };
+  if ($('nl')) { $('nl').onchange = (e) => { P.nlSend = e.target.checked; $('nlopts').hidden = !P.nlSend; setDirty(); }; $('nlaud').onchange = (e) => { P.nlAudience = e.target.value; setDirty(); }; $('nlfrom').onchange = (e) => { P.nlBrand = e.target.value; setDirty(); }; }
+  $('cat').onchange = (e) => { P.cat = e.target.value; setDirty(); };
+  $('tag').onkeydown = (e) => { if (e.key === 'Enter' || e.key === ',') { e.preventDefault(); const t = e.target.value.trim().replace(/^#/, ''); if (t && !P.tags.includes(t)) { P.tags.push(t); tags(); setDirty(); } e.target.value = ''; } };
+  $('tags').onclick = (e) => { const b = e.target.closest('[data-k]'); if (!b) return; P.tags.splice(+b.dataset.k, 1); tags(); setDirty(); };
+  $('comments').onchange = (e) => { P.comments = e.target.checked; setDirty(); };
+  $('seot').oninput = (e) => { P.seoTitle = e.target.value; serp(); setDirty(); };
+  $('seod').oninput = (e) => { P.seoDesc = e.target.value; serp(); setDirty(); };
+  $('author').oninput = (e) => { P.author = e.target.value; setDirty(); };
+  $('coveralt').oninput = (e) => { P.coverAlt = e.target.value; setDirty(); };
+  const coverUp = (f) => { if (!f) return; $('cover').textContent = 'Uploading…'; window.BlockEditor.upload(f).then((u) => { P.cover = u; setDirty(); keep(); toast('Cover picture added'); }).catch((e) => { toast(e.message); keep(); }); };
+  $('coverf').onchange = (e) => coverUp(e.target.files[0]);
+  const cv = $('cover');
+  cv.ondragover = (e) => { e.preventDefault(); cv.classList.add('over'); }; cv.ondragleave = () => cv.classList.remove('over');
+  cv.ondrop = (e) => { e.preventDefault(); cv.classList.remove('over'); coverUp(e.dataTransfer.files[0]); };
+  if ($('coverx')) $('coverx').onclick = () => { P.cover = ''; setDirty(); keep(); };
+  $('cms').onclick = async (e) => {
+    const ok = e.target.closest('[data-ok]'), no = e.target.closest('[data-no]'); if (!ok && !no) return;
+    const id = (ok || no).dataset[ok ? 'ok' : 'no'];
+    try { await api('POST', '', { action: 'comment', id, approve: !!ok }); if (ok) C.find((c) => c.id === id).approved = 1; else C = C.filter((c) => c.id !== id); cms(); toast(ok ? 'Comment approved – it is visible now' : 'Comment deleted'); const lp = L.posts.find((x) => x.id === P.id); if (lp) lp.pending = C.filter((c) => !c.approved).length; }
+    catch (x) { toast(x.message); }
+  };
+  $('back').onclick = () => { if (dirty && !confirm('Leave without saving your changes?')) return; list(); };
+  $('prev').onclick = preview;
+  $('save').onclick = save;
+  if ($('del')) { $('del').onclick = () => { $('delc').hidden = false; }; $('deln').onclick = () => { $('delc').hidden = true; };
+    $('dely').onclick = async () => { try { await api('DELETE', '?id=' + encodeURIComponent(P.id)); L.posts = L.posts.filter((x) => x.id !== P.id); dirty = false; toast('Post deleted'); list(); } catch (x) { toast(x.message); } }; }
+}
+// re-draw the editor but keep what was typed (used after cover changes)
+function keep() { const d = dirty, st = $('st').textContent, scroll = window.scrollY; P.status = $('status').value; P.publishAt = $('when').value ? new Date($('when').value).toISOString() : P.publishAt; editor(); $('st').textContent = st; dirty = d; window.scrollTo(0, scroll); }
+function collect() {
+  const w = $('when').value;
+  return Object.assign({}, P, { status: $('status').value, publishAt: w ? new Date(w).toISOString() : '', slug: slugify(P.slug || P.title) });
+}
+async function preview() {
+  $('modal').hidden = false; $('pvnote').textContent = 'Loading…'; $('pv').srcdoc = '';
+  try { const html = await api('POST', '', { action: 'preview', post: collect() }, true); $('pv').srcdoc = html; $('pvnote').textContent = dirty ? 'Includes your unsaved changes' : ''; }
+  catch (e) { $('pvnote').textContent = e.message; }
+}
+$('pvx').onclick = () => { $('modal').hidden = true; };
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') $('modal').hidden = true; });
+async function save() {
+  if (saving) return;
+  if (!P.title.trim()) { toast('Give the post a title first.'); $('title').focus(); return; }
+  const post = collect();
+  if (post.status === 'pub' && P.nlSend && !P.nlSentAt && new Date(post.publishAt || Date.now()) <= new Date() && !confirm('This will also email the post to your newsletter subscribers now. Continue?')) return;
+  saving = true; const b = $('save'), old = b.textContent; b.disabled = true; b.textContent = 'Saving…';
+  try {
+    const d = await api('POST', '', { action: 'save', post });
+    const isNew = !P.id;
+    P = d.post; dirty = false; autoSlug = false;
+    const i = L.posts.findIndex((x) => x.id === P.id); const row = Object.assign({}, P, { pending: C.filter((c) => !c.approved).length }); delete row.blocks;
+    if (i >= 0) L.posts[i] = row; else L.posts.unshift(row);
+    if (P.featured) L.posts.forEach((x) => { if (x.id !== P.id) x.featured = false; });
+    if (isNew) history.replaceState(null, '', '#' + P.id);
+    editor();
+    const s = state(P);
+    let msg = s === 'pub' ? 'Published – it is live on the blog.' : s === 'sched' ? 'Scheduled for ' + fmtT(P.publishAt) + '.' : 'Draft saved.';
+    if (d.letter) msg += d.letter.ok ? ` Sent to ${d.letter.sent} subscriber${d.letter.sent === 1 ? '' : 's'}.` : ' The letter was NOT sent: ' + d.letter.error;
+    toast(msg);
+  } catch (e) { toast(e.message); b.textContent = old; }
+  finally { saving = false; if (document.body.contains(b)) b.disabled = false; }
+}
+(async function start() {
+  try { await loadList(); const id = location.hash.slice(1); if (id && L.posts.some((p) => p.id === id)) open(id); else list(); }
+  catch (e) { $('app').innerHTML = `<div class="empty err">Could not load the blog: ${esc(e.message)}</div>`; }
+})();
+</script></body></html>

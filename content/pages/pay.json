@@ -1,0 +1,24 @@
+{
+  "title": "How to Pay",
+  "slug": "pay",
+  "description": "Ways to pay for the Monthly Spiritual Detox and 1:1 sessions.",
+  "sections": [
+    {
+      "type": "pageHead",
+      "eyebrow": "Payment",
+      "title": "Thank you! Here's how to pay",
+      "image": "/uploads/verse.jpg"
+    },
+    {
+      "type": "payInfo",
+      "heading": "Ways to pay",
+      "text": "Please put your full name in the payment note so we can match it to your form. We confirm by email once it arrives.",
+      "buttons": [
+        {
+          "label": "Back to home",
+          "url": "/"
+        }
+      ]
+    }
+  ]
+}

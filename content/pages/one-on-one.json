@@ -1,14 +1,42 @@
 {
+  "title": "1:1 Session with Chief Apostle",
+  "slug": "one-on-one",
+  "description": "Book a 60 minute session with Chief Apostle for $75.",
   "sections": [
     {
-      "type": "embed",
-      "height": 700,
-      "width": "narrow",
-      "background": "light",
-      "code": "<script type=\"text/javascript\" src=\"https://form.jotform.com/jsform/262778731769173\"></script>"
+      "type": "pageHead",
+      "eyebrow": "Ministry",
+      "title": "1:1 Session with Chief Apostle",
+      "text": "Choose a day and time for a 60 minute personal session with Chief Apostle Prophet Osman Nathaniel Weaver. Times are shown in US Eastern Time.",
+      "image": "/uploads/verse.jpg"
+    },
+    {
+      "type": "bookingForm",
+      "title": "Choose your session",
+      "payLabel": "How would you like to pay the $75?",
+      "locations": [
+        {
+          "label": "Video call (Zoom)",
+          "fee": 0,
+          "needsAddress": false
+        },
+        {
+          "label": "Phone or WhatsApp call",
+          "fee": 0,
+          "needsAddress": false
+        }
+      ],
+      "photos": false,
+      "notesLabel": "What would you like to talk about? (optional)",
+      "submitLabel": "Request my session",
+      "note": "Chief Apostle confirms your time by email. If the time doesn't work, we'll offer another time or refund you.",
+      "balanceNote": ""
+    },
+    {
+      "type": "verse",
+      "quote": "Call unto me, and I will answer thee",
+      "ref": "Jeremiah 33:3",
+      "image": "/uploads/verse.jpg"
     }
-  ],
-  "slug": "one-on-one",
-  "title": "Schedule 1:1",
-  "description": "Schedule a 60 minute session with Chief Apostle for $75."
+  ]
 }

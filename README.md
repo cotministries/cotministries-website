@@ -1,29 +1,31 @@
-# Website Template (Netlify + editor)
+# City Of Testimonies website (cotministries.com)
 
-A fast, free website with an editor at **/admin** — like Squarespace, without the monthly fee.
+Static site + Studio editor at **/admin**, hosted on **Cloudflare Pages** (build command `node build.js`, output folder `dist`).
+Built on the same engine as Niki's site (firebynik / sowedintears), in the City Of Testimonies navy and gold.
 
-## How it works
-- `content/settings.json` – site name, logo, colors, fonts, menu, contact info
-- `content/pages/*.json` – one file per page; each page is a list of **sections (blocks)**
-- `lib/render.js` – turns blocks into HTML (also powers the editor's live preview)
-- `lib/cms-config.js` – the editor's forms (one entry per block)
-- `static/` – CSS and uploaded images/files (`static/uploads`)
-- `build.js` – `node build.js` builds the site into `dist/` (no npm packages needed)
+## Where things live
+- `content/settings.json` – name, logo, colors, fonts, menu, footer, contact, social links, chat bubble
+- `content/pages/*.json` – one file per page, each a list of sections
+- `content/data/` – **events**, **testimonies**, **books** (= shop items) (Studio: "Events & shop")
+- `lib/render.js` – sections → HTML (also the Studio preview) · `lib/cms-config.js` – Studio fields
+- `static/site.js` – chat bubble, back-to-top arrow, testimony slider, cart, giving, forms · `static/styles.css` (COT look is at the end)
+- `functions/` – Cloudflare Pages Functions (forms, Messages inbox, replies, Stripe checkout, blog, newsletter, visitors, Studio login and saving)
+- `server/` – shared code for the functions
 
-Netlify runs `node build.js` automatically every time content changes.
+## Sections made for this site
+Home banner (`cotHero`), three icon boxes (`features`), text + framed picture (`mandate`), photo cards (`carry`),
+scripture band (`verse`), testimony slider (`testiSlider`), picture + promo (`promo`), event cards (`gatherings`),
+blue world-map band (`sow`), page title band (`pageHead`), questions (`faq`), check list (`checklist`), centered buttons (`buttonRow`).
+Niki's sections still work too: prayer request + invitation forms (`ministryForms`), giving (`give`), events with RSVP (`events`),
+shop (`bookShop`), newsletter, contact, blog.
 
-## Blocks available
-Banner/Hero · Text · Image + Text · Cards · Services & Prices · Checklist · Quote/Scripture ·
-Testimonials · FAQ · Gallery · Single image · Video · Downloads · Embed (forms/maps) ·
-Call-to-action band · Contact info + form
+## Publishing
+- **Save** in /admin only saves to GitHub. **🚀 Put website live** publishes everything saved.
+- A commit whose message contains `[live]` also publishes (GitHub Action `.github/workflows/publish-live.yml`).
 
-## Start a new client site (≈30 min)
-1. On GitHub: open this repository → **Use this template** (or upload a copy) → name it e.g. `firebynik-website`.
-2. In the new repo, edit `content/settings.json` (name, colors, fonts, contact) and replace the pages in `content/pages/` (keep `index.json` as the home page).
-3. Netlify → **Add new project → Import an existing project → GitHub** → pick the repo. Build command `node build.js`, publish directory `dist` (already set in `netlify.toml`).
-4. Netlify → Project configuration → **Identity → Enable**, set registration to **Invite only**, then **Services → Git Gateway → Enable**.
-5. Identity → **Invite users** → client's email. They set a password and edit at `theirsite.com/admin`.
-6. Optional: Domain management → add the client's domain.
-
-## Demo mode
-`DEMO=1 node build.js` builds a version whose editor needs no login and doesn't save (for showing clients).
+## Cloudflare settings (Pages project → Settings)
+Same as Niki's site. **Bindings:** D1 database, variable name `DB`.
+**Variables and secrets:** `ACCESS_TEAM`, `ACCESS_AUD` (email-code login for /admin), `GITHUB_TOKEN` (repo Contents read/write),
+`GITHUB_REPO` = `cotministries/cotministries-website`, `DEPLOY_HOOK_URL` (also as a GitHub Actions secret), `RESEND_API_KEY` + `REPLY_FROM`
+(form emails), `STRIPE_SECRET_KEY` + `STRIPE_WEBHOOK_SECRET` (giving and shop; webhook URL `https://cotministries.com/api/stripe-webhook`).
+Fill in the email addresses in Studio → Settings → "Brands & email" and "Contact details".

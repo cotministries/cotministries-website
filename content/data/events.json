@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "title": "Night of Worship",
+      "date": "2027-05-24",
+      "time": "7:00 PM – 9:30 PM",
+      "kind": "Worship",
+      "place": "City Of Testimonies Center\nAtlanta, GA",
+      "description": "",
+      "image": "/uploads/event1.jpg",
+      "free": true,
+      "show": true
+    },
+    {
+      "title": "Prophetic Equipping Workshop",
+      "date": "2027-06-14",
+      "time": "10:00 AM – 4:00 PM",
+      "kind": "Workshop",
+      "place": "City Of Testimonies Center\nAtlanta, GA",
+      "description": "",
+      "image": "/uploads/event2.jpg",
+      "free": true,
+      "show": true
+    },
+    {
+      "title": "Global Prayer Gathering",
+      "date": "2027-07-26",
+      "time": "6:00 PM – 9:00 PM",
+      "kind": "Online",
+      "place": "Virtual / Online",
+      "description": "",
+      "image": "/uploads/event3.jpg",
+      "free": true,
+      "show": true
+    }
+  ]
+}

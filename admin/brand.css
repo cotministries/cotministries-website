@@ -1,0 +1,73 @@
+/* Niki's brand look for the admin pages (Messages, Schedule): same as the website, Blog and Newsletter pages.
+   Loaded after each page's own styles, so it only changes colors, fonts and shapes – not how the pages work. One light look on purpose. */
+:root,:root:not([data-x]){--espresso:#0f2a5e;--ruby:#0f2a5e;--ruby-dk:#0a1f47;--cream:#fbf8f1;--blush:#f3ecdc;--peach:#f4e3b0;--gold:#c9a23a;
+  --accent:#c9a23a;--ink:#0f2a5e;--bg:#fbf8f1;--panel:#fff;--soft:#fdfbf6;--line:#e6dcc4;--text:#0f2a5e;--muted:#5a6680;--danger:#b3261e;--sel:#fbf1dc;--ok:#2f8a5b;
+  --display:"Libre Caslon Text",Didot,Georgia,serif;--body:"Mulish","Avenir Next","Segoe UI",system-ui,sans-serif;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--accent:#c9a23a;--ink:#0f2a5e;--bg:#fbf8f1;--panel:#fff;--soft:#fdfbf6;--line:#e6dcc4;--text:#0f2a5e;--muted:#5a6680;--sel:#fbf1dc;color-scheme:light}}
+body{font-family:var(--body)!important;background:var(--bg);color:var(--text)}
+:focus-visible{outline:2px solid var(--ruby);outline-offset:2px}
+h1,h2,.head h2{font-family:var(--display);font-weight:400!important}
+/* top bar */
+.bar{background:var(--espresso)!important;color:var(--cream)!important;border-bottom:2px solid var(--gold)!important}
+.bar b,.bar .brand{font-weight:600}
+.bar small,.bar .brand small{color:var(--peach)!important;opacity:.8}
+.bar a,.bar button:not(.save){color:var(--cream)!important;background:transparent!important;border:1px solid rgba(248,223,194,.35)!important;border-radius:999px!important;padding:7px 15px!important}
+.bar a:hover,.bar button:not(.save):hover{background:rgba(248,223,194,.12)!important}
+.logo{background:var(--gold)!important;color:var(--espresso)!important;border-radius:50%!important}
+.pill{background:var(--gold)!important;color:var(--espresso)!important}
+/* buttons */
+.btn,.save{border-radius:3px!important;text-transform:uppercase;letter-spacing:.12em;font-size:.72rem!important;font-weight:500!important;padding:10px 16px!important}
+.btn:hover{background:var(--blush)}
+.btn.primary,.save{background:var(--ruby)!important;border-color:var(--ruby)!important;color:#fff!important}
+.btn.primary:hover,.save:hover{background:var(--ruby-dk)!important;filter:none!important}
+.save:disabled{opacity:.55}
+.btn.ok{background:var(--ok)!important;border-color:var(--ok)!important}
+.btn.danger{color:var(--ruby)}.btn.danger.confirm{background:var(--ruby)!important;border-color:var(--ruby)!important;color:#fff!important}
+/* lists, tabs, fields */
+.tabs button{border-radius:999px;text-transform:uppercase;letter-spacing:.1em;font-size:.7rem!important}
+.tabs button.on{background:var(--espresso)!important;border-color:var(--espresso)!important;color:var(--cream)!important}
+.search,input[type=time],input[type=date],input[type=number],input[type=text],select{border-radius:4px!important;background-color:#fff}
+.search:focus,input:focus,select:focus{border-color:var(--ruby)!important;outline:none;box-shadow:0 0 0 3px rgba(155,19,19,.1)}
+.item.sel{background:var(--sel)}
+.item.sel::before{background:var(--gold)!important}
+.dot{background:var(--ruby)!important}
+.unread .tm{color:var(--ruby)!important}
+.card{border-radius:12px!important;box-shadow:0 14px 34px -26px rgba(43,14,4,.45)!important}
+.chip{background:var(--blush)!important;border-color:var(--line)!important}
+.fld{border-radius:8px!important}
+.reply{border-radius:8px!important}
+.sent{border-left-color:var(--gold)!important}.sent-head{color:var(--ok)}
+.toast{background:var(--espresso)!important;color:var(--cream)!important;border-radius:999px!important}
+/* schedule */
+.day{border-top-color:var(--line)}
+.sub{color:var(--muted)}
+.add{border-color:var(--gold)!important;background:var(--soft)!important}
+.sw input:checked+span{background:var(--ok)}
+.st-requested{background:#fbf1dc;color:#7a5a00}.st-confirmed{background:#dcefe4;color:#1f6a43}
+
+/* Messages: left list in the studio's dark espresso look */
+.side{background:#0f2a5e!important;border-right:1px solid #c9a23a!important;color:#e8edf7}
+.tools{border-bottom:1px solid rgba(248,223,194,.14)!important}
+.side .search{background-color:#163672!important;border:1px solid rgba(248,223,194,.22)!important;color:#f4e3b0!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23c9a24a' stroke-width='2'%3E%3Ccircle cx='7' cy='7' r='5'/%3E%3Cpath d='m14 14-3.5-3.5'/%3E%3C/svg%3E")!important}
+.side .search::placeholder{color:rgba(248,223,194,.55)}
+.side .search:focus{border-color:#c9a23a!important;box-shadow:0 0 0 3px rgba(201,162,74,.18)!important}
+.side select option{background:#163672;color:#f4e3b0}
+.side .tabs button{color:rgba(248,223,194,.75)!important;border-color:rgba(248,223,194,.25)!important}
+.side .tabs button.on{background:#fbf8f1!important;border-color:#fbf8f1!important;color:#0f2a5e!important}
+.side .item{border-bottom:1px solid rgba(248,223,194,.09)!important}
+.side .item:hover{background:#163672!important}
+.side .nm{color:#fbf8f1}
+.side .tm{color:rgba(248,223,194,.6)!important}
+.side .sn{color:rgba(243,227,214,.66)!important}
+.side .done{color:#7fd3a4!important}
+.side .unread .tm{color:#ebcf7f!important}
+.side .dot{background:#ebcf7f!important}
+.side .item.sel{background:#c9a23a!important}
+.side .item.sel::before{background:#0f2a5e!important;width:4px}
+.side .item.sel .nm{color:#0f2a5e}
+.side .item.sel .tm,.side .item.sel .sn{color:#4a2410!important}
+.side .item.sel .done{color:#1f5e3c!important}
+.side .item.sel .dot{background:#0f2a5e!important}
+.side .item.sel:hover{background:#d4b05c!important}
+.side .av{box-shadow:0 0 0 2px rgba(248,223,194,.18)}
+.side ::-webkit-scrollbar{width:8px}.side ::-webkit-scrollbar-thumb{background:rgba(248,223,194,.18);border-radius:8px}

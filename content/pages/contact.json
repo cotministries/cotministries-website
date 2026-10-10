@@ -1,14 +1,28 @@
 {
   "title": "Contact",
   "slug": "contact",
-  "description": "Contact City of Testimonies Ministries.",
+  "description": "Contact City Of Testimonies Ministries.",
   "sections": [
     {
+      "type": "pageHead",
+      "eyebrow": "Contact",
+      "title": "Get in Touch",
+      "text": "We'd love to hear from you. Please allow 24–72 hours for a response.",
+      "image": "/uploads/verse.jpg"
+    },
+    {
       "type": "contact",
-      "heading": "Get in Touch",
-      "subheading": "We'd love to hear from you. Please allow 24-72 hours for a response.",
-      "background": "light",
-      "showForm": true
+      "formTitle": "Send a message",
+      "topics": [
+        "General question",
+        "Prayer request",
+        "Monthly Spiritual Detox",
+        "Prophetic School",
+        "Invite Chief Apostle",
+        "Sponsor America 2027",
+        "Testimony",
+        "Other"
+      ]
     }
   ]
 }

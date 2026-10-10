@@ -1,0 +1,28 @@
+{
+  "title": "Newsletter",
+  "slug": "newsletter",
+  "description": "Get news, teachings and events from City Of Testimonies by email.",
+  "sections": [
+    {
+      "type": "pageHead",
+      "eyebrow": "Newsletter",
+      "title": "Stay connected",
+      "image": "/uploads/verse.jpg"
+    },
+    {
+      "type": "newsletter",
+      "script": "",
+      "heading": "News, teachings and events in your inbox",
+      "text": "Be the first to hear about gatherings, the Prophetic School and the Monthly Spiritual Detox.",
+      "interests": [
+        "Gatherings & events",
+        "Prophetic School",
+        "Monthly Spiritual Detox",
+        "Teachings & prophetic words"
+      ],
+      "doneTitle": "You're on the list",
+      "doneText": "Thank you, {name}! God bless you.",
+      "bg": "white"
+    }
+  ]
+}

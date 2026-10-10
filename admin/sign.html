@@ -1,0 +1,109 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Salon sign</title><meta name="robots" content="noindex">
+<style>
+:root{--accent:#d4a437;--ink:#16161a;--bg:#f4f2ee;--panel:#fff;--soft:#faf8f4;--line:#e7e2d8;--text:#1d1d1f;--muted:#76767e;--brown:#0f2a5e;--red:#0f2a5e;--cream:#fbf8f1;--blush:#f3ecdc}
+@media (prefers-color-scheme:dark){:root{--bg:#121214;--panel:#1b1b1f;--soft:#202025;--line:#2e2e35;--text:#f1f1f3;--muted:#9a9aa3;color-scheme:dark}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text)}
+button,input,select{font:inherit;color:inherit}
+.bar{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--ink);color:#fff;border-bottom:3px solid var(--accent);position:sticky;top:0;z-index:5;flex-wrap:wrap}
+.bar b{font-size:1.05rem}.bar small{display:block;color:#bdb6a6;font-size:.78rem}.spacer{flex:1}
+.bar a{color:#fff;text-decoration:none;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:8px 12px;border-radius:9px;font-size:.85rem;white-space:nowrap}
+.print{border:0;background:var(--accent);color:#16161a;font-weight:800;padding:9px 16px;border-radius:9px;cursor:pointer}
+main{max-width:1000px;margin:0 auto;padding:18px 16px 60px;display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:18px;align-items:start}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+label.f{display:grid;gap:5px;font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+input[type=text],input[type=url],select{width:100%;border:1px solid var(--line);background:var(--soft);border-radius:10px;padding:11px;font-size:.95rem;text-transform:none;letter-spacing:0;color:var(--text)}
+.hint{color:var(--muted);font-size:.84rem;margin:0}
+.stage{display:grid;place-items:center;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:18px;overflow:auto}
+/* the sign itself (always in Niki's colors) */
+.sign{width:100%;max-width:520px;aspect-ratio:8.5/11;background:var(--cream);color:var(--brown);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7% 8%;gap:3.2%;border:1px solid #ead9cc;box-shadow:0 12px 30px rgba(43,14,4,.12);font-family:Jost,system-ui,sans-serif;position:relative}
+.sign::before{content:"";position:absolute;inset:3.2%;border:1.5px solid var(--brown);opacity:.18;pointer-events:none}
+.sign.small{aspect-ratio:4/6}
+.sign .top{letter-spacing:.32em;font-size:clamp(.55rem,1.6vw,.78rem);color:var(--red);text-transform:uppercase;margin:0}
+.sign img{width:52%;height:auto}
+.sign h1{font-family:'Libre Caslon Text',Georgia,serif;font-weight:500;font-size:clamp(1.4rem,4.4vw,2.5rem);line-height:1.12;margin:0}
+.sign .line{width:16%;height:1.5px;background:var(--red);opacity:.7}
+.sign .qr{width:46%;background:#fff;padding:2.4%;border-radius:4%}
+.sign.small .qr{width:58%}
+.sign .qr svg{display:block;width:100%;height:auto}
+.sign .scan{font-size:clamp(.72rem,1.9vw,1rem);letter-spacing:.06em;margin:0}
+.sign .url{font-weight:600;letter-spacing:.06em;font-size:clamp(.7rem,1.8vw,.95rem);margin:0}
+.sign .tag{letter-spacing:.24em;text-transform:uppercase;font-size:clamp(.5rem,1.4vw,.7rem);opacity:.75;margin:0}
+@media (max-width:760px){main{grid-template-columns:minmax(0,1fr)}}
+@media print{
+  @page{size:letter;margin:0}
+  body{background:#fff}.bar,.card{display:none!important}
+  main{display:block;padding:0;max-width:none}.stage{border:0;padding:0;background:none;display:flex;justify-content:center;align-items:center;min-height:100vh}
+  .sign{box-shadow:none;border:0;max-width:none;width:8.5in;height:11in;aspect-ratio:auto;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sign.small{width:4in;height:6in;border:1px dashed #bbb}
+  .sign h1{font-size:44pt}.sign.small h1{font-size:22pt}
+  .sign .scan{font-size:16pt}.sign .url{font-size:15pt}.sign .tag{font-size:10pt}.sign .top{font-size:12pt}
+  .sign.small .scan{font-size:10pt}.sign.small .url{font-size:9pt}.sign.small .tag{font-size:7pt}.sign.small .top{font-size:8pt}
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Mulish:wght@300;400;500;600&display=swap"><link rel="stylesheet" href="/admin/brand.css">
+<style>
+.bar b{font-family:var(--display);font-weight:500;font-size:1.15rem}
+label.f{letter-spacing:.14em;font-size:.66rem}
+input[type=url]{border-radius:4px!important;background-color:#fff}
+.stage{background:var(--blush);border-color:var(--line)}
+</style>
+</head><body>
+<div class="bar">
+  <div><b>🪧 Salon sign</b><small>A QR code clients scan from the chair or the front desk</small></div>
+  <div class="spacer"></div>
+  <a href="/admin/walkin.html">💇 Walk-in</a>
+  <a href="/admin/">🏠 Studio</a>
+  <button class="save print" type="button" onclick="window.print()">🖨 Print</button>
+</div>
+<main>
+  <section class="card">
+    <label class="f">Where the QR code goes<select id="dest">
+      <option value="https://firebynik.com/book/" data-h="Book your next appointment" data-t="Hair · Makeup · Bridal">Booking page (book an appointment)</option>
+      <option value="https://firebynik.com/beauty/" data-h="See all my services" data-t="Hair · Makeup · Bridal">Beauty services & prices</option>
+      <option value="https://sowedintears.com/newsletter/" data-h="Stay in touch" data-t="News · Specials · Events">Newsletter sign-up</option>
+      <option value="https://sowedintears.com/books/" data-h="Read my books" data-t="Faith · Healing · Purpose">Books & ebooks</option>
+      <option value="custom" data-h="Scan me" data-t="">Other link (paste below)</option>
+    </select></label>
+    <label class="f" id="customWrap" hidden>Your link<input type="url" id="custom" placeholder="https://…"></label>
+    <label class="f">Big text<input type="text" id="head"></label>
+    <label class="f">Small line at the bottom<input type="text" id="tag"></label>
+    <label class="f">Size<select id="size"><option value="big">Full page (8.5 × 11 in)</option><option value="small">Small card (4 × 6 in), cut out after printing</option></select></label>
+    <p class="hint">Tip: print on thick paper and put it in a picture frame or a clear stand at your mirror. Test it once with your own phone camera.</p>
+  </section>
+  <div class="stage"><div class="sign" id="sign">
+    <p class="top">Prophetess</p>
+    <img src="/uploads/signature.png" alt="Nikole Wilson">
+    <h1 id="sHead"></h1>
+    <div class="line"></div>
+    <div class="qr" id="sQr"></div>
+    <p class="scan">Scan with your phone camera</p>
+    <p class="url" id="sUrl"></p>
+    <p class="tag" id="sTag"></p>
+  </div></div>
+</main>
+<script src="/admin/qr.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let edited = false;
+function link() { const v = $('dest').value; return v === 'custom' ? ($('custom').value.trim() || 'https://firebynik.com/') : v; }
+function draw() {
+  const o = $('dest').selectedOptions[0];
+  $('customWrap').hidden = o.value !== 'custom';
+  if (!edited) { $('head').value = o.dataset.h; $('tag').value = o.dataset.t; }
+  const url = link();
+  $('sHead').textContent = $('head').value;
+  $('sTag').textContent = $('tag').value;
+  $('sUrl').textContent = url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+  try { $('sQr').innerHTML = QR.svg(url, { dark: '#0f2a5e', light: '#ffffff', margin: 2, label: 'QR code for ' + url }); } catch (e) { $('sQr').textContent = 'Link too long'; }
+  $('sign').classList.toggle('small', $('size').value === 'small');
+}
+$('dest').onchange = () => { edited = false; draw(); };
+['head', 'tag'].forEach((k) => $(k).oninput = () => { edited = true; draw(); });
+$('custom').oninput = draw; $('size').onchange = draw;
+draw();
+</script>
+</body></html>

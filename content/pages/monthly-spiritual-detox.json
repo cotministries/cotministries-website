@@ -4,38 +4,57 @@
   "description": "Register for the Monthly Spiritual Detox.",
   "sections": [
     {
-      "type": "hero",
-      "style": "image",
-      "image": "https://749ba59c77173e7ef9c9.cdn6.editmysite.com/uploads/b/749ba59c77173e7ef9c94ce8839a21e8d7074f7fbbdd5b04fb67591012bc36e5/MonthlyDetoxBannner_1791255342.png",
-      "buttons": []
-    },
-    {
-      "type": "text",
-      "heading": "Monthly Spiritual Detox",
-      "align": "center",
-      "background": "light",
-      "body": "If you would like to sign up for the Monthly Spiritual Detox, the fee is **$50**. Click below to fill out the registration form.\n\nJoin our WhatsApp group for updates:",
+      "type": "pageHead",
+      "eyebrow": "Ministry",
+      "title": "Monthly Spiritual Detox",
+      "text": "An extraordinary moment to be free from spiritual bondage, delays and oppression.",
+      "image": "/uploads/verse.jpg",
       "buttons": [
         {
-          "label": "Join WhatsApp Group Now",
-          "url": "https://chat.whatsapp.com/GjF3EURCLwo6jrBHbXMgTN"
-        },
-        {
-          "label": "Register Now – $50",
-          "url": "https://form.jotform.com/262778731769173"
+          "label": "Register now",
+          "url": "#register"
         }
       ]
     },
     {
-      "type": "image",
-      "heading": "An Extraordinary Moment to Be Free From",
-      "image": "https://749ba59c77173e7ef9c9.cdn6.editmysite.com/uploads/b/749ba59c77173e7ef9c94ce8839a21e8d7074f7fbbdd5b04fb67591012bc36e5/747ea25c-d7e8-42cc-a7fd-08b5bd938f51_1791257966.png",
-      "width": "narrow",
-      "background": "white",
+      "type": "register",
+      "eyebrow": "Register anytime",
+      "heading": "Join the next Monthly Spiritual Detox",
+      "text": "Sign up anytime and you'll join the next Monthly Spiritual Detox.\n\nPay by card right here, or choose Cash App, Zelle, PayPal or Sendwave. Join our WhatsApp group for updates.",
       "buttons": [
         {
-          "label": "Register Now",
-          "url": "https://form.jotform.com/262778731769173"
+          "label": "Join WhatsApp Group",
+          "url": "https://chat.whatsapp.com/GjF3EURCLwo6jrBHbXMgTN"
+        }
+      ],
+      "formTitle": "Register for the Detox",
+      "messageLabel": "What are you believing God for? (optional)"
+    },
+    {
+      "type": "mandate",
+      "eyebrow": "Monthly Spiritual Detox",
+      "heading": "An Extraordinary Moment to Be Free",
+      "bg": "cream",
+      "side": "left",
+      "text": "Come ready to receive. God is still writing your story.",
+      "image": "https://749ba59c77173e7ef9c9.cdn6.editmysite.com/uploads/b/749ba59c77173e7ef9c94ce8839a21e8d7074f7fbbdd5b04fb67591012bc36e5/MonthlyDetoxBannner_1791255342.png",
+      "alt": "Monthly Spiritual Detox",
+      "buttons": [
+        {
+          "label": "Register now",
+          "url": "#register"
+        }
+      ]
+    },
+    {
+      "type": "sow",
+      "heading": "Ready for your breakthrough?",
+      "text": "Join the next Monthly Spiritual Detox.",
+      "image": "/uploads/give.jpg",
+      "buttons": [
+        {
+          "label": "Register now – $50",
+          "url": "#register"
         }
       ]
     }

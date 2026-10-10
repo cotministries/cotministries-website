@@ -1,0 +1,53 @@
+{
+  "title": "Give",
+  "slug": "give",
+  "description": "Sow into the vision of City Of Testimonies Ministries.",
+  "sections": [
+    {
+      "type": "pageHead",
+      "eyebrow": "Give",
+      "title": "Sow Into the Vision",
+      "text": "Partner with us to advance the revelation globally and help raise a generation of witnesses in every nation.",
+      "image": "/uploads/give.jpg"
+    },
+    {
+      "type": "give",
+      "heading": "Give online",
+      "text": "Give once or every month. Choose where your gift goes.",
+      "amounts": [
+        25,
+        50,
+        100,
+        250
+      ],
+      "designations": [
+        "Where it is needed most",
+        "Chief Apostle's America 2027 tour",
+        "Prophetic School",
+        "Outreach & missions"
+      ],
+      "monthly": true
+    },
+    {
+      "type": "mandate",
+      "eyebrow": "America 2027",
+      "heading": "Chief Apostle is coming to America!",
+      "bg": "cream",
+      "text": "Chief Apostle Prophet Osman N. Weaver is coming to America in 2027, with major cities including New York, Orlando, Miami, Atlanta, Chicago, Houston, Dallas, Los Angeles, Philadelphia, Washington D.C., Tampa, Jacksonville and more.\n\nWould you like to partner with us? Nothing is too small. Sponsor line (only for sponsors): **407-801-2338**. Please allow 24–72 hours for a response.",
+      "image": "/uploads/whatsapp-image-2026-09-24-at-6.24.41-pm.jpeg",
+      "alt": "Flyer: Chief Apostle Osman N. Weaver is coming to America",
+      "buttons": [
+        {
+          "label": "Contact us to sponsor",
+          "url": "/contact/"
+        }
+      ]
+    },
+    {
+      "type": "verse",
+      "quote": "Give, and it shall be given unto you",
+      "ref": "Luke 6:38",
+      "image": "/uploads/verse.jpg"
+    }
+  ]
+}

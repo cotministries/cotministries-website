@@ -1,0 +1,36 @@
+{
+  "title": "Our Impact",
+  "slug": "testimonies",
+  "description": "Testimonies: what God is doing at City Of Testimonies.",
+  "sections": [
+    {
+      "type": "pageHead",
+      "eyebrow": "Our Impact",
+      "title": "Real people. Real stories. Real Kingdom change.",
+      "image": "/uploads/verse.jpg"
+    },
+    {
+      "type": "testiSlider",
+      "heading": "Testimonies",
+      "bg": "white"
+    },
+    {
+      "type": "verse",
+      "quote": "And they overcame him by the blood of the Lamb, and by the word of their testimony",
+      "ref": "Revelation 12:11",
+      "image": "/uploads/verse.jpg"
+    },
+    {
+      "type": "buttonRow",
+      "heading": "Share your testimony",
+      "text": "What has God done in your life? We would love to hear it.",
+      "bg": "cream",
+      "buttons": [
+        {
+          "label": "Send your testimony",
+          "url": "/contact/"
+        }
+      ]
+    }
+  ]
+}
