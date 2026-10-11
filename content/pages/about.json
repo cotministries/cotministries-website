@@ -11,6 +11,26 @@
     },
     {
       "type": "mandate",
+      "eyebrow": "Leader & Founder",
+      "heading": "Chief Apostle Prophet Osman Nathaniel Weaver",
+      "side": "left",
+      "bg": "cream",
+      "text": "Chief Apostle Prophet Osman Nathaniel Weaver is the Leader and Founder of Yahweh's Inhabitants Prophetic Sabbath Ministries International, also known as City Of Testimonies. He serves alongside Mother and First Lady Prophetess Merriam L. Weaver.",
+      "image": "/api/image/1d7f460a29ed4017989038b107e20516",
+      "alt": "Chief Apostle Prophet Osman Nathaniel Weaver",
+      "buttons": [
+        {
+          "label": "Invite Chief Apostle",
+          "url": "/ministry/#speak"
+        },
+        {
+          "label": "Book a One on One Session",
+          "url": "/one-on-one/"
+        }
+      ]
+    },
+    {
+      "type": "mandate",
       "eyebrow": "Who We Are",
       "heading": "City Of Testimonies Ministries",
       "text": "City Of Testimonies, also known as **Yahweh's Inhabitants Prophetic Sabbath Ministries International**, is a prophetic ministry based in Monrovia, Liberia, with a mandate to reach the nations through the Word of God, deliverance, prayer, and the power of the Holy Spirit.\n\nWe believe that no matter where you are in your journey, God is still writing your story. What you may be facing today can become the testimony you share tomorrow.",
@@ -20,26 +40,6 @@
         {
           "label": "Contact us",
           "url": "/contact/"
-        }
-      ]
-    },
-    {
-      "type": "mandate",
-      "eyebrow": "Leader & Founder",
-      "heading": "Chief Apostle Prophet Osman Nathaniel Weaver",
-      "side": "left",
-      "bg": "cream",
-      "text": "Chief Apostle Prophet Osman Nathaniel Weaver is the Leader and Founder of Yahweh's Inhabitants Prophetic Sabbath Ministries International, also known as City Of Testimonies. He serves alongside Mother and First Lady Prophetess Merriam L. Weaver.",
-      "image": "/uploads/banner.jpg",
-      "alt": "Chief Apostle Prophet Osman Nathaniel Weaver",
-      "buttons": [
-        {
-          "label": "Invite Chief Apostle",
-          "url": "/ministry/#speak"
-        },
-        {
-          "label": "Book a 1:1 session",
-          "url": "/one-on-one/"
         }
       ]
     },
@@ -64,7 +64,8 @@
           "text": "Reaching every nation to impact cultures with the Kingdom.",
           "url": "/ministry/"
         }
-      ]
+      ],
+      "hidden": true
     },
     {
       "type": "verse",
