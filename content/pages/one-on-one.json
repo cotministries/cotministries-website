@@ -27,10 +27,11 @@
         }
       ],
       "photos": false,
-      "notesLabel": "What would you like to talk about? (optional)",
+      "notesLabel": "What would you like to talk about? ",
       "submitLabel": "Request my session",
       "note": "Appointment will not be secured until payment has been received and the appointment was confirmed on our end. Please monitor your email, we will confirm the appointment time with you by email. ",
-      "balanceNote": ""
+      "balanceNote": "",
+      "rushFee": ""
     },
     {
       "type": "verse",
