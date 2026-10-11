@@ -16,7 +16,7 @@
       "payLabel": "How would you like to pay the $75?",
       "locations": [
         {
-          "label": "Video call (Zoom)",
+          "label": "",
           "fee": 0,
           "needsAddress": false
         },
